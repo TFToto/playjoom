@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.2.0" method="upgrade">
 	<name>PlayJoom</name>
-	<creationDate>April 2014</creationDate>
+	<creationDate>March 2015</creationDate>
 	<author>Torsten Freyda</author>
 	<authorEmail>admin@teglo.info</authorEmail>
 	<authorUrl>http://playjoom.teglo.info</authorUrl>
-	<copyright>(c) 2010-2014 by teglo</copyright>
+	<copyright>(c) 2010-2015 by teglo</copyright>
 	<license>GNU/GPL, http://www.gnu.org/copyleft/gpl.html</license>
-	<version>0.9.932</version>
+	<version>0.10.1</version>
 	<description>PlayJoom gives you the possibility to play your stuff whereever you want! It´s a multi media streamer server basics on Joomla!</description>
 	<scriptfile>setupscript.php</scriptfile>
 	<install> <!-- Runs on install -->

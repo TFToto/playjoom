@@ -27,7 +27,7 @@ defined('_JEXEC') or die;
  * @subpackage  com_playjoom.root
  */
 class PJConfigUpdate {
-	public $PJUpdate_extension_id = 10435;
+	public $PJUpdate_extension_id = 10001;
 	public $PJUpdate_component_id = 10000;
 	public $PJ_Update_timeout = 3600;
 	public $PJ_Update_updateURL_beta = 'http://files.teglo.info/playjoom/beta_release_list.xml';

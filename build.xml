@@ -236,8 +236,8 @@
 	<!-- Fileset for all files for template parts //-->
 	<fileset dir="${src}/administrator/templates/system" id="update_pack_templ-files-system-adminfolder"></fileset>
 	<fileset dir="${src}/templates/system" id="update_pack_templ-files-system-folder"></fileset>
-	<fileset dir="${src}/administrator/templates/tegloadmin" id="comp_pack_templ-files-tegloadmin-folder"></fileset>
-	<fileset dir="${src}/templates/teglofound" id="comp_pack_templ-files-teglofound-folder"></fileset>
+	<fileset dir="${src}/administrator/templates/tpl_tegloadmin" id="comp_pack_templ-files-tegloadmin-folder"></fileset>
+	<fileset dir="${src}/templates/tpl_teglofound" id="comp_pack_templ-files-teglofound-folder"></fileset>
 
 	<!-- *********** copy filesets ****************************************************** //-->
 	<target name="copy" description="Copies files to project.">
@@ -260,7 +260,7 @@
 		</copy>
 		<copy file="${src}/administrator/components/com_playjoom/playjoom_update.xml" tofile="${release_update_pack_components}/com_playjoom/playjoom.xml" />
 		<copy file="${src}/playjoom.xml" tofile="${release}/update_pack/playjoom.xml" />
-		<copy file="${src}/updatescript.php" tofile="${release}/update_pack/updatescript.php" />
+		<copy file="${src}/updatescript.php" tofile="${release}/update_pack/updatescript.php"  />
 
 		<!--  Copy root files //-->
 		<copy file="${src}/BSD license.txt" todir="${release}/install_pack" />

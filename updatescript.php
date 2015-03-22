@@ -10,12 +10,12 @@
  * details.
  *
  * @PlayJoom Component
- * @copyright Copyright (C) 2010-2015 by www.teglo.info
+ * @copyright Copyright (C) 2010-2011 by www.teglo.info
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @date $Date$
- * @revision $Revision$
- * @author $Author$
- * @headurl $HeadURL$
+ * @date $Date: 2014-01-26 10:26:58 +0100 (So, 26 Jan 2014) $
+ * @revision $Revision: 893 $
+ * @author $Author: toto $
+ * @headurl $HeadURL: http://dev.teglo.info/svn/playjoom/administrator/components/com_playjoom/setupscript.php $
  */
 
 
@@ -29,39 +29,45 @@ jimport('joomla.installer.installer');
 jimport('joomla.filesystem.folder');
 jimport('joomla.filesystem.file');
 
-$installer = new JInstaller();
-//Install the modules
-$installer->install($this->parent->getPath('source').'/extensions/mod_pj_newcontents');
-$installer->install($this->parent->getPath('source').'/extensions/mod_pj_populartracks');
-$installer->install($this->parent->getPath('source').'/extensions/mod_pj_alphabeticalbar');
-$installer->install($this->parent->getPath('source').'/extensions/mod_pj_statistics');
-$installer->install($this->parent->getPath('source').'/extensions/mod_pj_lastplayed');
-$installer->install($this->parent->getPath('source').'/extensions/mod_pj_footer');
-$installer->install($this->parent->getPath('source').'/extensions/mod_pj_quickicon');
-$installer->install($this->parent->getPath('source').'/extensions/mod_pj_menu');
-$installer->install($this->parent->getPath('source').'/extensions/mod_pj_search');
-$installer->install($this->parent->getPath('source').'/extensions/mod_pj_tags_popular');
-//Install the plugins
-$installer->install($this->parent->getPath('source').'/extensions/playjoom/trackcontrol');
-$installer->install($this->parent->getPath('source').'/extensions/playjoom/trackvote');
-$installer->install($this->parent->getPath('source').'/extensions/playjoom/playbutton');
-$installer->install($this->parent->getPath('source').'/extensions/playjoom/360player');
-$installer->install($this->parent->getPath('source').'/extensions/playjoom/barplayer');
-$installer->install($this->parent->getPath('source').'/extensions/playjoom/tracktimeinfo');
-$installer->install($this->parent->getPath('source').'/extensions/playjoom/download');
-$installer->install($this->parent->getPath('source').'/extensions/playjoom/playlist');
-$installer->install($this->parent->getPath('source').'/extensions/system/pjtemplatetoggle');
-$installer->install($this->parent->getPath('source').'/extensions/system/pjauth');
-$installer->install($this->parent->getPath('source').'/extensions/system/pjlogger');
-$installer->install($this->parent->getPath('source').'/extensions/search/pj_tracks');
-$installer->install($this->parent->getPath('source').'/extensions/search/pj_artists');
-$installer->install($this->parent->getPath('source').'/extensions/search/pj_albums');
-//Install the templates
-$installer->install($this->parent->getPath('source').'/extensions/templates/tegloadmin');
-$installer->install($this->parent->getPath('source').'/extensions/templates/teglofound');
-//Install the modules
-$installer->install($this->parent->getPath('source').'/extensions/lib_playjoom');
+$options['format'] = '{DATE}\t{TIME}\t{LEVEL}\t{CODE}\t{MESSAGE}';
+$options['text_file'] = 'playjoom_update.php';
+JLog::addLogger($options, JLog::INFO, array('Update', 'databasequery', 'jerror'));
 
+$install_source = str_replace('components/com_playjoom', '', $this->parent->getPath('source'));
+JLog::add('Install source path: '.$install_source.'/components/com_playjoom', JLog::INFO, 'Update');
+
+$installer = new JInstaller();
+$installer->install($install_source.'/components/com_playjoom');
+//Install the modules
+/*
+$installer->install($install_source.'modules/mod_pj_newcontents');
+$installer->install($install_source.'modules/mod_pj_populartracks');
+$installer->install($install_source.'modules/mod_pj_alphabeticalbar');
+$installer->install($install_source.'modules/mod_pj_statistics');
+$installer->install($install_source.'modules/mod_pj_lastplayed');
+$installer->install($install_source.'modules/mod_pj_footer');
+$installer->install($install_source.'modules/mod_pj_quickicon');
+$installer->install($install_source.'modules/mod_pj_menu');
+$installer->install($install_source.'modules/mod_pj_search');
+$installer->install($install_source.'modules/mod_pj_tags_popular');
+//Install the plugins
+$installer->install($install_source.'plugins/playjoom/trackcontrol');
+$installer->install($install_source.'plugins/playjoom/trackvote');
+$installer->install($install_source.'plugins/playjoom/playbutton');
+$installer->install($install_source.'plugins/playjoom/360player');
+$installer->install($install_source.'plugins/playjoom/tracktimeinfo');
+$installer->install($install_source.'plugins/playjoom/download');
+$installer->install($install_source.'plugins/playjoom/playlist');
+$installer->install($install_source.'plugins/system/pjtemplatetoggle');
+$installer->install($install_source.'plugins/system/pjauth');
+$installer->install($install_source.'plugins/system/pjlogger');
+$installer->install($install_source.'plugins/search/pj_tracks');
+$installer->install($install_source.'plugins/search/pj_artists');
+$installer->install($install_source.'plugins/search/pj_albums');
+//Install the templates
+$installer->install($install_source.'templates/tegloadmin');
+$installer->install($install_source.'templates/teglofound');
+*/
 class com_playjoomInstallerScript {
 
 	/**
