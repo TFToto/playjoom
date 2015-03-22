@@ -1,0 +1,1 @@
+ALTER TABLE `#__jpalbums` CHANGE `release` `album_release` DATE NOT NULL 

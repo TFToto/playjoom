@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+        <fieldset
+                name="general"
+                label="COM_PLAYJOOM_CONFIG_GENERAL_SETTINGS_LABEL"
+                description="COM_PLAYJOOM_CONFIG_GENERAL_SETTINGS_DESC"
+        >
+                 <field
+                       name="version_check"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_VERSION_CHECK_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_VERSION_CHECK_LABEL_DESC"
+                       default="1"
+               >
+                        <option value="1">JYES</option>
+                        <option value="0">JNO</option>
+                </field>
+                <field
+                        name="playlist_type"
+                        type="list"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_STANDARD_PLAYLIST_TYPE_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_STANDARD_PLAYLIST_TYPE_LABEL_DESC"
+                        default="m3u"
+                >
+                        <option value="m3u">m3u</option>
+                        <option value="pls">pls</option>                     
+                        <option value="xspf">xspf</option>
+                        <option value="wpl">wpl</option>
+                </field>
+                <field
+                        name="css_type"
+                        type="list"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_CSS_TYPE_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_CSS_TYPE_LABEL_DESC"
+                        default="0"
+                >
+                        <option value="pj_css">COM_PLAYJOOM_PJ_CSS</option>
+                        <option value="own_css">COM_PLAYJOOM_OWN_CSS</option>
+                </field>
+                <field
+                        name="modal_infoabout_size_v"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_MODAL_INFOABOUT_SIZE_V_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_MODAL_INFOABOUT_SIZE_V_LABEL_DESC"
+                        size="10"
+                        class="inputbox validate-trackrules"
+                        default="600"
+                />
+                 <field
+                        name="modal_infoabout_size_h"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_MODAL_INFOABOUT_SIZE_H_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_MODAL_INFOABOUT_SIZE_H_LABEL_DESC"
+                        size="10"
+                        class="inputbox validate-trackrules"
+                        default="500"
+                />
+                <field
+                        name="StandardCoverImage" 
+                        type="imagelist" 
+                        default="" 
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_STANDARD_IMAGE_COVER" 
+                        description="" 
+                        directory="/images" 
+                        exclude="" 
+                        stripext="">
+               </field>
+               <field
+                        name="info_source"
+                        type="list"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_INFO_SOURCE_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_INFO_SOURCE_LABEL_DESC"
+                        default="owndb"
+                >
+                        <option value="owndb">COM_PLAYJOOM_PLAYJOOM_FIELD_INFO_SOURCE_OWNDB</option>
+                        <option value="wiki">COM_PLAYJOOM_PLAYJOOM_FIELD_INFO_SOURCE_WIKI</option>
+                        <option value="lastfm">COM_PLAYJOOM_PLAYJOOM_FIELD_INFO_SOURCE_LASTFM</option>
+                </field>
+                <field
+			           name="save_cover_tmp"
+			           type="radio"
+			           class="btn-group"
+			           default="0"
+			           label="COM_PLAYJOOM_PLAYJOOM_FIELD_SAVE_COVER_TMP_LABEL"
+			           description="COM_PLAYJOOM_PLAYJOOM_FIELD_SAVE_COVER_TMP_LABEL_DESC">
+			               <option value="0">JNO</option>
+			               <option value="1">JYES</option>
+		        </field>
+		        <field
+                        name="path_cover_files_tmp"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_PATH_FOR_COVER_FILES_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_PATH_FOR_COVER_FILES_LABEL_DESC"
+                        size="10"
+                        class="inputbox validate-trackrules"
+                        default=""
+                />
+        </fieldset>
+        <fieldset
+               name="viewer"
+               label="COM_PLAYJOOM_CONFIG_VIEWER_SETTINGS_LABEL"
+               description="COM_PLAYJOOM_CONFIG_VIEWER_SETTINGS_DESC"
+       >
+                
+                <field
+                       name="spacer"
+                       label="COM_PLAYJOOM_CONFIG_VIEWER_SETTINGS_ALBUM_LABEL"
+                       type="spacer"
+                       default="Advanced parameters"
+
+               >
+                </field>                
+                <field
+                       name="album_show_cover"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_ALBUM_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_ALBUM_LABEL_DESC"
+                       default="1"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+                <field
+                       name="album_cover_size"
+                       type="text"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_ALBUM_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_ALBUM_LABEL_DESC"
+                       size="10"
+                       class="inputbox validate-trackrules"
+                       default="350"
+               />
+               <field
+                       name="show_additional_info_album"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_ALBUM_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_ALBUM_LABEL_DESC"
+                       default="1"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+                <field
+                       name="show_additional_info_arist"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_ARTIST_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_ARTIST_LABEL_DESC"
+                       default="1"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+                <field
+                       name="show_additional_info_genre"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_GENRE_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_GENRE_LABEL_DESC"
+                       default="0"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+                
+                <field
+                       name="show_artist"
+                       label="COM_PLAYJOOM_CONFIG_VIEWER_SETTINGS_ARTIST_LABEL"
+                       type="spacer"
+                       default=""
+
+               >
+               </field>               
+                <field
+                       name="artist_show_cover"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_ARTIST_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_ARTIST_LABEL_DESC"
+                       default="0"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+                
+                <field
+                       name="show_category"
+                       label="COM_PLAYJOOM_CONFIG_VIEWER_SETTINGS_GENRE_LABEL"
+                       type="spacer"
+                       default="Advanced parameters"
+
+               >
+                </field>                              
+                <field
+                       name="genre_show_cover"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_GENRE_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_GENRE_LABEL_DESC"
+                       default="0"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+                <field
+                       name="genre_cover_size"
+                       type="text"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_GENRE_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_GENRE_LABEL_DESC"
+                       size="10"
+                       class="inputbox validate-trackrules"
+                       default=""
+               />
+               <field
+                       name="numbers_of_titles_genre"
+                       type="text"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_NUMBERS_OF_TITLES_GENRE_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_NUMBERS_OF_TITLES_GENRE_LABEL_DESC"
+                       size="2"
+                       class="inputbox validate-trackrules"
+                       default="8"
+               />
+               <field
+                       name="show_running_time_genre"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_RUNNING_TIME_GENRE_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_RUNNING_TIME_GENRE_LABEL_DESC"
+                       default="0"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+                <field
+                       name="show_hits_genre"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_HITS_GENRE_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_HITS_GENRE_LABEL_DESC"
+                       default="0"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+            
+                <field
+                       name="show_alphabetical"
+                       label="COM_PLAYJOOM_CONFIG_VIEWER_SETTINGS_ALPHABETICAL_LABEL"
+                       type="spacer"
+                       default="Advanced parameters"
+
+               >
+                </field>
+                <field
+                       name="alphabetical_show_cover"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_ALPHABETICAL_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_ALPHABETICAL_LABEL_DESC"
+                       default="0"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+                <field
+                       name="show_additional_info_artist_alphabetical"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_ARTIST_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_ARTIST_LABEL_DESC"
+                       default="0"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+                <field
+                       name="show_additional_info_genre_alphabetical"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_GENRE_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_GENRE_LABEL_DESC"
+                       default="0"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+        </fieldset>
+        <fieldset
+               name="Filesmanagement"
+               label="COM_PLAYJOOM_CONFIG_VIEWER_FILESMANAGEMENT_SETTINGS_LABEL"
+               description="COM_PLAYJOOM_CONFIG_VIEWER_FILESMANAGEMENT_SETTINGS_LABEL_DESC"
+       >
+                <field name="spacer1" type="spacer"
+			hr="true"
+		/>
+                <field
+			name="upload_audio_extensions"
+			type="text"
+			size="50"
+			default="mp3,wav,flac"
+			label="COM_PLAYJOOM_FIELD_LEGAL_EXTENSIONS_LABEL"
+			description="COM_PLAYJOOM_FIELD_LEGAL_EXTENSIONS_LABEL_DESC" />
+			
+			<field
+			name="upload_cover_extensions"
+			type="text"
+			size="50"
+			default="jpg,jpeg,png,gif"
+			label="COM_PLAYJOOM_FIELD_LEGAL_COVEREXTENSIONS_LABEL"
+			description="COM_PLAYJOOM_FIELD_LEGAL_COVEREXTENSIONS_LABEL_DESC" />
+
+		<field
+			name="upload_maxsize"
+			type="text"
+			size="50"
+			default="100"
+			label="COM_PLAYJOOM_FIELD_MAXIMUM_SIZE_LABEL"
+			description="COM_PLAYJOOM_FIELD_MAXIMUM_SIZE_DESC" />
+
+
+		<field
+			name="file_path"
+			type="text"
+			size="50"
+			default=""
+			label="COM_PLAYJOOM_FIELD_PATH_FILE_FOLDER_LABEL"
+			description="COM_PLAYJOOM_FIELD_PATH_FILE_FOLDER_DESC" />
+			
+		<field
+			name="user_folder"
+			type="radio"
+			class="btn-group"
+			default="0"
+			label="COM_PLAYJOOM_FIELD_USER_FOLDER_LABEL"
+			description="COM_PLAYJOOM_FIELD_USER_FOLDER_LABEL_DESC">
+			<option
+				value="0">JNO</option>
+			<option
+				value="1">JYES</option>
+		</field>
+
+		<field
+			name="enable_flash"
+			type="radio"
+			class="btn-group"
+			default="1"
+			label="COM_PLAYJOOM_FIELD_ENABLE_FLASH_UPLOADER_LABEL"
+			description="COM_PLAYJOOM_FIELD_ENABLE_FLASH_UPLOADER_DESC">
+			<option
+				value="0">JNO</option>
+			<option
+				value="1">JYES</option>
+		</field>
+        </fieldset>
+        <fieldset
+                name="plugins"
+                label="COM_PLAYJOOM_CONFIG_PLUGINS_SETTINGS_LABEL"
+                description="COM_PLAYJOOM_CONFIG_PLUGINS_SETTINGS_LABEL_DESC"
+        >
+       
+        <field
+                       name="spacer"
+                       label="COM_PLAYJOOM_CONFIG_PLUGINS_SETTINGS_TRACKCONTROL_LABEL"
+                       type="spacer"
+                       default="Advanced parameters"
+
+               >
+               </field>
+                <field
+                        name="download_active"
+                        type="radio"
+                        class="btn-group"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_DOWNLOAD_ACTIVE_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_DOWNLOAD_ACTIVE_LABEL_DESC"
+                        default="0"
+                >
+                        <option value="0">NO</option>
+                        <option value="1">YES</option>
+                </field>
+               
+                 <field
+                       name="tracktimeinfo"
+                       label="COM_PLAYJOOM_CONFIG_PLUGINS_SETTINGS_TRACKTIMEINFO_LABEL"
+                       type="spacer"
+                       default="Advanced parameters"
+
+               >
+               </field>
+                <field
+                        name="viewtype_for_addtrack_time"
+                        type="list"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_VIEWTYPE_ADDTRACKTIME_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_VIEWTYPE_ADDTRACKTIME_LABEL"
+                        default="3"
+                >
+                        <option value="1">COM_PLAYJOOM_PLAYJOOM_FIELD_DATE</option>
+		                <option value="2">COM_PLAYJOOM_PLAYJOOM_FIELD_DISTANCE</option>
+		                <option value="3">COM_PLAYJOOM_PLAYJOOM_FIELD_COMBI</option>
+			            <option value="0">NO</option>
+                </field>
+                <field
+                        name="viewtype_for_modtrack_time"
+                        type="list"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_VIEWTYPE_MODTRACKTIME_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_VIEWTYPE_MODTRACKTIME_LABEL"
+                        default="0"
+                >
+                        <option value="1">COM_PLAYJOOM_PLAYJOOM_FIELD_DATE</option>
+		                <option value="2">COM_PLAYJOOM_PLAYJOOM_FIELD_DISTANCE</option>
+		                <option value="3">COM_PLAYJOOM_PLAYJOOM_FIELD_COMBI</option>
+			            <option value="0">NO</option>
+                </field>
+                <field
+                        name="viewtype_for_access_time"
+                        type="list"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_VIEWTYPE_ACCESSTIME_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_VIEWTYPE_ACCESSTIME_LABEL"
+                        default="2"
+                >
+                        <option value="1">COM_PLAYJOOM_PLAYJOOM_FIELD_DATE</option>
+		                <option value="2">COM_PLAYJOOM_PLAYJOOM_FIELD_DISTANCE</option>
+		                <option value="3">COM_PLAYJOOM_PLAYJOOM_FIELD_COMBI</option>
+			            <option value="0">NO</option>
+                </field>
+                <field
+                        name="date_format"
+                        type="list"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_DATE_FORMAT_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_DATE_FORMAT_LABEL_DESC"
+                        default="DATE_FORMAT_LC1"
+                >
+                        <option value="DATE_FORMAT_LC1">COM_PLAYJOOM_PLAYJOOM_FIELD_DATEFORMAT_ONE</option>
+		                <option value="DATE_FORMAT_LC2">COM_PLAYJOOM_PLAYJOOM_FIELD_DATEFORMAT_TWO</option>
+		                <option value="DATE_FORMAT_LC3">COM_PLAYJOOM_PLAYJOOM_FIELD_DATEFORMAT_THREE</option>
+			            <option value="DATE_FORMAT_LC4">COM_PLAYJOOM_PLAYJOOM_FIELD_DATEFORMAT_FOUR</option>
+                </field>
+                <field
+                       name="templatetoggle"
+                       label="COM_PLAYJOOM_CONFIG_PLUGINS_SETTINGS_TEMPLATETOGGLE_LABEL"
+                       type="spacer"
+                       default="Advanced parameters"
+
+               >
+                </field>
+                <field
+			            name="templatetoggle_mobile"
+			            type="templatestyle"
+			            label="COM_PLAYJOOM_PLAYJOOM_FIELD_TEMPLATETOGGLE_MOBILE_LABEL"
+			            description="COM_PLAYJOOM_PLAYJOOM_FIELD_TEMPLATETOGGLE_MOBILE_LABEL_DESC"
+			            filter="int"
+			            class="inputbox">
+			            <option value="0">JOPTION_USE_DEFAULT</option>
+		       </field>
+		       <field
+			            name="templatetoggle_regular"
+			            type="templatestyle"
+			            label="COM_PLAYJOOM_PLAYJOOM_FIELD_TEMPLATETOGGLE_REGULAR_LABEL"
+			            description="COM_PLAYJOOM_PLAYJOOM_FIELD_TEMPLATETOGGLE_REGULAR_LABEL_DESC"
+			            filter="int"
+			            class="inputbox">
+			            <option value="0">JOPTION_USE_DEFAULT</option>
+		       </field>
+        </fieldset>        
+         <fieldset
+                name="loggings"
+                label="COM_PLAYJOOM_CONFIG_LOGGINGS_SETTINGS_LABEL"
+                description="COM_PLAYJOOM_CONFIG_LOGGINGS_SETTINGS_DESC"
+        >
+                <field
+                        name="logging_ip"
+                        type="radio"
+                        class="btn-group"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_LOGGING_IP_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_LOGGING_IP_LABEL_DESC"
+                        default="0"
+                >
+                        <option value="0">NO</option>
+                        <option value="1">YES</option>
+                </field>
+                <field
+                        name="logging_filesize"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_LOGGING_FILESIZE_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_LOGGING_FILESIZE_LABEL_DESC"
+                        size="10"
+                        class="inputbox validate-trackrules"
+                        default="500k"
+                />
+                <field
+                        name="priority"
+                        type="list"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_PRIORITY_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_PRIORITY_LABEL_DESC"
+                        default="30719"
+                >
+                        <option value="8">COM_PLAYJOOM_PLAYJOOM_FIELD_ERROR_LABEL</option>
+                        <option value="16">COM_PLAYJOOM_PLAYJOOM_FIELD_WARNING_LABEL</option>
+                        <option value="64">COM_PLAYJOOM_PLAYJOOM_FIELD_INFO_LABEL</option>
+                        <option value="30719">COM_PLAYJOOM_PLAYJOOM_FIELD_ALL_LABEL</option>
+                </field>
+        </fieldset>
+         <fieldset
+                        name="access"
+                        label="COM_PLAYJOOM_CONFIG_ACCESS_SETTINGS_LABEL"
+                        description="COM_PLAYJOOM_CONFIG_ACCESS_SETTINGS_DESC"
+        >
+                 <field
+                        name="pj_accesslevel"
+                        type="accesslevel"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_ACCESS_LEVEL_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_ACCESS_LEVEL_LABEL_DESC"                       
+                        default=""
+                 />
+                 <field
+                        name="pj_pre_accesslevel"
+                        type="accesslevel"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_PRE_ACCESS_LEVEL_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_PRE_ACCESS_LEVEL_LABEL_DESC"                       
+                        default=""
+                 />
+                 <field name="frontpage_login_logoFile" class="" type="media" default=""
+					   label="COM_PLAYJOOM_PLAYJOOM_FIELD_FRONTPAGE_LOGIN_LOGO_LABEL"
+					   description="COM_PLAYJOOM_PLAYJOOM_FIELD_FRONTPAGE_LOGIN_LOGO_LABEL_DESC" />
+					   
+                 <field
+			           name="show_noauth"
+			           type="radio"
+			           class="btn-group"
+			           default="1"
+			           label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_UNAUTH_TRACKS_LABEL"
+			           description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_UNAUTH_TRACKS_LABEL_DESC">
+			               <option value="0">JNO</option>
+			               <option value="1">JYES</option>
+		        </field>
+		        <field
+			           name="show_all_users"
+			           type="radio"
+			           class="btn-group"
+			           default="1"
+			           label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ALL_USERS_TRACKS_LABEL"
+			           description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ALL_USERS_TRACKS_LABEL_DESC">
+			               <option value="0">JNO</option>
+			               <option value="1">JYES</option>
+		        </field>
+		        <field
+			           name="show_nobody"
+			           type="radio"
+			           class="btn-group"
+			           default="1"
+			           label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_NOBODY_TRACKS_LABEL"
+			           description="COM_PLAYJOOM_PLAYJOlogging_ipOM_FIELD_SHOW_NOBODY_TRACKS_LABEL_DESC">
+			               <option value="0">JNO</option>
+			               <option value="1">JYES</option>
+		        </field>
+        </fieldset>
+        <fieldset
+                name="permissions"
+                label="JCONFIG_PERMISSIONS_LABEL"
+                description="JCONFIG_PERMISSIONS_DESC"
+        >
+                <field
+                        name="rules"
+                        type="rules"
+                        label="JCONFIG_PERMISSIONS_LABEL"
+                        class="inputbox"
+                        validate="rules"
+                        filter="rules"
+                        component="com_playjoom"
+                        section="component"
+                />
+        </fieldset>
+        
+</config>

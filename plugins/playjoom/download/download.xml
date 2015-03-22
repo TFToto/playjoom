@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="playjoom" method="upgrade">
+	<name>plg_playjoom_download</name>
+	<author>Torsten Freyda</author>
+	<creationDate>October 2013</creationDate>
+	<copyright>Copyright (C) 2010-2013 by TFToto. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>playjoom.teglo.info</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_PLAYJOOM_DOWNLOAD_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="download">download.php</filename>
+		<folder>assets</folder>
+		<filename>index.html</filename>
+	</files>
+	<!-- 
+	<languages folder="language">
+		<language tag="en-GB">en-GB.plg_playjoom_download.ini</language>
+		<language tag="en-GB">en-GB.plg_playjoom_download.sys.ini</language>
+		<language tag="de-DE">de-DE.plg_playjoom_download.ini</language>
+		<language tag="de-DE">de-DE.plg_playjoom_download.sys.ini</language>
+	</languages>
+	//-->
+</extension>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+        <layout title="COM_PLAYJOOM_GENRE_VIEW_DEFAULT_TITLE">
+                <message>COM_PLAYJOOM_GENRE_VIEW_DEFAULT_TITLE_DESC</message>
+        </layout>
+        
+        <fields name="request">
+		<fieldset name="request"
+		>
+
+			<field name="catid" type="category"
+				description="JGLOBAL_CHOOSE_CATEGORY_DESC"
+				extension="com_playjoom"
+				label="JGLOBAL_CHOOSE_CATEGORY_LABEL"
+				required="true"
+			/>
+		</fieldset>
+	</fields>
+        <fields name="params">
+         <fieldset name="VIEW_SETTINGS">       
+                <field
+                      name="NumberOfAlbums"
+                      type="text"
+                      label="COM_PLAYJOOM_FIELD_NUMBERS_OF_ALBUMS_LABEL"
+                      description="COM_PLAYJOOM_FIELD_NUMBERS_OF_ALBUMS_LABEL_DESC"
+                      default="5"
+                      size="2"
+                >
+                </field>
+                <field
+                      name="genre_show_cover"
+                      type="radio"
+                      label="COM_PLAYJOOM_FIELD_SHOW_COVERS_LABEL"
+                      description="COM_PLAYJOOM_FIELD_SHOW_COVERS_LABEL_DESC"
+                      default="1"
+                >
+                       <option value="0">No</option>
+                       <option value="1">Yes</option>
+                
+                </field>
+                <field
+                        name="genre_cover_size"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_LABEL_DESC"
+                        size="5"
+                        class="inputbox validate-trackrules"
+                        default="100"
+                />
+                </fieldset>
+               
+        </fields>
+</metadata>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+        <layout title="COM_PLAYJOOM_PLAYJOOM_VIEW_PLAYLISTS">
+                <message>COM_PLAYJOOM_PLAYJOOM_VIEW_PLAYLISTS_DESC</message>
+        </layout>
+        <fields name="params">
+         <fieldset name="request">       
+                
+                </fieldset>
+               
+        </fields>
+</metadata>

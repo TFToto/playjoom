@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.1" type="plugin" group="quickicon" method="upgrade">
+	<name>plg_quickicon_playjoomupdate</name>
+	<author>Teglo Project</author>
+	<creationDate>May 2014</creationDate>
+	<copyright>Copyright (C) 2010 - 2014 by teglo. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>playjoom.teglo.info</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_QUICKICON_PLAYJOOMUPDATE_XML_DESCRIPTION</description>
+	<files>
+		<folder>js</folder>
+		<filename plugin="playjoomupdate">playjoomupdate.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB.plg_quickicon_playjoomupdate.ini</language>
+		<language tag="en-GB">en-GB.plg_quickicon_playjoomupdate.sys.ini</language>
+		<language tag="de-DE">de-DE.plg_quickicon_playjoomupdate.ini</language>
+		<language tag="de-DE">de-DE.plg_quickicon_playjoomupdate.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field name="context"
+					type="text"
+					default="mod_pj_quickicon"
+					description="PLG_QUICKICON_JOOMLAUPDATE_GROUP_DESC"
+					label="PLG_QUICKICON_JOOMLAUPDATE_GROUP_LABEL"
+				/>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

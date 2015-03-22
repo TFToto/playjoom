@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="library" version="3.1" method="upgrade">
+	<name>phputf8</name>
+	<libraryname>phputf8</libraryname>
+	<version>0.5</version>
+	<description>LIB_PHPUTF8_XML_DESCRIPTION</description>
+	<creationDate>2006</creationDate>
+	<copyright>Copyright various authors</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<author>Harry Fuecks</author>
+	<authorEmail>hfuecks@gmail.com</authorEmail>
+	<authorUrl>http://sourceforge.net/projects/phputf8</authorUrl>
+	<packager>Joomla!</packager>
+	<packagerurl>http://www.joomla.org</packagerurl>
+	<files folder="libraries">
+		<folder>mbstring</folder>
+		<folder>native</folder>
+		<folder>utils</folder>
+		<files>index.html</files>
+		<files>LICENSE</files>
+		<files>ord.php</files>
+		<files>README</files>
+		<files>str_ireplace.php</files>
+		<files>str_pad.php</files>
+		<files>str_split.php</files>
+		<files>strcasecmp.php</files>
+		<files>strcspn.php</files>
+		<files>stristr.php</files>
+		<files>strrev.php</files>
+		<files>strspn.php</files>
+		<files>substr_replace.php</files>
+		<files>trim.php</files>
+		<files>ucfirst.php</files>
+		<files>ucwords.php</files>
+		<files>utf8.php</files>
+	</files>
+</extension>

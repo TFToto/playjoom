@@ -1,0 +1,160 @@
+PlayJoom - Change Log
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+PlayJoom - 0.9.630 - Beta 8 (Released 2012-07-29) [ View Issues ]
+==============================================
+- 0000136: [General] Improvement: Updating the basic Joomla to the 2.5.6.
+- 0000133: [Frontend] Fix: Additional information page doesn´t works with active cache.
+- 0000139: [Frontend] Fix: Shows in the albums viewer just one of more albums with the same album name.
+- 0000130: [Plugins] Fix: Missing artist argument in the link of the searching results.
+- 0000138: [Plugins] Fix: As searching result shows just one of more albums with the same album name.
+- 0000131: [Frontend Album] Fix: Missing artist argument for creating playlists.
+- 0000132: [Frontend] Improvement: Added some different types of order for the creating of playlists.
+- 0000129: [General] Improvement: Added a users own folder for to save own tracks in it
+- 0000128: [Backend Tracks] Improvement: Intergate Track Plugin Trigger in admin section
+- 0000123: [Backend Tracks] New feature: Integrated a upload function for audio tracks
+- 0000009: [Backend Tracks] Fix: The "Add Tracks" Button doesn´t works with IE
+- 0000127: [Backend Tracks] Improvement: Changing the table column length to track number
+- 0000122: [Backend Tracks] Improvement: Add batch job for release year of the album
+- 0000121: [Backend Tracks] Improvement: Add batch job for albumname
+- 0000120: [Backend Tracks] Improvement: Add batch job for artistname
+- 0000125: [Backend Tracks] Improvement: Add batch job for to change the accesslevel of seleceted tracks
+- 0000126: [Backend Tracks] Improvement: Add batch job for to change the owner of seleceted tracks
+- 0000124: [Backend Tracks] Improvement: Add batch job for to change the genre of seleceted tracks
+[18 issues]
+
+PlayJoom - 0.9.524 - Beta 7 (Released 2012-05-06) 
+==============================================
+- 0000107: [General] Improvement: Added the possibility to set the access level for each track.
+- 0000094: [Backend] Fix: The filter function with the text field in the artist table doesn´t works.
+- 0000119: [Frontend] Improvement: Added a separte tracks viewer.
+- 0000117: [Frontend] New feature: Added a separate search plugin for album searchings.
+- 0000116: [Backend] New feature: Added a manager for playlist categories in backend.
+- 0000118: [Frontend] New feature: Added a separate search plugin for artist searchings.
+- 0000114: [Frontend Artist] Improvement: Add a separte artist viewer.
+- 0000115: [Frontend Album] Improvement: Add a separte album viewer.
+- 0000113: [Frontend Playlist] New feature: Add the possibility to set a category to each playlist.
+- 0000112: [Frontend Playlist] New feature: Add the possibility to set a access level to each playlist.
+- 0000046: [Frontend Playlist] Improvement: Attach a playlist to an album.
+- 0000047: [Frontend Playlist] Improvement: Attach a playlist to an artist.
+- 0000111: [Frontend] Improvement: For a better performance, optimization the function for the check if a album is a sampler typ or not.
+- 0000110: [Backend Tracks] Improvement: Updating the getID3() component to version 1.9.3.
+- 0000109: [Frontend] New feature: Add a access configuration possibility for the tracks with user and access levels information in all views.
+- 0000108: [Frontend] Improvement: The Statistics Module / Page shows now just genres with tracks, no empty genres.
+- 0000106: [General] Improvement: Updating the basic Joomla to the 2.5.4.
+- 0000105: [General] New feature: Add a PJ Auth plugin for to configure PlayJoom just for registered user.
+- 0000104: [Backend] Improvement: Adjustments the CPanel for compatibility with Joomla 2.5.x.
+- 0000103: [Backend] Improvement: Adjustments the PJQuickIcon Module for compatibility with Joomla 2.5.x.
+- 0000102: [Backend] Improvement: Adjustments the admin template for compatibility with Joomla 2.5.x.
+- 0000101: [Backend] Fix: Missing SQL file for PlayJoom Update to version 0.9.379.
+- 0000100: [Backend] Fix: Wasn´t able to update PlayJoom over the backend. Wrong manifest file.
+- 0000099: [Backend] Fix: The PJ Quickicon was not able to run without the Joomla Quickicon Module.
+- 0000098: [Backend] Fix: Instance of some module installations wasn´t correct.
+- 0000097: [Frontend Album] New feature: Add a navigation in the Album viewer, to navigate to the next or previous album of the same artist.
+- 0000096: [Frontend] Improvement: Now it will use the two criterions albumname and artistname for creating a cover.
+- 0000095: [Frontend] Improvement: The album covers are created by GD library.
+- 0000093: [General] Fix: The cover will not displayed, if the album title exsist twice or more.
+- 0000092: [Frontend] Improvment: The album covers does created now with GD directly from the database bin datas
+[30 issues]
+
+PlayJoom - 0.9.379 - Beta 6 (Released 2011-11-19)
+=================================================
+- 0000084: [Module] New function: Adds a Last played Module.
+- 0000083: [Backend Tracks] Improvement: Added an infornation about the date and time of last track access.
+- 0000082: [Frontend] New function: Added a search Plugin.
+- 0000085: [Plugins] New function: Added a Track Time info Plugin.
+- 0000080: [General] Improvement: Added german language packages.
+- 0000089: [Backend Tracks] Improvement: Adds tracks of the choosen folder and whose subfolders as well.
+- 0000090: [Backend Tracks] Improvement: Saves the date when a track was played at last time.
+- 0000088: [Installer] Fix: It wasn´t possible to go forward to the last installer step.
+- 0000079: [General] Improvement: Updating the Joomla parts to 1.7.3.
+- 0000087: [Backend Tracks] Improvement: Adding the fields metakeys and metadesc for each track.
+- 0000086: [Backend Cover] Fix: Adding manually a cover wasn´t possible.
+- 0000077: [Backend] New function: A PlayJoom QuickIcon Module.
+- 0000078: [Backend] New function: A PlayJoom Administrator menu for an easier access of the PlayJoom parts.
+- 0000081: [Plugins] Improvement: Updating the sound manager to 2.97a.20111030 for playing the music files.
+- 0000074: [Frontend] New function: Shows additional information of an artist from the LastFM database.
+- 0000050: [Frontend] New function: Shows additional information of an artist from the wikipedia database.
+- 0000052: [Frontend] New function: Shows additional information of an genre from the wikipedia database.
+- 0000051: [Frontend] New function: Shows additional information of an album from the wikipedia database.
+- 0000073: [Frontend] New function: Shows additional information of an album from the LastFM database.
+- 0000072: [Frontend] New function: A new template for mobile devices.
+- 0000071: [Plugins] New function: A new Plugin for toggling between regular and mobile templates.
+- 0000070: [Backend Cover] Fix: It wasn´t possible to select and to save a cover in the cover managment part. Problem with logging function.
+- 0000069: [Backend Tracks] Fix: It wasn´t possible to save a track, album or artistname with included of numbers. Problem with formular rules settings.
+- 0000068: [Backend Tracks] Improvement: Stores the date and the username when the track was modified.
+- 0000067: [Backend Tracks] Improvement: Stores the date and the username when the track was added.
+- 0000066: [Frontend] New function: Filter function with usernames for each track in all viewers.
+[26 issues]
+
+PlayJoom - 0.9.272 - Beta 5 (Released 2011-07-31)
+=================================================
+- 0000065: [Installer] Improvement: Revised version of the PlayJoom Installer for the new Joomla part.
+- 0000064: [General] Improvement: Update of the Joomla part to Version 1.7.0 
+- 0000063: [Backend Cover] Fix: Paths in the Cover managment of the Administration not correct. Doesn´t works in Windows Systems.
+- 0000062: [Module] Fix: Time of track length doesn´t works in Popular Module.
+- 0000061: [Installer] Fix: Wrong PlayJoom Table names. It wasn´t possible to install the pj tables with a diffrent prefixes.
+- 0000060: [Frontend] Fix: Table sort and table page navigation doesn´t have works, if a playlist creator is integrated.
+- 0000059: [Installer] Fix: Correction of the prefix for the database tables of PlayJoom.
+- 0000058: [Module] New function: Module for PlayJoom statistics.
+- 0000019: [General] New function: Viewer for statistics.
+- 0000049: [Backend] Improvement: Version checking should be possible to disable it.
+- 0000057: [General] Improvement: A better compatibilty with iPhone and iPod touch devices with resample of the files on-the-fly.
+- 0000056: [Module] Fix: It´s not possible to loading the "Alphabeticalbar"-module more than once with Joomla 1.7.x.
+- 0000055: [Module] Fix: It´s not possible to loading the "New Contents"-module more than once with Joomla 1.7.x.
+- 0000054: [Frontend] Improvement: Now it´s possible to load a standard image for albums which have not an cover image.
+- 0000018: [Frontend] Improvement: Attached in the tables navigation in the Teglo template.
+- 0000053: [Frontend] New function: Module album gallery as Cover Flow function.
+- 0000037: [Frontend] New function: Plugin for Play the files without external player program.
+[17 issues]
+
+PlayJoom - 0.9.208 - Beta 4 (Released 2011-05-28)
+=================================================
+- 0000044: [Installer] New function: Special Installer for Joomla and PlayJoom.
+- 0000045: [Backend] Fix: Not possible to read the release field in the table of albums.
+- 0000043: [Frontend Album] Improvement: Shows an Info button for more additional information about the genre.
+- 0000042: [Frontend Album] Improvement: Shows an Info button for more additional information about the album.
+- 0000041: [Frontend Album] Improvement: Shows an Info button for more additional information about the artist.
+- 0000040: [Frontend] New function: Alphabetic Viewer (TFToto) - closed.
+- 0000035: [Frontend] New function: Alphabetic Module. (TFToto) - closed.
+- 0000038: [Frontend] Improvement: It is now possible to download a track.
+- 0000036: [Frontend] New function: Rating for tracks.
+- 0000039: [Frontend Genre] Improvement: Playlist of all tracks of selected genre.
+- 0000017: [Frontend Artist] Improvement: Playlist of all tracks of one artist.
+- 0000028: [General] New function: The created playlists should be have a useful file name.
+[12 issues]
+
+PlayJoom - 0.9.170 - Beta 3 (Released 2011-04-24)
+=================================================
+- 0000007: [Frontend Genre] New function: Frontend for genre.
+- 0000034: [Frontend Album] Improvement: Optimizing the Slider function.
+- 0000033: [Frontend Section] Improvement: In the Section lists should be the genre entry clickable.
+- 0000032: [Frontend] Improvement: When the album is a Sampler, it should be displayed.
+- 0000031: [Frontend Album] Improvement: With Firefox 4 / Chrome 10 it´s not possible to add tracks to own playlists.
+- 0000030: [Backend Options] Improvment: The options configuration are now available in the menu setting.
+- 0000029: [Frontend] Fix: In the playlists appears an error message, because a problem with countHit function.
+- 0000003: [Frontend] New function: Module most play / popular Content.
+- 0000027: [General] Fix: If it´s necessary to be renamed the logging file it´s appears a error message.
+[9 issues]
+
+PlayJoom - 0.9.135 - Beta 2 (Released 2011-03-26)
+=================================================
+- 0000016: [Frontend Album] New function: Hits display in the track details.
+- 0000006: [General] New function: Store the hits of the track which was played.
+- 0000026: [Backend Cover] Fix: File browser for manually cover selection.
+- 0000025: [Frontend] Improvement: CSS classes can be switch between PlayJoom and own classes.
+- 0000001: [Backend Cover] Improvement: Maximum cover size is 4MB.
+- 0000011: [Backend Tracks] Fix: One file path delete.
+- 0000020: [Installer] New function: Load standard vaules for option settings.
+- 0000010: [Backend Tracks] Fix: Cover value field makes no sense here.
+- 0000013: [Backend Tracks] Improvement: Main menu is active, when the add track part is open.
+- 0000014: [Frontend Section] Improvement: Track will be displayed only if it exists.
+- 0000022: [Frontend Artist] Improvement: More compatibility for Slider function with other templates.
+- 0000002: [Frontend Album] Fix: Error message with total time and average time.
+- 0000012: [General] Fix: Error message if no log file exists.
+- 0000004: [Backend Options] New function: Logging function configurable.
+- 0000015: [Backend Options] New function: Covers configured.
+- 0000023: [Frontend] Fix: double entries of "index.php" in created playlists.
+- 0000024: [Frontend] Fix: problem with playlist as type xspf.
+- 0000005: [Frontend] Fix: Downloading Playlist doesn´t works.
+[18 issues] 

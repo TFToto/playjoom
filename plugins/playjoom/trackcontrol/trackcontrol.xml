@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="playjoom" method="upgrade">
+	<name>plg_playjoom_trackcontrol</name>
+	<author>Torsten Freyda</author>
+	<creationDate>Feburay 2015</creationDate>
+	<copyright>Copyright (C) 2010-2015 by TFToto. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>playjoom.teglo.info</authorUrl>
+	<version>1.2.1</version>
+	<description>PLG_PLAYJOOM_TRACKCONTROL_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="trackcontrol">trackcontrol.php</filename>
+		<folder>images</folder>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB.plg_playjoom_trackcontrol.ini</language>
+		<language tag="en-GB">en-GB.plg_playjoom_trackcontrol.sys.ini</language>
+		<language tag="de-DE">de-DE.plg_playjoom_trackcontrol.ini</language>
+		<language tag="de-DE">de-DE.plg_playjoom_trackcontrol.sys.ini</language>
+	</languages>
+</extension>

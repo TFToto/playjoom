@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="search" method="upgrade">
+	<name>plg_search_pj_albums</name>
+	<author>PlayJoom Project</author>
+	<creationDate>March 2014</creationDate>
+	<copyright>Copyright (C) 2010 - 2014 by teglo. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>playjoom.teglo.info</authorUrl>
+	<version>1.1.0</version>
+	<description>PLG_SEARCH_PJ_ALBUMS_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="pj_albums">pj_albums.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB.plg_search_pj_albums.ini</language>
+		<language tag="en-GB">en-GB.plg_search_pj_albums.sys.ini</language>
+		<language tag="de-DE">de-DE.plg_search_pj_albums.ini</language>
+		<language tag="de-DE">de-DE.plg_search_pj_albums.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+
+			<fieldset name="basic">
+				<field name="pj_albums_search_limit" type="text"
+					default="50"
+					description="PLG_SEARCH_PJ_ALBUMS_FIELD_SEARCHLIMIT_DESC"
+					label="PLG_SEARCH_PJ_ALBUMS_FIELD_SEARCHLIMIT_LABEL"
+					size="5"
+				/>	
+			</fieldset>
+
+		</fields>
+	</config>
+</extension>

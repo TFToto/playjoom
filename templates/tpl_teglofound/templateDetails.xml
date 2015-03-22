@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+<extension version="3.1" type="template" client="site" method="upgrade">
+	<name>tpl_teglofound</name>
+	<version>1.1.0</version>
+	<creationDate>November 2014</creationDate>
+	<author>Torsten Freyda</author>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<copyright>Copyright (C) 2010 - 2014 by teglo. All rights reserved.</copyright>
+	<description>TPL_TEGLOFOUND_XML_DESCRIPTION</description>
+	<files>
+		<filename>error.php</filename>
+		<filename>favicon.ico</filename>
+		<filename>index.html</filename>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<folder>css</folder>
+		<folder>fonts</folder>
+		<folder>foundation</folder>
+		<folder>helpers</folder>
+		<folder>html</folder>
+		<folder>images</folder>
+		<folder>language</folder>
+		<folder>less</folder>
+	</files>
+	<positions>
+	    <position>breadcrumbs</position>
+		<position>debug</position>
+		<position>left</position>
+		<position>left-blank</position>
+		<position>right</position>
+		<position>right-blank</position>
+		<position>right-top</position>
+		<position>menubar-left</position>
+		<position>menubar-right</position>
+		<position>submenubar-left</position>
+		<position>submenubar-right</position>
+		<position>down-left</position>
+		<position>down-middle</position>
+		<position>down-right</position>
+		<position>lower-navigation</position>
+		<position>footer</position>
+	</positions>
+	<languages folder="language">
+		<language tag="en-GB">en-GB.tpl_teglofound.ini</language>
+		<language tag="en-GB">en-GB.tpl_teglofound.sys.ini</language>
+		<language tag="de-DE">de-DE.tpl_teglofound.ini</language>
+		<language tag="de-DE">de-DE.tpl_teglofound.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="advanced">
+				<field 
+				    name="tpl_teglofound_main_config_min_mainpanel_height"
+					type="text" 
+					default="1150"
+					label="TPL_TEGLOFOUND_MAIN_CONFIG_MIN_MAINPANEL_HEIGHT"
+					description="TPL_TEGLOFOUND_MAIN_CONFIG_MIN_MAINPANEL_HEIGHT_DESC"
+					filter="integre"
+				/>
+				<field
+					name="tpl_teglofound_main_config_layout_columns"
+					type="radio"
+					class="btn-group"
+					label="TPL_TEGLOFOUND_MAIN_CONFIG_LAYOUT_COLUMNS_LABEL"
+					description="TPL_TEGLOFOUND_MAIN_CONFIG_LAYOUT_COLUMNS_LABEL_DESC"
+					default="2-8-2"
+				>
+					<option value="0-9-3">0-9-3</option>
+					<option value="1-8-3">1-8-3</option>
+					<option value="2-8-2">2-8-2</option>
+					<option value="3-6-3">3-6-3</option>
+					<option value="4-4-4">4-4-4</option>
+				</field>
+				<field 
+					name="tpl_teglofound_main_config_main_primary_color" 
+					class=""
+					type="color"
+					default="#86A9CC"
+					label="TPL_TEGLOFOUND_MAIN_CONFIG_PRIMARY_COLOR"
+					description="TPL_TEGLOFOUND_MAIN_CONFIG_MAIN_PRIMARY_COLOR_DESC"
+				/>
+				<field 
+					name="tpl_teglofound_main_config_main_secondary_color" 
+					class="" 
+					type="color"
+					default="#98af85"
+					label="TPL_TEGLOFOUND_MAIN_CONFIG_SECONDARY_COLOR"
+					description="TPL_TEGLOFOUND_MAIN_CONFIG_MAIN_SECONDARY_COLOR_DESC"
+				/>
+			</fieldset>
+			<fieldset name="TPL_TEGLOFOUND_HEAD_CONFIG_LABEL">
+				<field 
+					name="logoFile" 
+					class="" 
+					type="media" 
+					default=""
+					label="TPL_TEGLOFOUND_LOGO_LABEL"
+					description="TPL_TEGLOFOUND_LOGO_LABEL_DESC"
+				/>
+				<field name="logoFile" class="" type="media" default=""
+					   label="TPL_TEGLOFOUND_LOGO_LABEL"
+					   description="TPL_TEGLOFOUND_LOGO_LABEL_DESC" />
+			
+				<field name="tpl_teglofound_head_config_main_font_color" class="" type="color" default=""
+
+					   label="TPL_TEGLOFOUND_HEAD_CONFIG_MAIN_FONT_COLOR"
+				       description="TPL_TEGLOFOUND_HEAD_CONFIG_MAIN_FONT_COLOR_DESC" />
+				       
+				<field name="tpl_teglofound_head_config_main_font_hoveractive_color" class="" type="color" default=""
+
+					   label="TPL_TEGLOFOUND_HEAD_CONFIG_MAIN_FONT_HOVERACTIVE_COLOR"
+				       description="TPL_TEGLOFOUND_HEAD_CONFIG_MAIN_FONT_HOVERACTIVE_COLOR_DESC" />
+			    
+			    <field name="tpl_teglofound_head_config_main_upper_color" class="" type="color" default=""
+
+					   label="TPL_TEGLOFOUND_HEAD_CONFIG_MAIN_UPPER_COLOR"
+				       description="TPL_TEGLOFOUND_HEAD_CONFIG_MAIN_UPPER_COLOR_DESC" />
+				
+				<field name="tpl_teglofound_head_config_main_lower_color" class="" type="color" default=""
+
+					   label="TPL_TEGLOFOUND_HEAD_CONFIG_MAIN_LOWER_COLOR"
+				       description="TPL_TEGLOFOUND_HEAD_CONFIG_MAIN_LOWER_COLOR_DESC" />
+			
+				<field name="tpl_teglofound_head_config_main_hoveractive_color" class="" type="color" default=""
+
+					   label="TPL_TEGLOFOUND_HEAD_CONFIG_MAIN_HOVERACTIVE_COLOR"
+				       description="TPL_TEGLOFOUND_HEAD_CONFIG_MAIN_HOVERACTIVE_COLOR_DESC" />
+				       
+				<field name="tpl_teglofound_head_config_sub_bar_color" class="" type="color" default=""
+
+					   label="TPL_TEGLOFOUND_HEAD_CONFIG_SUB_BAR_COLOR"
+				       description="TPL_TEGLOFOUND_HEAD_CONFIG_SUB_BAR_COLOR_DESC" />
+				
+				<field name="tpl_teglofound_head_config_sub_bar_border_color" class="" type="color" default=""
+
+					   label="TPL_TEGLOFOUND_HEAD_CONFIG_SUB_BAR_BORDER_COLOR"
+				       description="TPL_TEGLOFOUND_HEAD_CONFIG_SUB_BAR_BORDER_COLOR_DESC" />
+				
+				<field name="tpl_teglofound_head_config_sub_bar_font_color" class="" type="color" default=""
+
+					   label="TPL_TEGLOFOUND_HEAD_CONFIG_SUB_BAR_FONT_COLOR"
+				       description="TPL_TEGLOFOUND_HEAD_CONFIG_SUB_BAR_FONT_COLOR_DESC" />		
+				<field 
+					name="tpl_teglofound_head_config_main_shadow_color"
+					class=""
+					type="color"
+					default=""
+					label="TPL_TEGLOFOUND_HEAD_CONFIG_MAIN_SHADOW_COLOR"
+					description="TPL_TEGLOFOUND_HEAD_CONFIG_MAIN_SHADOW_COLOR_DESC"
+				/>
+				<field 
+				    name="tpl_teglofound_main_config_shadow_width"
+					type="text" 
+					default="3"
+					label="TPL_TEGLOFOUND_MAIN_CONFIG_SHADOW_WIDTH"
+					description="TPL_TEGLOFOUND_MAIN_CONFIG_SHADOW_WIDTH_DESC"
+					filter="integre"
+				/>
+				<field 
+				    name="tpl_teglofound_main_config_mainheadbar_height"
+					type="text" 
+					default="45"
+					label="TPL_TEGLOFOUND_MAIN_CONFIG_MAINHEADBAR_HEIGHT"
+					description="TPL_TEGLOFOUND_MAIN_CONFIG_MAINHEADBAR_HEIGHT_DESC"
+					filter="integre"
+				/>
+				<field 
+				    name="tpl_teglofound_main_config_subheadbar_height"
+					type="text" 
+					default="40"
+					label="TPL_TEGLOFOUND_MAIN_CONFIG_SUBHEADBAR_HEIGHT"
+					description="TPL_TEGLOFOUND_MAIN_CONFIG_SUBHEADBAR_HEIGHT_DESC"
+					filter="integre"
+				/>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

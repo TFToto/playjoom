@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="playjoom" method="upgrade">
+	<name>plg_playjoom_barplayer</name>
+	<author>Torsten Freyda</author>
+	<creationDate>January 2015</creationDate>
+	<copyright>Copyright (C) 2010-2015 by TFToto. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>playjoom.teglo.info</authorUrl>
+	<version>1.0.0</version>
+	<description>PLG_PLAYJOOM_BARPLAYER_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="barplayer">barplayer.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB.plg_playjoom_barplayer.ini</language>
+		<language tag="en-GB">en-GB.plg_playjoom_barplayer.sys.ini</language>
+		<language tag="de-DE">de-DE.plg_playjoom_barplayer.ini</language>
+		<language tag="de-DE">de-DE.plg_playjoom_barplayer.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field 
+					name="plg_playjoom_barplayer_params_basic_background_color" 
+					class=""
+					type="color"
+					default="#ababab"
+					label="PLG_PLAYJOOM_BARPLAYER_PARAMS_BASIC_BACKGROUND_COLOR"
+					description="PLG_PLAYJOOM_BARPLAYER_PARAMS_BASIC_BACKGROUND_COLOR_DESC"
+				/>
+				<field
+					name="plg_playjoom_barplayer_params_basic_size"
+					type="number"
+					max="25"
+					min="10"
+					label="PLG_PLAYJOOM_BARPLAYER_PARAMS_BASIC_SIZE"
+					description="PLG_PLAYJOOM_BARPLAYER_PARAMS_BASIC_SIZE_DESC"
+					size="4"
+					class="inputbox span1"
+					required="true"
+					default="17"
+				/>	
+			</fieldset>
+		</fields>
+	</config>
+</extension>

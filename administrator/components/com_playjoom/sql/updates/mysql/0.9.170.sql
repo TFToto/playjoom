@@ -1,0 +1,1 @@
+ALTER TABLE `#__jpaudiotracks`  ADD `mod_datetime` datetime NOT NULL;

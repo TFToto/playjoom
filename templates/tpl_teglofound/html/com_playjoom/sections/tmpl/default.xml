@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+        <layout title="COM_PLAYJOOM_PLAYJOOM_VIEW_SECTIONS">
+                <message>COM_PLAYJOOM_PLAYJOOM_VIEW_SECTIONS_DESC</message>
+        </layout>
+        <fields name="params">
+         <fieldset name="request">       
+                <field
+                                name="show_section"
+                                type="list"
+                                label="COM_PLAYJOOM_FIELD_SHOW_SECTION_LABEL"
+                                description="COM_PLAYJOOM_FIELD_SHOW_SECTION_DESC"
+                                default=""
+                        >
+                                <option value="">COM_PLAYJOOM_FIELD_SHOW_SECTION_VALUE</option>
+                                <option value="all">COM_PLAYJOOM_FIELD_SHOW_SECTION_ALL</option>
+                                <option value="artist">COM_PLAYJOOM_FIELD_SHOW_SECTION_VALUE_ARTIST</option>
+                                <option value="album">COM_PLAYJOOM_FIELD_SHOW_SECTION_VALUE_ALBUM</option>
+                </field>
+                <field
+                        name="sections_show_cover"
+                        type="radio"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_LABEL_DESC"
+                        default="0"
+                >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+                <field
+                        name="sections_cover_size"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_LABEL_DESC"
+                        size="5"
+                        class="inputbox validate-trackrules"
+                        default="100"
+                />
+                </fieldset>
+               
+        </fields>
+</metadata>

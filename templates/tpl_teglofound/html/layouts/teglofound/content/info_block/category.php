@@ -1,0 +1,25 @@
+<?php
+/**
+ * @package     Joomla.Site
+ * @subpackage  Layout
+ *
+ * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @license     GNU General Public License version 2 or later; see LICENSE.txt
+ */
+
+defined('JPATH_BASE') or die;
+
+$title = $this->escape($displayData['item']->category_title);
+$url = '<a href="'.JRoute::_(ContentHelperRoute::getCategoryRoute($displayData['item']->catslug)).'">'.$title.'</a>';
+
+echo '<div class="category-name">';
+
+	echo '<i class="fa fa-folder fa-1x"></i> ';
+	
+	if ($displayData['params']->get('link_category') && $displayData['item']->catslug) {
+		echo JText::sprintf('COM_CONTENT_CATEGORY', $url);
+	} else { 
+		echo JText::sprintf('COM_CONTENT_CATEGORY', $title);
+	}
+
+echo '</div>';

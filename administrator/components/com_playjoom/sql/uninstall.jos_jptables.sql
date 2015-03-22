@@ -1,0 +1,1 @@
+DROP TABLE `#__jpalbums`, `#__jpartists`, `#__jpaudiotracks`, `#__jpaudiotracks_rating`, `#__jpcoverblobs`, `#__jpplaylists`, `#__jpplaylist_content`;

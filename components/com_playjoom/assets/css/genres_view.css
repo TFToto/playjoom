@@ -1,0 +1,92 @@
+@CHARSET "UTF-8";
+.albumsview {
+	margin-bottom: 30px;
+	margin-top: 5px;
+	padding-top: 5pX;
+}
+ul.list_of_albums0,
+ul.list_of_albums1 {
+	display: inline-block;
+}
+ul.list_of_albums0 li {
+	list-style: none;
+
+    margin-left: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 2px 7px 7px 7px;
+    float: left;
+    font-weight: normal;
+    font-size: 0.8em;
+    width: 100px;
+    height: 80px;
+    background: #f7f7f7;
+    border: 1px solid #CCC;
+}
+
+ul.list_of_albums1 li {
+	list-style: none;
+    margin-left: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 2px 7px 7px 7px;
+    float: left;
+    font-weight: normal;
+    font-size: 0.8em;
+    width: 100px;
+    height: 200px;
+    background: #f7f7f7;
+    border: 1px solid #CCC;
+}
+li.genre_item0:hover {
+	background:none repeat scroll 0 0 #acacac;
+	border:1px solid #555555;
+	cursor:pointer;
+}
+li.genre_item1:hover {
+	background:none repeat scroll 0 0 #acacac;
+	border:1px solid #555555;
+	cursor:pointer;
+}
+.genre_item0:hover,
+.genre_item0 a:hover {
+   color: #fefefe;
+}
+.genre_item1:hover,
+.genre_item1 a:hover {
+   color: #fefefe;
+}
+
+h2.genres_title {
+	color: #fe789e;
+	width: 100%;
+	margin-bottom: 35px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+    border-bottom: 1px dotted #999;
+    color: #666;
+}
+
+fieldset.batch {
+    background: none repeat scroll 0 0 #fafafa;
+}
+fieldset.batch {
+    margin: 20px 10px 10px;
+    padding: 10px;
+}
+fieldset.batch {
+    border: 1px solid #C7C8B2;
+}
+fieldset.batch {
+    margin: 40px 10px;
+    padding-bottom: 20px;
+    text-align: left;
+}
+legend {
+    color: #2C2C2C;
+}
+legend {
+    font-size: 1.2em;
+    font-weight: normal;
+    padding-bottom: 5px;
+}

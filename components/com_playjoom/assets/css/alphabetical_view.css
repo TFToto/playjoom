@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+.info_icon {
+   margin-left: 6px;
+   margin-bottom: -2px;
+}
+ul.ListOfAlphabetical {
+	list-style: none;
+	border: 1px solid #CCC;
+}
+ul.ListOfAlbums {
+	display: inline-block;
+}
+ul.ListOfAlbums li {
+	list-style: none;
+    display: inline;
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-bottom: 1px;
+    padding: 5px;
+    float: left;
+    font-weight: normal;
+    font-size: 0.8em;
+    width: 95px;
+    height: 165px;
+    background: #f7f7f7;
+    border: 1px solid #CCC;
+}
+li.AlbumList {
+    color: #888888;
+    border: 6px solid #CCC;
+    margin: 6px;
+    width: 100%;
+}
+li.AlbumList:hover {
+	background:none repeat scroll 0 0 #acacac;
+	border:1px solid #555555;
+	cursor:pointer;
+}
+.AlbumList:hover,
+.AlbumList a:hover {
+   color: #fefefe;
+}
+a.ArtistLink:link {
+   font-size: 1.3em;
+   color: #777777;
+}

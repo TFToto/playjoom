@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+	type="module"
+	version="3.0.0"
+	client="site"
+	method="upgrade">
+	<name>mod_pj_newcontents</name>
+	<author>Torsten Freyda</author>
+	<creationDate>December 2012</creationDate>
+	<copyright>Copyright (C) 2010 - 2012 by teglo. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>playjoom.teglo.info</authorUrl>
+	<version>1.2.0</version>
+	<description>MOD_PLAYJOOM_NEWCONTENTS_XML_DESCRIPTION</description>
+	<files>
+		<filename
+			module="mod_pj_newcontents">mod_pj_newcontents.php</filename>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+		<filename>index.html</filename>
+		<filename>mod_pj_newcontents.xml</filename>
+	</files>
+	
+	<languages>
+		<language tag="en-GB">language/en-GB.mod_pj_newcontents.ini</language>
+		<language tag="en-GB">language/en-GB.mod_pj_newcontents.sys.ini</language>
+		<language tag="de-DE">language/de-DE.mod_pj_newcontents.ini</language>
+		<language tag="de-DE">language/de-DE.mod_pj_newcontents.sys.ini</language>
+	</languages>
+	
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_LATEST_NEWS" />
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="count"
+					type="text"
+					default="5"
+					size="2"
+					label="MOD_PLAYJOOM_NEWCONTENTS_FIELD_COUNT"
+					description="MOD_PLAYJOOM_NEWCONTENTS_FIELD_COUNT_DESC" />
+
+				<field
+					name="ordering"
+					type="list"
+					default="published"
+					label="MOD_PLAYJOOM_NEWCONTENTS_FIELD_ORDERING"
+					description="MOD_PLAYJOOM_NEWCONTENTS_FIELD_ORDERING_DESC">
+					<option
+						value="c_dsc">MOD_PLAYJOOM_NEWCONTENTS_FIELD_ADDED</option>
+					<option
+						value="m_dsc">MOD_PLAYJOOM_NEWCONTENTS_FIELD_MODIFIED</option>
+					<option
+						value="mc_dsc">MOD_PLAYJOOM_NEWCONTENTS_FIELD_TOUCHED</option>
+				</field>
+
+			</fieldset>
+
+			<fieldset
+				name="advanced">
+				
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+
+				<field
+					name="cache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC">
+					<option
+						value="1">JGLOBAL_USE_GLOBAL</option>
+					<option
+						value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+				<field
+					name="cachemode"
+					type="hidden"
+					default="static">
+					<option
+						value="static"></option>
+				</field>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

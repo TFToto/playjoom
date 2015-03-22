@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="system" method="upgrade">
+	<name>System - pjtemplatetoggle</name>
+	<author>Torsten Freyda</author>
+	<creationDate>December 2012</creationDate>
+	<copyright>Copyright (C) 2011-2012 by teglo. All rights reserved.</copyright>
+	<license>GPL</license>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>playjoom.teglo.info</authorUrl>
+	<version>1.1.0</version>
+	<description>PLG_SYSTEM_PJTEMPLATETOGGLE_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="pjtemplatetoggle">pjtemplatetoggle.php</filename>
+	</files>	 
+</extension>

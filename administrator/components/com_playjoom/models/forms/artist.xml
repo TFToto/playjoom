@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+        <fieldset name="details">
+                <field
+                        name="id"
+                        type="hidden"
+                />
+                <field
+                        name="name"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_ARTIST_NAME_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_ARTIST_NAME_LABEL_DESC"
+                        size="40"                        
+                        required="true"
+                        default=""
+                />
+                <field
+                        name="members"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_ARTIST_MEMBERS_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_ARTIST_MEMBERS_LABEL_DESC"
+                        size="70"                        
+                        required="false"
+                        default=""
+                />
+                <field
+                        name="formation"
+                        type="calendar" 
+                        default="" 
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_ARTIST_FORMATION_LABEL" 
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_ARTIST_FORMATION_LABEL_DESC" 
+                        format="%d-%m-%Y" 
+                />
+                <field
+                        name="catid"
+                        type="category"
+                        extension="com_playjoom"
+                        class="inputbox"
+                        default=""
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_ARTIST_CATEGORY_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_CATID_DESC"
+                        required="true"
+                >
+                        <option value="0">JOPTION_SELECT_CATEGORY</option>
+                </field>
+                
+        </fieldset>
+        <fieldset name="text-contents">
+                <field name="infotxt" 
+                       type="editor" 
+                       class="inputbox"
+                       width="900"
+                       height="650"
+			           label="COM_PLAYJOOM_PLAYJOOM_FIELD_ARTIST_INFOTEXT_LABEL" 
+			           description="COM_PLAYJOOM_PLAYJOOM_FIELD_ARTIST_INFOTEXT_LABEL_DESC"
+			           filter="PlayJoomHelper::filterText" 
+			           buttons="true" 
+			    />        
+        </fieldset>     
+</form>

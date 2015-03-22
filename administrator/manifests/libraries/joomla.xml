@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="library" version="3.1" method="upgrade">
+	<name>Joomla! Platform</name>
+	<libraryname>joomla</libraryname>
+	<version>13.1</version>
+	<description>LIB_JOOMLA_XML_DESCRIPTION</description>
+	<scriptfile>administrator/components/com_admin/setupscript_joomla.php</scriptfile>
+	<creationDate>2013</creationDate>
+	<copyright>Copyright (C) 2005 - 2014 Open Source Matters. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<author>Joomla! Project</author>
+	<authorEmail>admin@joomla.org</authorEmail>
+	<authorUrl>http://www.joomla.org</authorUrl>
+	<packager>Joomla!</packager>
+	<files folder="libraries">
+		<folder>access</folder>
+		<folder>application</folder>
+		<folder>archive</folder>
+		<folder>base</folder>
+		<folder>cache</folder>
+		<folder>client</folder>
+		<folder>controller</folder>
+		<folder>crypt</folder>
+		<folder>data</folder>
+		<folder>database</folder>
+		<folder>date</folder>
+		<folder>document</folder>
+		<folder>environment</folder>
+		<folder>event</folder>
+		<folder>facebook</folder>
+		<folder>feed</folder>
+		<folder>filesystem</folder>
+		<folder>filter</folder>
+		<folder>form</folder>
+		<folder>github</folder>
+		<folder>google</folder>
+		<folder>grid</folder>
+		<folder>http</folder>
+		<folder>image</folder>
+		<folder>input</folder>
+		<folder>keychain</folder>
+		<folder>language</folder>
+		<folder>linkedin</folder>
+		<folder>log</folder>
+		<folder>mail</folder>
+		<folder>mediawiki</folder>
+		<folder>microdata</folder>
+		<folder>model</folder>
+		<folder>oauth1</folder>
+		<folder>oauth2</folder>
+		<folder>object</folder>
+		<folder>observable</folder>
+		<folder>observer</folder>
+		<folder>openstreetmap</folder>
+		<folder>profiler</folder>
+		<folder>registry</folder>
+		<folder>session</folder>
+		<folder>string</folder>
+		<folder>table</folder>
+		<folder>twitter</folder>
+		<folder>updater</folder>
+		<folder>uri</folder>
+		<folder>user</folder>
+		<folder>utilities</folder>
+		<folder>view</folder>
+		<file>config.php</file>
+		<file>factory.php</file>
+		<file>import.php</file>
+		<file>index.html</file>
+		<file>version.php</file>
+	</files>
+</extension>

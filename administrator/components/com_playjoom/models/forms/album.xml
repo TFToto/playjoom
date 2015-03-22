@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+        <fieldset name="details">
+                <field
+                        name="id"
+                        type="hidden"
+                />
+                <field
+                        name="title"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_ALBUM_TITLE_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_ALBUM_TITLE_LABEL_DESC"
+                        size="50"                        
+                        required="true"
+                        default=""
+                />
+                <field
+                        name="artist"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_ALBUM_ARTIST_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_ALBUM_ARTIST_LABEL_DESC"
+                        size="50"                        
+                        required="true"
+                        default=""
+                />
+                <field
+                        name="label"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_ALBUM_LABEL_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_ALBUM_LABEL_LABEL_DESC"
+                        size="50"                        
+                        required="false"
+                        default=""
+                />
+                <field
+                        name="production"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_ALBUM_PRODUCTION_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_ALBUM_PRODUCTION_LABEL_DESC"
+                        size="50"                        
+                        required="false"
+                        default=""
+                />
+                <field
+                        name="album_release"
+                        type="calendar" 
+                        default="" 
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_ALBUM_RELEASE_LABEL" 
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_ALBUM_RELEASE_LABEL_DESC" 
+                        format="%d-%m-%Y" 
+                />
+                <field
+                        name="catid"
+                        type="category"
+                        extension="com_playjoom"
+                        class="inputbox"
+                        default=""
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_ARTIST_CATEGORY_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_CATID_DESC"
+                        required="true"
+                >
+                        <option value="0">JOPTION_SELECT_CATEGORY</option>
+                </field>
+                <field
+				   type="spacer"
+				   label="COM_PLAYJOOM_PLAYJOOM_FIELD_SPACER" 
+				    />
+                <field
+				   type="spacer"
+				   label="COM_PLAYJOOM_PLAYJOOM_FIELD_SPACER" 
+				    />
+	    </fieldset>
+	    <fieldset name="text-contents">
+                <field name="infotxt" 
+                       type="editor" 
+                       class="inputbox"
+                       width="750"
+                       height="650"
+			           label="COM_PLAYJOOM_PLAYJOOM_FIELD_ALBUM_INFOTEXT_LABEL" 
+			           description="COM_PLAYJOOM_PLAYJOOM_FIELD_ALBUM_INFOTEXT_LABEL_DESC"
+			           filter="PlayJoomHelper::filterText" 
+			           buttons="true" />
+        </fieldset>
+</form>

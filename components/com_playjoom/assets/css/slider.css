@@ -1,0 +1,276 @@
+@CHARSET "UTF-8";
+/* -- PANE SLIDER STYLES ----------------------------- */
+.moretxt-right {
+    float: right !important;
+    font-size: 0.8em;
+    font-weight: normal;
+    margin-top: 2px;
+}
+.playjoom-panel {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+}
+#playjoom-sliders {
+                margin: 0;
+        padding: 0;
+        background: #FBFBFB;
+}
+.playjoom-pane-sliders {
+        margin: 0;
+        position:relative;
+}
+.playjoom-pane-sliders .playjoom-title {
+        padding: 0;
+        color: #666;
+        cursor: pointer;
+        margin: 0;
+        padding: 0;
+}
+
+#playjoom-content-pane {
+        margin: 0;
+}
+
+.playjoom-pane-sliders .playjoom-panel {
+        margin-bottom: 0;
+
+}
+
+.playjoom-pane-sliders .playjoom-panel h3 {
+        background: #fafafa;
+        color: #666;
+        font-size: 0.7em;
+}
+
+.playjoom-pane-sliders .playjoom-content {
+        background: background: #FBFBFB;
+}
+
+.playjoom-pane-sliders .adminlist {
+        border: 0 none;
+}
+
+.playjoom-pane-sliders .adminlist td {
+        border: 0 none;
+}
+
+.playjoom-pane-toggler span {
+        background: transparent url(../../images/j_arrow.png) 5px 50% no-repeat;
+        padding-left: 20px;
+        padding-right: 10px;
+        padding-top: 9px;      
+        float:right;
+        position:relative;
+        left:0px;
+        bottom: 30px;
+}
+
+.playjoom-pane-toggler-down span {
+        background: transparent url(../../images/j_arrow_down.png) 5px 50% no-repeat;
+        padding-left: 20px;
+        padding-right: 10px;
+        padding-top: 9px;
+        float:right;
+        position:relative;
+        left:0px;
+        bottom: 30px;
+}
+
+.playjoom-pane-toggler-down {
+        border-bottom: 2px solid #ccc;
+}
+
+h3.playjoom-pane-toggler-down a:hover,
+h3.playjoom-pane-toggler a:hover {
+        text-decoration: none;
+
+}
+
+.playjoom-pane-slider ol li {
+        list-style: none;
+        margin-top: 0px;
+}
+
+input#playjoom-jformparams_link_titles1,
+input#playjoom-jformparams_show_title1,
+input#playjoom-jformparams_link_category1 {
+        margin-left: 13px;
+}
+
+.details_left {
+       float: left;
+       width: 50%;
+       margin-left: 20px;
+}
+
+.details_right {
+       width: 50%;
+       margin-left: 50%;
+       margin-bottom: 30px;
+}
+.details_middle {
+	display: inline-block;
+	margin: 15px;
+	padding-top: 10px;
+	border-top: solid 1px #ccc;
+	width: 100%;
+	}
+.firstline {
+        height: 20px;
+        padding-left: 5px;
+        padding-top: 0px;
+        width: 700px;
+}
+
+.trackbox {
+    border-right:solid 1px #ccc;
+    border-left:solid 1px #ccc;
+    border-top: solid 1px #ccc;
+    width: 100%;
+    margin: 0px;
+    padding-top: 8px;
+    display: block;
+}
+
+.headtrackno {
+    width:20px;
+        display:block;
+        float:left;
+        padding-left: 2px;
+        padding-bottom: 0px;
+        font-size: 1.1em;
+}
+
+.headtracktitle {
+    width:300px;
+        display:block;
+        float:left;
+        padding-left: 8px;
+        padding-bottom: 0px;
+    font-size: 1.1em;
+}
+.headtrackminutes {
+        font-size: 1.1em;
+        padding-bottom: 0px;
+}
+
+.trackno {
+    width:18px;
+}
+.trackno a:link,
+.trackno a:visited,
+.trackno a:active {
+    font-weight: normal;
+    font-size: 0.8em;
+    color: #999999;
+}
+
+.tracktitle {
+	font-weight: bold;
+    font-size: 1.0em;
+    color: #999999;
+}
+.tracktitle a:link,
+.tracktitle a:visited,
+.tracktitle a:active {
+    font-weight: bold;
+    font-size: 1.0em;
+    color: #999999;
+    margin-right: 0.6em;
+}
+.tracktitle a:hover {
+    font-weight: bold;
+    font-size: 1.0em;
+    color: #999999;
+    margin-right: 0.6em;
+}
+
+.add2playlist a:link,
+.add2playlist a:visited,
+.add2playlist a:active {
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 0.8em;
+}
+
+.add2playlist a:hover,
+.tracktitle a:hover {
+    text-decoration: underline;
+}
+.trackminutes {
+	font-weight: normal;
+    font-size: 0.7em;
+    color: #999999;
+}
+
+.totalline_time {
+        padding-left: 240px;
+        font-size: 1.0em;
+        border-top: solid 1px #ccc;
+        padding-top: 15px;
+}
+
+.totalline_size {
+        padding-left: 218px;
+        font-size: 1.0em;
+}
+
+.infotxt {
+    padding: 15px;
+}
+
+.infolist {
+    padding-left: 20px;
+}
+
+div.marginbottom {
+  /* Since the Fx.Slide element resets margins, we set a margin on the above element */
+  margin-bottom: 10px;
+}
+.accordion {
+	margin-bottom: 18px;
+}
+.accordion-group {
+	margin-bottom: 2px;
+	border: 1px solid #e5e5e5;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+.accordion-heading {
+	border-bottom: 0;
+	padding: 5px 10px;
+	height:100%;
+	line-height: 1.3125em;
+}
+.accordion-heading .accordion-toggle {
+	display: block;
+	padding: 8px 15px;
+}
+.accordion-toggle {
+	cursor: pointer;
+}
+.accordion-inner {
+	padding: 9px 15px;
+	border-top: 1px solid #e5e5e5;
+}
+.accordion-content {
+	padding: 10px 15px;	
+}
+.collapse {
+	position: relative;
+	height: 0;
+	overflow: hidden;
+	overflow: visible \9;
+	-webkit-transition: height .35s ease;
+	-moz-transition: height .35s ease;
+	-o-transition: height .35s ease;
+	transition: height .35s ease;
+}
+.collapse.in {
+	height: auto;
+} 
+ul.trackdetails_list {
+	font-size: 0.9em;
+}

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="2.5" type="plugin" group="playjoom" method="upgrade">
+	<name>plg_playjoom_playbutton</name>
+	<author>Torsten Freyda</author>
+	<creationDate>March 2015</creationDate>
+	<copyright>Copyright (C) 2010-2015 by TFToto. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>playjoom.teglo.info</authorUrl>
+	<version>1.2.1</version>
+	<description>PLG_PLAYJOOM_PLAYBUTTON_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="playbutton">playbutton.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB.plg_playjoom_playbutton.ini</language>
+		<language tag="en-GB">en-GB.plg_playjoom_playbutton.sys.ini</language>
+		<language tag="de-DE">de-DE.plg_playjoom_playbutton.ini</language>
+		<language tag="de-DE">de-DE.plg_playjoom_playbutton.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field
+					name="plg_playjoom_playbutton_params_basic_view"
+					type="list"
+					label="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_VIEW_LABEL"
+					description="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_VIEW_LABEL_DESC"
+					class="inputbox">
+						<option value="site">PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_SITE_LABEL</option>
+						<option value="admin">PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_ADMIN_LABEL</option>
+						<option value="both">PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_BOTH_LABEL</option>
+		       </field>
+		       <field 
+					name="plg_playjoom_playbutton_params_basic_button_background_color" 
+					class=""
+					type="color"
+					default="#ababab"
+					label="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_BUTTON_BACKGROUND_COLOR"
+					description="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BUTTON_BASIC_BACKGROUND_COLOR_DESC"
+				/>
+		       <field 
+					name="plg_playjoom_playbutton_params_basic_button_hover_background_color" 
+					class=""
+					type="color"
+					default="#ababab"
+					label="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_BUTTON_HOVER_BACKGROUND_COLOR"
+					description="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_BUTTON_HOVER_BACKGROUND_COLOR_DESC"
+				/>
+		        <field 
+					name="plg_playjoom_playbutton_params_basic_playing_background_color" 
+					class=""
+					type="color"
+					default="#cc3333"
+					label="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_PLAYING_BACKGROUND_COLOR"
+					description="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_PLAYING_BACKGROUND_COLOR_DESC"
+				/>
+		       <field 
+					name="plg_playjoom_playbutton_params_basic_playing_hover_background_color" 
+					class=""
+					type="color"
+					default="#cc3333"
+					label="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_PLAYING_HOVER_BACKGROUND_COLOR"
+					description="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_PLAYING_HOVER_BACKGROUND_COLOR_DESC"
+				/>
+		        <field 
+					name="plg_playjoom_playbutton_params_basic_pause_background_color" 
+					class=""
+					type="color"
+					default="#666"
+					label="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_PAUSE_BACKGROUND_COLOR"
+					description="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_PAUSE_BASIC_BACKGROUND_COLOR_DESC"
+				/>
+		       <field 
+					name="plg_playjoom_playbutton_params_basic_pause_hover_background_color" 
+					class=""
+					type="color"
+					default="#666"
+					label="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_PAUSE_HOVER_BACKGROUND_COLOR"
+					description="PLG_PLAYJOOM_PLAYBUTTON_PARAMS_BASIC_PAUSE_HOVER_BACKGROUND_COLOR_DESC"
+				/>
+			</fieldset>
+		</fields>
+	</config>
+</extension>

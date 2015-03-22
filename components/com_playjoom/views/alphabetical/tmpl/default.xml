@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_PLAYJOOM_PLAYJOOM_VIEW_ALPHABETICAL">
+		<message>COM_PLAYJOOM_PLAYJOOM_VIEW_ALPHABETICAL_DESC</message>
+	</layout>
+	<fields name="params">
+		<fieldset name="VIEW_SETTINGS">
+			<field
+				name="icon_class"
+				type="text"
+				label="MOD_PJ_LASTPLAYED_FIELD_ICONCLASS_LABEL"
+				description="MOD_PJ_LASTPLAYED_FIELD_ICONCLASS_LABEL_DESC"
+			/>
+		</fieldset>
+	</fields>
+</metadata>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metafile
+	version="2.5"
+	client="installation">
+	<name>Deutsch</name>
+	<version>1.0.1</version>
+	<creationDate>April 2011</creationDate>
+	<author>PlayJoom Project</author>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>playjoom.teglo.info</authorUrl>
+	<copyright>Copyright (C) 2010 - 2012 by Teglo. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<description></description>
+	<files>
+		<filename>de-DE.ini</filename>
+	</files>
+	<metadata>
+		<name>Deutsch</name>
+		<tag>de-DE</tag>
+		<rtl>0</rtl>
+	</metadata>
+	<params />
+</metafile>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fieldset
+		name="sources"
+		label="COM_PLAYJOOMUPDATE_CONFIG_SOURCES_LABEL"
+		description="COM_PLAYJOOMUPDATE_CONFIG_SOURCES_DESC"
+		>
+
+		<field
+			name="updatesource"
+			type="list"
+			default="lts"
+			label="COM_PLAYJOOMUPDATE_CONFIG_UPDATESOURCE_LABEL"
+			description="COM_PLAYJOOMUPDATE_CONFIG_UPDATESOURCE_DESC"
+			>
+			<option value="beta">COM_PLAYJOOMUPDATE_CONFIG_UPDATESOURCE_BETA</option>
+			<option value="stable">COM_PLAYJOOMUPDATE_CONFIG_UPDATESOURCE_STABLE</option>
+			<option value="testing">COM_PLAYJOOMUPDATE_CONFIG_UPDATESOURCE_TESTING</option>
+			<option value="custom">COM_PLAYJOOMUPDATE_CONFIG_UPDATESOURCE_CUSTOM</option>
+			<option value="nochange">COM_PLAYJOOMUPDATE_CONFIG_UPDATESOURCE_NOCHANGE</option>
+		</field>
+
+		<field
+			name="customurl"
+			type="text"
+			default=""
+			length="50"
+			label="COM_PLAYJOOMUPDATE_CONFIG_CUSTOMURL_LABEL"
+			description="COM_PLAYJOOMUPDATE_CONFIG_CUSTOMURL_DESC"
+			/>
+	</fieldset>
+
+	<fieldset
+		name="permissions"
+		label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC"
+		>
+
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			filter="rules"
+			validate="rules"
+			component="com_playjoomupdate"
+			section="component" />
+	</fieldset>
+</config>

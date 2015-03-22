@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.7" type="plugin" group="playjoom" method="upgrade">
+	<name>plg_playjoom_trackvote</name>
+	<author>Torsten Freyda</author>
+	<creationDate>Feb 2013</creationDate>
+	<copyright>Copyright (C) 2010-2013 by TFToto. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>playjoom.teglo.info</authorUrl>
+	<version>1.1.1</version>
+	<description>PLG_PLAYJOOM_TRACKVOTE_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="trackvote">trackvote.php</filename>
+		<filename>index.html</filename>
+	</files>
+	<languages folder="language">
+		<language tag="en-GB">en-GB.plg_playjoom_trackvote.ini</language>
+		<language tag="en-GB">en-GB.plg_playjoom_trackvote.sys.ini</language>
+		<language tag="de-DE">de-DE.plg_playjoom_trackvote.ini</language>
+		<language tag="de-DE">de-DE.plg_playjoom_trackvote.sys.ini</language>
+	</languages>
+</extension>

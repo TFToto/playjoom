@@ -1,0 +1,816 @@
+//General setting*******************************
+body { 
+	background-color: white; background: url(../images/bkg_body.gif) repeat;
+}
+a {
+	color: @tpl_teglofound_main_config_main_link_color;
+}
+a:hover, a:focus {
+	color: @tpl_teglofound_main_config_main_hover_active_link_color; 
+}
+  
+.row {
+    max-width: @tpl_teglofound_main_config_max_page_width;
+}
+.panel {
+    background: none repeat scroll 0 0 #FAFAFA;
+    border-color: #D9D9D9;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 1.25em;
+    padding: 1.25em 1.35em;
+}
+
+.panel_for_small {
+    background: none repeat scroll 0 0 #FAFAFA;
+    border-color: #D9D9D9;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 1.25em;
+    padding: 1.25em 0.35em;
+}
+.subheader {
+    color: #626262 !important;
+
+}
+.max-height-panel {
+	min-height: @tpl_teglofound_main_config_min_mainpanel_height;
+}
+.down-panel {
+    background: transparent;
+    margin-bottom: 1.25em;
+    padding: 1.25em;
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
+}
+.main_row {
+    margin-top: @tpl_teglofound_main_config_mainheadbar_height + @tpl_teglofound_main_config_subheadbar_height + 24px;
+}
+.lower_menu {
+	background: none repeat scroll 0 0 @tpl_teglofound_main_config_lowermenu_color;
+	border-top-color: @tpl_teglofound_main_config_lowermenu_border_color;
+	border-top-style: solid;
+	border-top-width: 2px;
+	padding: 20px 15px;
+	color: #aaaaaa;
+	border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+.footer_row {
+	background: none repeat scroll 0 0 #FAFAFA;
+	border-top-color: #D9D9D9;
+	border-top-style: solid;
+	border-top-width: 2px;
+	padding: 20px 15px;
+	color: #aaaaaa;
+	height: 150px;
+}
+.footertxt {
+	font-size: 13px;
+}
+.clear {
+	clear: both;
+}
+.divider-view {
+	height: 25px;
+}
+.PJ-filtermenu {
+  width: 200px;
+  float: left;
+}
+fieldset legend {
+    background: transparent;
+}
+button, .button,
+button.secondary, .button.secondary {
+    background-color: @tpl_teglofound_main_config_button_color;
+    border-color: @tpl_teglofound_main_config_border_button_color;
+    color: #FFFFFF;
+}
+button:hover, 
+button:focus, 
+.button:hover, 
+.button:focus,
+button.secondary:hover, 
+button.secondary:focus, 
+.button.secondary:hover, 
+.button.secondary:focus  {
+	background-color: @tpl_teglofound_main_config_button_hover_active_color; 
+}
+
+.fa {
+	margin-right: 0.4em;
+}
+//END*******************************************
+
+//Messages**************************************
+.alert-box {
+  background-color: @tpl_teglofound_main_config_main_alert_box_color;
+  border-color: @tpl_teglofound_main_config_main_alert_box_border_color;
+  color: white; 
+}
+.alert-box.success {
+    background-color: #A5B994;
+    border-color: #D6E9C6;
+    color: #FFFFFF;
+}
+.label {
+  background-color: @tpl_teglofound_main_config_main_label_color;
+}
+ul.pagination li.current a {
+	background: @tpl_teglofound_main_config_pagination_color;
+	color: @tpl_teglofound_main_config_pagination_font_color;
+}
+ ul.pagination li.current a:hover, 
+ ul.pagination li.current a:focus {
+background: @tpl_teglofound_main_config_pagination_hover_active_color; 
+}
+//END*******************************************
+//Top Bar***************************************
+.row-nav-bar {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+.columns-nav-bar {
+    padding: 0;
+}
+//Change original settings
+.top-bar,
+.top-bar .name {
+	height: @tpl_teglofound_main_config_mainheadbar_height;
+}
+.top-bar,
+.top-bar.expanded .title-area {   
+    background-color: @tpl_teglofound_head_config_main_lower_color;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(@tpl_teglofound_head_config_main_upper_color), to(@tpl_teglofound_head_config_main_lower_color));
+    background-image: -webkit-linear-gradient(top, @tpl_teglofound_head_config_main_upper_color, @tpl_teglofound_head_config_main_lower_color);
+    background-image:    -moz-linear-gradient(top, @tpl_teglofound_head_config_main_upper_color@tpl_teglofound_head_config_main_upper_color, @tpl_teglofound_head_config_main_lower_color);
+    background-image:      -o-linear-gradient(top, @tpl_teglofound_head_config_main_upper_color, @tpl_teglofound_head_config_main_lower_color);
+    background-image:         linear-gradient(to bottom, @tpl_teglofound_head_config_main_upper_color, @tpl_teglofound_head_config_main_lower_color);
+    margin-bottom: 0;
+}
+.top-bar-section ul {
+    background-color:  transparent;
+    //margin-left: 10px;
+}
+.top-bar-section li {
+	box-shadow:@tpl_teglofound_main_config_shadow_width 0px 6px -1px @tpl_teglofound_head_config_main_shadow_color;
+}
+nav.top-bar section.top-bar-section ul.left ul.nav.menu li a,
+nav.top-bar section.top-bar-section ul.right li.has-dropdown.not-click a.dropdown-link {
+    line-height: @tpl_teglofound_main_config_mainheadbar_height;
+}
+nav.top-bar.expanded section.top-bar-section ul.left ul.nav.menu li a,
+nav.top-bar.expanded section.top-bar-section ul.right li.has-dropdown.not-click a.dropdown-link {
+	line-height: 28px;
+}
+nav.top-bar section.top-bar-section ul.left ul.nav li ul.dropdown li {
+	margin-left: 0px;
+	margin-bottom: 2px;
+	box-shadow:0px 0px 0px 0px #777777;
+}
+nav.top-bar section.top-bar-section ul.left ul.nav li {
+	margin-left: 15px;
+}
+.top-bar-section li a:not(.button) {
+    background-color: @tpl_teglofound_head_config_main_lower_color;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(@tpl_teglofound_head_config_main_upper_color), to(@tpl_teglofound_head_config_main_lower_color));
+    background-image: -webkit-linear-gradient(top, @tpl_teglofound_head_config_main_upper_color, @tpl_teglofound_head_config_main_lower_color);
+    background-image:    -moz-linear-gradient(top, @tpl_teglofound_head_config_main_upper_color, @tpl_teglofound_head_config_main_lower_color);
+    background-image:      -o-linear-gradient(top, @tpl_teglofound_head_config_main_upper_color, @tpl_teglofound_head_config_main_lower_color);
+    background-image:         linear-gradient(to bottom, @tpl_teglofound_head_config_main_upper_color, @tpl_teglofound_head_config_main_lower_color);
+    border-right: 1px solid rgba(255, 255, 255, 0.4);
+    border-left: 1px solid rgba(255, 255, 255, 0.4);
+}
+.top-bar-section ul li > a {
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	font-weight: normal;
+}
+.top-bar-section ul li > a:hover {
+    background: none repeat scroll 0 0 @tpl_teglofound_head_config_main_hoveractive_color;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    color: @tpl_teglofound_head_config_main_font_hoveractive_color;
+}
+.top-bar-section ul li.active > a {
+    background: none repeat scroll 0 0 @tpl_teglofound_head_config_main_hoveractive_color;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    color: @tpl_teglofound_head_config_main_font_hoveractive_color;
+}
+.top-bar ul.title-area li.name {
+	border-right: 1px solid rgba(255, 255, 255, 0.4);
+	box-shadow:@tpl_teglofound_main_config_shadow_width 0px 8px -1px @tpl_teglofound_head_config_main_shadow_color;
+}
+.top-bar-section ul.right li.has-dropdown ul.dropdown {
+	background-color: #cccccc;
+	padding: 15px 10px;
+	border-color: @tpl_teglofound_head_config_main_lower_color;
+	border-style: solid;
+	border-width: 2px;
+	box-shadow:8px 8px 8px -1px #777777;
+}  
+.top-bar-section ul li > a,
+.top-bar-section .dropdown li a {
+	color: @tpl_teglofound_head_config_main_font_color;
+}
+.top-bar section.top-bar-section ul.left ul.nav li a img {
+	margin-right: 5px;
+	margin-bottom: 3px;
+}
+.top-bar-section ul.left ul.nav li ul.dropdown {
+	background-color: #cccccc;
+	padding: 1px 6px 10px 5px;
+	border-color: @tpl_teglofound_head_config_main_lower_color;
+	border-style: solid;
+	border-width: 2px;
+	box-shadow:8px 8px 8px -1px #777777;
+}
+//End********************************************
+
+//Sub Bar***************************************
+.panel-sub-bar {
+    margin: 0;
+    margin-bottom: 0.25em;
+    padding: 0.25em;
+}
+.top-sub-bar {
+    background-color: @tpl_teglofound_head_config_sub_bar_color;
+    border-bottom: 2px solid @tpl_teglofound_head_config_sub_bar_border_color;
+    color: @tpl_teglofound_head_config_sub_bar_font_color;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+    transition: background-color 300ms ease-out 0s;
+    height: @tpl_teglofound_main_config_subheadbar_height;
+    box-shadow: 0 2px 2px #aaaaaa;
+    opacity: 0.85;
+    
+}
+.breadcrumbs {
+    height: 32px;
+    background-color: @tpl_teglofound_head_config_sub_bar_breadcrumbs_color;
+    border: 1px solid @tpl_teglofound_head_config_sub_bar_border_color;
+}
+.breadcrumbs > *:before {
+    color: #ffffff;
+    margin: 0 0.8em;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.breadcrumbs > * a, .breadcrumbs > * span {
+    color: #fefefe;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+.breadcrumbs > .current a {
+    color: #f2f2f2;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+}
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+}
+.breadcrumbs > * {
+    float: left;
+    font-size: 0.6875em;
+    margin: 0;
+    text-transform: uppercase;
+}
+input[name="searchword"], input[name="filter_search"]  {
+    -moz-box-sizing: border-box;
+    background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3) inset;
+    color: rgba(0, 0, 0, 0.75);
+    display: inline;
+    font-family: inherit;
+    font-size: 0.875em;
+    height: 2.2125em;
+    margin: 0 0 1em;
+    padding: 0.5em;
+    transition: box-shadow 0.45s ease 0s, border-color 0.45s ease-in-out 0s;
+    width: @mod_search__imput_searchword_width;
+}
+//End********************************************
+//Settings for small display*********************
+.side-nav-4small {
+  margin: 0;
+  padding: 0.175em 0;
+  list-style-type: none;
+  list-style-position: inside; 
+}
+.side-nav-4small li {
+	margin: 0 0 0.4375em 0;
+    font-size: 1.25em; 
+}
+.side-nav-4small li a {
+    color: #86a9cc; }
+.side-nav-4small li.active > a:first-child {
+    color: #4d4d4d;
+    font-weight: bold; 
+}
+.side-nav-4small li.divider {
+    border-top: 1px solid;
+    height: 0;
+    padding: 0;
+    list-style: none;
+    border-top-color: #a3a3a3; 
+}
+div.show-for-small img.cover {
+	margin: 1.125em 0;
+}
+.top-bar.expanded, 
+nav.top-bar section.top-bar-section ul.right {
+    background: @tpl_teglofound_main_config_border_button_color;
+}
+ul.side-nav-4small li span.trackline a {
+	font-size: 0.75em;
+}
+ul.side-nav-4small li span.trackline span.trackline_time {
+	font-size: 0.6em;
+	color: #888888;
+}
+ul.side-nav-4small li.createline {
+	font-size: 0.8em;
+	color: #888888;
+	margin-left: 3.1em;
+	margin-top: -0.9em;
+}
+ul.side-nav-4small li.artistalbumline {
+	font-size: 0.95em;
+	color: #888888;
+	margin-top: -0.9em;
+}
+ul.side-nav-4small li.addline {
+	font-size: 0.8em;
+	color: #888888;
+	margin-top: -0.8em;
+}
+ul.side-nav-4small li img {
+	margin-bottom: 7px;
+	margin-left: 8px;
+}
+div.show-for-small ul.side-nav-4small li div.ui360 div.sm2-360ui span.sm2-360btn {
+		margin-top: -16px;
+}
+ul.side-nav-4small li span.trackminutes {
+	color: #888888;
+	font-size: 0.8em;
+}
+//END********************************************
+//Tools settings*********************************
+/* Tooltips */
+.has-tip {
+  border-bottom: dotted 1px #cccccc;
+  cursor: help;
+  font-weight: bold;
+  color: #333333; }
+  .has-tip:hover, .has-tip:focus {
+    border-bottom: dotted 1px #4676a6;
+    color: #86a9cc; }
+  .has-tip.tip-left, .has-tip.tip-right {
+    float: none !important; }
+
+.tooltip {
+  font-weight: normal;
+  font-size: 0.9375em;
+  padding: 0.5em;
+  left: 0;
+  width: 260px;
+  color: white;
+  background: gray;
+}
+//END********************************************
+
+//Modules Settings*******************************
+ul.alphabarlink {
+	background-color: transparent;
+	float: right !important;
+	margin-right: -31px; 
+}
+ul.alphabarlink li {
+	list-style: none;
+	margin: 0 0px 15px 0px; 
+	padding: 0; 
+}
+ul.alphabarlink a {
+	display:block;
+	padding: 0.2em 0.2em 0.2em 0.4em;
+	width: 18px;
+	text-decoration: none; 
+	font-weight: normal;
+	font-size:12px;
+	border-bottom: 1px solid white; 
+	width: 28px;
+	border-top: 1px solid #D9D9D9;
+	border-left: 1px solid #D9D9D9;
+	border-right: 1px solid #D9D9D9;
+	color: #FFFFFF;
+	background-color: @tpl_teglofound_module_config_alphabarlink_link_color;
+}
+
+ul.alphabarlink a:hover {
+	border: 1px solid white; 
+	background-color: gray;
+}
+ul.alphabarlink li.active {
+	display:block;
+	padding: 0.2em 0.2em 0.2em 0.4em;
+	width: 28px;
+	text-decoration: none; 
+	font-weight: normal;
+	border-bottom: 1px solid #D9D9D9;
+	border-top: 1px solid #D9D9D9;
+	border-left: 1px solid #D9D9D9;
+	border-right: 1px solid #FAFAFA;
+	color: #000000;
+	background-color: #FAFAFA;
+	font-size:13px;
+}
+.side-nav li a {
+    font-size: 0.85em;
+    color: @tpl_teglofound_module_config_side_nav_link_color;
+}
+.side-nav li a:hover {
+    text-decoration: underline
+}
+.down-panel h4.subheader {
+	color: white;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	margin-left: -20px;
+	padding-left: 20px;
+}
+.down-panel ul.nav li, {
+	color: white;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+	width: 100%;
+	padding: 5px 0;
+ }
+.down-panel ul.nav li a,
+.down-panel ul.side-nav li a {
+	color: white;
+ }
+ .down-panel ul.nav li a:hover,
+ .down-panel ul.side-nav li a:hover {
+	color: white;
+	text-decoration: underline;
+ }
+.down-panel ul.nav {
+	list-style: none;
+}
+ul.dropdown form#login-form.form-vertical {
+	margin-bottom: 25px;
+}
+.login-greeting {
+	margin-bottom: 20px;
+}
+ul.weblinks {
+	list-style: none;
+}
+ul.weblinks li a {
+	color: #ffffff;
+}
+ul.weblinks li a:hover {
+	text-decoration: underline;
+	color: #ffffff;
+}
+//END********************************************************
+//component settings*****************************************
+.coverimg {
+	float: left;
+	margin-bottom: 40px;
+	margin-right: 25px;
+}
+ul.album-sum {
+	margin-top: 40px;
+	list-style: none;
+}
+ul.album-sum li {
+	font-size: 0.9em;
+}
+#moduleOptions {
+	clear: both;
+}
+select#ordering.inputbox {
+	width: 7.6em;
+}
+select#limit.inputbox {
+	width: 3.0em;
+}
+.ordering-box {
+	margin-top: 10px;
+}
+.form-limit label,
+label.ordering {
+	float: left;
+	margin-right: 8px;
+	margin-top: 5px;
+}
+
+//user profile edit settings*******************************************************
+#member-profile.custom fieldset div.control-group {
+	margin-bottom: 0.825em;
+}
+#member-profile.custom fieldset div.control-group div.controls select#jform_params_editor.hidden-field {
+	width: 10.0em;
+}
+#member-profile.custom fieldset div.control-group div.controls select#jform_params_timezone.hidden-field {
+	width: 12.0em;
+}
+#member-profile.custom fieldset div.control-group div.controls select#jform_params_language.hidden-field,
+#member-profile.custom fieldset div.control-group div.controls select#jform_params_admin_language.hidden-field {
+	width: 14.0em;
+}
+#member-profile.custom fieldset div.control-group div.controls select#jform_params_admin_style.hidden-field {
+	width: 10.0em;
+}
+#member-profile.custom fieldset div.control-group div.controls select#jform_params_helpsite.hidden-field,
+#member-registration.form-validate fieldset div.control-group div.controls select#jform_params_language.required {
+	width: 15.0em;
+}
+.control-label label#jform_params_editor-lbl.hasTooltip,
+.control-label label#jform_params_timezone-lbl.hasTooltip,
+.control-label label#jform_params_language-lbl.hasTooltip,
+.control-label label#jform_params_admin_style-lbl.hasTooltip,
+.control-label label#jform_params_admin_language-lbl.hasTooltip,
+.control-label label#jform_params_helpsite-lbl.hasTooltip,
+.control-label label#jform_username-lbl.hasTooltip,
+.control-label label#jform_password2-lbl.hasTooltip,
+.control-label label#jform_password1-lbl.hasTooltip {
+	float: left;
+	margin-top: 0.35em;
+	margin-right: 0.3em;
+}
+.control-label span.optional {
+	font-size: 0.75em;
+	margin-right: 0.5em;
+	margin-top: 0.45em;
+	float: left;
+	color: #888888;
+}
+#member-profile.custom fieldset div.control-group div.controls input#jform_username, 
+#member-profile.custom fieldset div.control-group div.controls input#jform_password2.validate-password,
+#member-profile.custom fieldset div.control-group div.controls input#jform_password1.validate-password,
+#member-registration.form-validate fieldset div.control-group div.controls input#jform_username.validate-username,
+#member-registration.form-validate fieldset div.control-group div.controls input#jform_password2.validate-password,
+#member-registration.form-validate fieldset div.control-group div.controls input#jform_password1.validate-password {
+	clear: left;
+}
+#member-registration.form-validate fieldset div.control-group div.control-label span.spacer span.text label#jform_spacer-lbl {
+	color: #ee6666;
+	margin-bottom: 25px;
+	font-size: 0.75em;
+}
+span.star {
+	color: #ee6666;
+}
+div.item,
+div.items-leading,
+div.items-row {
+	margin-bottom: 50px;
+}
+
+i.icon-set {
+	float: left;
+	margin: 5px 5px 0 5px;
+}
+.article-info-term {
+	display: none;
+}
+
+.article-info {
+	overflow: hidden;
+	font-size: 0.9em;
+}
+
+.article-info dd {
+	float: left;
+	padding: 0 5px;
+	border-right: solid 1px #ccc
+}
+
+.article-info dd span {
+	text-transform: none;
+	display: inline-block;
+	padding: 0 5px 0 0px;
+	margin: 0 5px 0 0px;
+}
+
+.article-info dd.create {
+	clear: left
+}
+.page-header h3.subheader {
+	margin-bottom: 0;
+}
+div.introtext,
+div.itemtext {
+	font-size: 0.95em;
+	color: #777777;
+	line-height: 1.2;
+	margin-bottom: 15px; 
+}
+div.createdby,
+div.parent-category-name,
+div.category-name,
+div.published,
+div.create,
+div.modified,
+div.hits {
+	float: left;
+	margin-right: 12px;
+}
+i.more-icon {
+	font-size: 1.7em;
+	margin: 0 0 0 4px;
+	position: absolute;
+}
+div.items-more ul.side-nav li a {
+	font-size: 1.25em;
+}
+html.js body div.main_row div.row div.row div.large-9 div.row div.large-12 div.max-height-panel ul.pricing-table div.pd-category li.price span.badge,
+div.pd-subcategory span.badge,
+h4.subheader span.badge,
+a span.badge {
+    background: none repeat scroll 0 0 @tpl_teglofound_module_config_side_nav_link_color;
+    border-radius: 20px 20px 20px 20px;
+    color: #FFFFFF;
+    cursor: default;
+    font-weight: normal;
+    padding: 0.1875em 0.9625em;
+    font-size: 0.55em;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    margin: 3px 0 0 8px;
+    position: absolute;
+}
+
+ul.pricing-table li.title span.badge {
+    background: none repeat scroll 0 0 #777777;
+    border-radius: 20px 20px 20px 20px;
+    color: #fff;
+    cursor: default;
+    font-weight: normal;
+    padding: 0.1875em 0.9625em;
+    font-size: 0.55em;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    margin: 0px 0 0 2px;
+    position: relative;
+    line-height: 2.2;
+}
+ul.pricing-table li.title i.fa,
+ul.pricing-table li.title a,
+ul.pricing-table li.title,
+ul.pricing-table li.bullet-item span.badge {
+	color: #777777;
+}
+ul.pricing-table li.title a:hover {
+	color: #fff;
+}
+ul.pricing-table div.pd-file div.pd-filebox li.description,
+ul.pricing-table li.bullet-item {
+	text-align: left;
+}
+ul.pricing-table div.pd-category li.bullet-item {
+	padding: 0.275em;
+}
+
+ul.pricing-table div.pd-category div.pdtop a i.fa,
+ul.pricing-table div.pdtop a i.fa,
+div.pd-file div.pdtop a i.fa {
+	font-size: 2.55em;
+	position: absolute;
+	margin: 4px 0 0 6px;
+	color: #777777;
+}
+ul.pricing-table div.pd-category div.pdtop a:hover i.fa {
+	color: #444444;
+}
+section.active div.content ul {
+	//margin-left: 30px;
+}
+ul.no-bullet li h4 a,
+ul.no-bullet li.active h4 a {
+	font-size: 0.825em;
+}
+ul.no-bullet li ul li h5 a,
+ul.no-bullet li.active ul li h5 a {
+	font-size: 0.925em;
+	font-weight: normal;
+}
+ul.no-bullet li ul li h6 a,
+ul.no-bullet li.active ul li h6 a {
+	font-size: 0.875em;
+	font-weight: normal;
+}
+ul.no-bullet li ul li h7 a,
+ul.no-bullet li.active ul li h7 a {
+	font-size: 0.855em;
+	font-weight: normal;
+}
+ul.no-bullet li ul li h8 a,
+ul.no-bullet li.active ul li h8 a {
+	font-size: 0.835em;
+	font-weight: normal;
+}
+div.btn-group div.small {
+	margin-left: 20px;
+}
+
+div.btn-group div.small a.btn {
+	color: #fff;
+	float: right;
+}
+div.toggle-editor div.button,
+div.btn-toolbar div.button {
+	margin: 25px 0;
+}
+div.toggle-editor div.button a.btn,
+div.btn-toolbar div.button a.btn {
+	color: #fff;
+}
+.section-container.auto {
+	margin-top: 30px;
+}
+ul.chzn-choices li.search-field input.default {
+	height: 30px;
+}
+
+//END*******************************************************
+  select {
+   visibility: visible !important;
+   margin-left: 0 !important;
+   position: static !important;
+   display: inline-block;
+}
+form.custom div.custom.dropdown {
+   display: none;
+}
+//Plugin setups********************************************
+ul.nav.nav-stacked li {
+    display: inline;
+    font-size: 0.875em;
+    font-weight: normal;
+    margin: 0 0.75em 0.35em 0;
+}
+ul.nav.nav-stacked li a.toclink.active {
+    background: none repeat scroll 0 0 @tpl_teglofound_head_config_main_hoveractive_color;
+    border-radius: 1000px 1000px 1000px 1000px;
+    color: #FFFFFF;
+    cursor: default;
+    font-weight: bold;
+    padding: 0.35em 0.75em;
+}
+.pager {
+	margin: 18px 0;
+	list-style: none;
+	text-align: center;
+	*zoom: 1;
+}
+.pager:before,
+.pager:after {
+	display: table;
+	content: "";
+	line-height: 0;
+}
+.pager:after {
+	clear: both;
+}
+.pager li {
+	display: inline;
+}
+.pager li > a,
+.pager li > span {
+	display: inline-block;
+	padding: 5px 14px;
+	background-color: #dadada;
+	border: 1px solid #555555;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	color: #555555;
+}
+.pager li > a:hover,
+.pager li > a:focus {
+	text-decoration: none;
+	background-color: #f5f5f5;
+}
+.pager .next > a,
+.pager .next > span {
+
+}
+.pager .previous > a,
+.pager .previous > span {
+	float: left;
+}
+.pager .disabled > a,
+.pager .disabled > a:hover,
+.pager .disabled > a:focus,
+.pager .disabled > span {
+	color: #999;
+	background-color: #fff;
+	cursor: default;
+}
+.pagenavcounter {
+	clear:left;
+	background-color: #eee;
+	padding: 8px 8px;
+	margin: 15px 0;
+}
+//END plugins setups***************************************

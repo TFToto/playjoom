@@ -1,0 +1,1371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Playjoom Project" default="copy" basedir=".">
+	<version file="version.txt" property="versionprop" releasetype="Major"/>
+	<!--   <delete file="version.txt"/>   //-->
+	<echo>Building PlayJoom version: ${versionprop}</echo>
+
+	<property name="src"   value="${project.basedir}"/>
+	<property name="release"  value="/home/toto/Dokumente/PlayJoom_projekt/release/builds/beta_build#${versionprop}" override="true" />
+	<property name="release_version"  value="0.10.1" override="true" />
+	<property name="release_update_pack_components" value="${release}/update_pack/extensions/components" override="true" />
+	<property name="release_update_pack_libraries" value="${release}/update_pack/extensions/libraries" override="true" />
+	<property name="release_update_pack_modules" value="${release}/update_pack/extensions/modules" override="true" />
+	<property name="release_update_pack_plugins" value="${release}/update_pack/extensions/plugins" override="true" />
+	<property name="release_update_pack_templates" value="${release}/update_pack/extensions/templates" override="true" />
+
+	<!-- ************ Define file sets **************************************************** //-->
+	<!-- Filessets for zip archives //-->
+	<fileset dir="${release}/install_pack" id="install_package_archive" />
+	<fileset dir="${release}/update_pack" id="update_package_archive" />
+	<fileset dir="${release}/comp_pack" id="component_package_archive" />
+
+	<!-- Fileset for all files for install pack//-->
+	<fileset dir="${src}" id="install_pack_allfiles" defaultexcludes="true">
+		<exclude name="cache/**" />
+		<exclude name="logs/**" />
+		<exclude name="tmp/**" />
+		<exclude name="configuration.php" />
+		<exclude name="playjoom.xml" />
+		<exclude name="build.xml" />
+		<exclude name="version.txt" />
+	</fileset>
+	
+	<!-- Fileset for all files for update pack//-->
+	<fileset dir="${src}" id="update_pack_allfiles" defaultexcludes="true">
+		<exclude name="administrator/cache/**" />
+		<exclude name="administrator/components/**" />
+		<exclude name="administrator/language/**" />
+		<exclude name="administrator/modules/**" />
+		<exclude name="administrator/templates/**" />
+		<exclude name="cache/**" />
+		<exclude name="components/**" />
+		<exclude name="images/**" />
+		<exclude name="language/**" />
+		<exclude name="logs/**" />
+		<exclude name="media/com_playjoom/**" />
+		<exclude name="modules/**" />
+		<exclude name="plugins/**" />
+		<exclude name="templates/**" />
+		<exclude name="tmp/**" />
+		<exclude name="configuration.php" />
+		<exclude name="playjoom.xml" />
+		<exclude name="build.xml" />
+		<exclude name="version.txt" />
+	</fileset>
+	<!-- Fileset for all files for update pack//-->
+	<fileset dir="${src}" id="update_pack_tpl_system_files" defaultexcludes="true">
+		<include name="administrator/templates/system/**" />
+		<include name="templates/system/**" />
+	</fileset>
+
+	<!-- Fileset for all PlayJoom admin files //-->
+	<fileset dir="${src}/administrator/components/com_playjoom" id="comp_pack_adminfiles" defaultexcludes="true">
+		<exclude name="playjoom.xml" />
+		<exclude name="playjoom_update.xml" />
+		<exclude name="setup_pj_script.php" />
+		<exclude name="setupscript.php" />
+	</fileset>
+	<!-- Fileset for all Cache admin files //-->
+	<fileset dir="${src}/administrator/components/com_cache" id="comp_pack_cache_adminfiles" defaultexcludes="true">
+		<exclude name="cache.xml" />
+	</fileset>
+	<!-- Fileset for all Categories admin files //-->
+	<fileset dir="${src}/administrator/components/com_categories" id="comp_pack_categories_adminfiles" defaultexcludes="true">
+		<exclude name="categories.xml" />
+	</fileset>
+	<!-- Fileset for all Checkin admin files //-->
+	<fileset dir="${src}/administrator/components/com_checkin" id="comp_pack_checkin_adminfiles" defaultexcludes="true">
+		<exclude name="checkin.xml" />
+	</fileset>
+	<!-- Fileset for all Config admin files //-->
+	<fileset dir="${src}/administrator/components/com_config" id="comp_pack_config_adminfiles" defaultexcludes="true">
+		<exclude name="config.xml" />
+	</fileset>
+	<!-- Fileset for all CPanel admin files //-->
+	<fileset dir="${src}/administrator/components/com_cpanel" id="comp_pack_cpanel_adminfiles" defaultexcludes="true">
+		<exclude name="cpanel.xml" />
+	</fileset>
+	<!-- Fileset for all Installer admin files //-->
+	<fileset dir="${src}/administrator/components/com_installer" id="comp_pack_installer_adminfiles" defaultexcludes="true">
+		<exclude name="installer.xml" />
+	</fileset>
+	<!-- Fileset for all Languages admin files //-->
+	<fileset dir="${src}/administrator/components/com_languages" id="comp_pack_languages_adminfiles" defaultexcludes="true">
+		<exclude name="languages.xml" />
+	</fileset>
+	<!-- Fileset for all Login admin files //-->
+	<fileset dir="${src}/administrator/components/com_login" id="comp_pack_login_adminfiles" defaultexcludes="true">
+		<exclude name="login.xml" />
+	</fileset>
+	<!-- Fileset for all Media admin files //-->
+	<fileset dir="${src}/administrator/components/com_media" id="comp_pack_media_adminfiles" defaultexcludes="true">
+		<exclude name="media.xml" />
+	</fileset>
+	<!-- Fileset for all Menus admin files //-->
+	<fileset dir="${src}/administrator/components/com_menus" id="comp_pack_menus_adminfiles" defaultexcludes="true">
+		<exclude name="menus.xml" />
+	</fileset>
+	<!-- Fileset for all Messages admin files //-->
+	<fileset dir="${src}/administrator/components/com_messages" id="comp_pack_messages_adminfiles" defaultexcludes="true">
+		<exclude name="messages.xml" />
+	</fileset>
+	<!-- Fileset for all Modules admin files //-->
+	<fileset dir="${src}/administrator/components/com_modules" id="comp_pack_modules_adminfiles" defaultexcludes="true">
+		<exclude name="modules.xml" />
+	</fileset>
+	<!-- Fileset for all Plugins admin files //-->
+	<fileset dir="${src}/administrator/components/com_plugins" id="comp_pack_plugins_adminfiles" defaultexcludes="true">
+		<exclude name="plugins.xml" />
+	</fileset>
+	<!-- Fileset for all Postinstall admin files //-->
+	<fileset dir="${src}/administrator/components/com_postinstall" id="comp_pack_postinstall_adminfiles" defaultexcludes="true">
+		<exclude name="postinstall.xml" />
+	</fileset>
+	<!-- Fileset for all Redirect admin files //-->
+	<fileset dir="${src}/administrator/components/com_redirect" id="comp_pack_redirect_adminfiles" defaultexcludes="true">
+		<exclude name="redirect.xml" />
+	</fileset>
+	<!-- Fileset for all Search admin files //-->
+	<fileset dir="${src}/administrator/components/com_search" id="comp_pack_search_adminfiles" defaultexcludes="true">
+		<exclude name="search.xml" />
+	</fileset>
+	<!-- Fileset for all Tags admin files //-->
+	<fileset dir="${src}/administrator/components/com_tags" id="comp_pack_tags_adminfiles" defaultexcludes="true">
+		<exclude name="tags.xml" />
+	</fileset>
+	<!-- Fileset for all Templates admin files //-->
+	<fileset dir="${src}/administrator/components/com_templates" id="comp_pack_templates_adminfiles" defaultexcludes="true">
+		<exclude name="templates.xml" />
+	</fileset>
+	<!-- Fileset for all Users admin files //-->
+	<fileset dir="${src}/administrator/components/com_users" id="comp_pack_users_adminfiles" defaultexcludes="true">
+		<exclude name="users.xml" />
+	</fileset>
+	<!-- Fileset for all PlayJoomAdmin admin files //-->
+	<fileset dir="${src}/administrator/components/com_playjoomadmin" id="comp_pack_playjoomadmin_adminfiles" defaultexcludes="true">
+		<exclude name="playjoomadmin.xml" />
+	</fileset>
+	<!-- Fileset for all PlayJoomUpdate admin files //-->
+	<fileset dir="${src}/administrator/components/com_playjoomupdate" id="comp_pack_playjoomupdate_adminfiles" defaultexcludes="true">
+		<exclude name="playjoomupdate.xml" />
+	</fileset>
+	<!-- Fileset for all Joomla! library files //-->
+	<fileset dir="${src}/libraries/joomla" id="lib_pack_joomla_files" defaultexcludes="true">
+	</fileset>
+	<!-- Fileset for all phpmailer library files //-->
+	<fileset dir="${src}/libraries/phpmailer" id="lib_pack_phpmailer_files" defaultexcludes="true">
+	</fileset>
+	<!-- Fileset for all phputf8 library files //-->
+	<fileset dir="${src}/libraries/phputf8" id="lib_pack_phputf8_files" defaultexcludes="true">
+	</fileset>
+	<!-- Fileset for all simplepie library files //-->
+	<fileset dir="${src}/libraries/simplepie" id="lib_pack_simplepie_files" defaultexcludes="true">
+	</fileset>
+	<!-- Fileset for all playjoom library files //-->
+	<fileset dir="${src}/libraries/playjoom" id="lib_pack_playjoom_files" defaultexcludes="true">
+	</fileset>
+
+	<!-- Fileset for site file parts //-->
+	<fileset dir="${src}/components/com_playjoom" id="comp_pack_sitefiles"></fileset>
+	<fileset dir="${src}/components/com_playjoom" id="update_pack_sitefiles"></fileset>
+	<fileset dir="${src}/components/com_config" id="update_pack_config_sitefiles"></fileset>
+	<fileset dir="${src}/components/com_search" id="update_pack_search_sitefiles"></fileset>
+	<fileset dir="${src}/components/com_media" id="update_pack_media_sitefiles"></fileset>
+	<fileset dir="${src}/components/com_tags" id="update_pack_tags_sitefiles"></fileset>
+	<fileset dir="${src}/components/com_users" id="update_pack_users_sitefiles"></fileset>
+
+	<!-- Fileset for all files for module parts //-->
+	<fileset dir="${src}/administrator/modules/mod_logged" id="update_pack_mod-files-admin-mod_logged"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_login" id="update_pack_mod-files-admin-mod_login"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_menu" id="update_pack_mod-files-admin-mod_menu"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_multilangstatus" id="update_pack_mod-files-admin-mod_multilangstatus"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_online" id="update_pack_mod-files-admin-mod_online"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_pj_menu" id="comp_pack_mod-files-pj-menu"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_pj_quickicon" id="comp_pack_mod-files-pj-quickicon"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_stats_admin" id="update_pack_mod-files-admin-mod_stats_admin"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_status" id="update_pack_mod-files-admin-mod_status"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_submenu" id="update_pack_mod-files-admin-mod_submenu"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_title" id="update_pack_mod-files-admin-mod_title"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_toolbar" id="update_pack_mod-files-admin-mod_toolbar"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_unread" id="update_pack_mod-files-admin-mod_unread"></fileset>
+	<fileset dir="${src}/administrator/modules/mod_version" id="update_pack_mod-files-admin-mod_version"></fileset>
+
+	<fileset dir="${src}/modules/mod_breadcrumbs" id="update_pack_mod-files-mod_breadcrumbs"></fileset>
+	<fileset dir="${src}/modules/mod_languages" id="update_pack_mod-files-mod_languages"></fileset>
+	<fileset dir="${src}/modules/mod_login" id="update_pack_mod-files-mod_login"></fileset>
+	<fileset dir="${src}/modules/mod_menu" id="update_pack_mod-files-mod_menu"></fileset>
+	<fileset dir="${src}/modules/mod_pj_alphabeticalbar" id="comp_pack_mod-files-pj-alphabeticalbar"></fileset>
+	<fileset dir="${src}/modules/mod_pj_lastplayed" id="comp_pack_mod-files-pj-lastplayed"></fileset>
+	<fileset dir="${src}/modules/mod_pj_newcontents" id="comp_pack_mod-files-pj-newcontents"></fileset>
+	<fileset dir="${src}/modules/mod_pj_populartracks" id="comp_pack_mod-files-pj-populartracks"></fileset>
+	<fileset dir="${src}/modules/mod_pj_statistics" id="comp_pack_mod-files-pj-statistics"></fileset>
+	<fileset dir="${src}/modules/mod_pj_footer" id="comp_pack_mod-files-pj-footer"></fileset>
+	<fileset dir="${src}/modules/mod_pj_search" id="comp_pack_mod-files-pj-search"></fileset>
+	<fileset dir="${src}/modules/mod_pj_tags_popular" id="comp_pack_mod-files-pj-tags-popular"></fileset>
+	<fileset dir="${src}/modules/mod_pj_tags_popular" id="comp_pack_mod-files-pj-tags-popular"></fileset>
+	<fileset dir="${src}/modules/mod_stats" id="update_pack_mod-files-mod_stats"></fileset>
+	<fileset dir="${src}/modules/mod_tags_popular" id="update_pack_mod-files-mod_tags_popular"></fileset>
+	<fileset dir="${src}/modules/mod_tags_similar" id="update_pack_mod-files-mod_tags_similar"></fileset>
+	<fileset dir="${src}/modules/mod_whosonline" id="update_pack_mod-files-mod_whosonline"></fileset>
+
+	<!-- Fileset for all files in media folder for playjoom //-->
+	<fileset dir="${src}/media/com_playjoom" id="comp_pack_media-files-playjoom-folder"></fileset>
+	<fileset dir="${src}/media/com_playjoom" id="update_pack_media-files-playjoom-folder"></fileset>
+	<fileset dir="${src}/media/lib_playjoom" id="update_pack_media-files-lib_playjoom-folder"></fileset>
+
+	<!-- Fileset for all files for plugin parts //-->
+	<fileset dir="${src}/plugins/playjoom" id="comp_pack_plugin-files-playjoom-folder"></fileset>
+	<fileset dir="${src}/plugins/search" id="comp_pack_plugin-files-search-folder"></fileset>
+	<fileset dir="${src}/plugins/system" id="comp_pack_plugin-files-system-folder">
+		<include name="pjauth/**" />
+		<include name="pjlogger/**" />
+		<include name="pjtemplatetoggle/**" />
+	</fileset>
+
+	<!-- Fileset for update system plugin files //-->
+	<fileset dir="${src}/plugins/authentication" id="update_pack_plugin-files-plugins-authentication-folder"></fileset>
+	<fileset dir="${src}/plugins/content" id="update_pack_plugin-files-plugins-content-folder"></fileset>
+	<fileset dir="${src}/plugins/editors" id="update_pack_plugin-files-plugins-editors-folder"></fileset>
+	<fileset dir="${src}/plugins/editors-xtd" id="update_pack_plugin-files-plugins-editorsxtd-folder"></fileset>
+	<fileset dir="${src}/plugins/extension" id="update_pack_plugin-files-plugins-extension-folder"></fileset>
+	<fileset dir="${src}/plugins/quickicon" id="update_pack_plugin-files-plugins-quickicon-folder"></fileset>
+	<fileset dir="${src}/plugins/system" id="update_pack_plugin-files-plugins-system-folder"></fileset>
+	<fileset dir="${src}/plugins/twofactorauth" id="update_pack_plugin-files-plugins-twofactorauth-folder"></fileset>
+	<fileset dir="${src}/plugins/user" id="update_pack_plugin-files-plugins-user-folder"></fileset>
+
+	<!-- Fileset for all files for template parts //-->
+	<fileset dir="${src}/administrator/templates/system" id="update_pack_templ-files-system-adminfolder"></fileset>
+	<fileset dir="${src}/templates/system" id="update_pack_templ-files-system-folder"></fileset>
+	<fileset dir="${src}/administrator/templates/tegloadmin" id="comp_pack_templ-files-tegloadmin-folder"></fileset>
+	<fileset dir="${src}/templates/teglofound" id="comp_pack_templ-files-teglofound-folder"></fileset>
+
+	<!-- *********** copy filesets ****************************************************** //-->
+	<target name="copy" description="Copies files to project.">
+		<echo message="Running build.xml. Copying files from dev to ${release}..." />
+
+		<!-- Copy files all files for install pack//-->
+		<copy todir="${release}/install_pack">
+			<fileset refid="install_pack_allfiles" />
+		</copy>
+		<copy file="${src}/cache/index.html" todir="${release}/install_pack/cache" />
+		<copy file="${src}/logs/index.html" todir="${release}/install_pack/logs" />
+		<copy file="${src}/tmp/index.html" todir="${release}/install_pack/tmp" />
+
+		<!--Copy root files and folders for update package //-->
+		<copy todir="${release}/update_pack">
+			<fileset refid="update_pack_allfiles" />
+		</copy>
+		<copy todir="${release}/update_pack">
+			<fileset refid="update_pack_tpl_system_files" />
+		</copy>
+		<copy file="${src}/administrator/components/com_playjoom/playjoom_update.xml" tofile="${release_update_pack_components}/com_playjoom/playjoom.xml" />
+		<copy file="${src}/playjoom.xml" tofile="${release}/update_pack/playjoom.xml" />
+		<copy file="${src}/updatescript.php" tofile="${release}/update_pack/updatescript.php" />
+
+		<!--  Copy root files //-->
+		<copy file="${src}/BSD license.txt" todir="${release}/install_pack" />
+		<copy file="${src}/changelog.txt" todir="${release}/install_pack" />
+		<copy file="${src}/LICENSE.txt" todir="${release}/install_pack" />
+		<copy file="${src}/MIT license.txt" todir="${release}/install_pack" />
+		<copy file="${src}/README.txt" todir="${release}/install_pack" />
+		<copy file="${src}/GNU GENERAL PUBLIC LICENSE.txt" todir="${release}/install_pack" />
+		<copy file="${src}/BSD license.txt" todir="${release}/comp_pack" />
+		<copy file="${src}/changelog.txt" todir="${release}/comp_pack" />
+		<copy file="${src}/LICENSE.txt" todir="${release}/comp_pack" />
+		<copy file="${src}/MIT license.txt" todir="${release}/comp_pack" />
+		<copy file="${src}/README.txt" todir="${release}/comp_pack" />
+		<copy file="${src}/GNU GENERAL PUBLIC LICENSE.txt" todir="${release}/comp_pack" />
+
+		<!-- ************** PlayJoom component **********************************************//-->
+		<!-- Copy files for PlayJoom admin parts //-->
+		<copy todir="${release}/comp_pack/admin">
+			<fileset refid="comp_pack_adminfiles" />
+		</copy>
+		<copy todir="${release_update_pack_components}/com_playjoom/admin">
+			<fileset refid="comp_pack_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_playjoom/playjoom.xml" todir="${release}/comp_pack" />
+		<copy file="${src}/administrator/components/com_playjoom/setup_pj_script.php" tofile="${release}/comp_pack/admin/setupscript.php" />
+		<copy file="${src}/administrator/components/com_playjoom/setup_pj_script.php" tofile="${release}/comp_pack/setupscript.php" />
+		<copy file="${src}/administrator/components/com_playjoom/setupscript.php" todir="${release_update_pack_components}/com_playjoom" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_playjoom.ini" todir="${release}/comp_pack/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_playjoom.ini" todir="${release}/comp_pack/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_playjoom.sys.ini" todir="${release}/comp_pack/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_playjoom.sys.ini" todir="${release}/comp_pack/admin/language" />
+
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_playjoom.ini" todir="${release_update_pack_components}/com_playjoom/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_playjoom.sys.ini" todir="${release_update_pack_components}/com_playjoom/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_playjoom.ini" todir="${release_update_pack_components}/com_playjoom/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_playjoom.sys.ini" todir="${release_update_pack_components}/com_playjoom/admin/language" />
+
+		<!-- Copy files for site parts //-->
+		<copy todir="${release}/comp_pack/site">
+			<fileset refid="comp_pack_sitefiles" />
+		</copy>
+		<copy todir="${release_update_pack_components}/com_playjoom/site">
+			<fileset refid="update_pack_sitefiles" />
+		</copy>
+		<copy file="${src}/language/de-DE/de-DE.com_playjoom.ini" todir="${release}/comp_pack/site/language" />
+		<copy file="${src}/language/en-GB/en-GB.com_playjoom.ini" todir="${release}/comp_pack/site/language" />
+		<copy file="${src}/language/de-DE/de-DE.com_playjoom.ini" todir="${release_update_pack_components}/com_playjoom/site/language" />
+		<copy file="${src}/language/en-GB/en-GB.com_playjoom.ini" todir="${release_update_pack_components}/com_playjoom/site/language" />
+
+		<!-- ************** PlayJoom admin component **********************************************//-->
+		<!-- Copy files for playjoomadmin parts //-->
+		<copy todir="${release_update_pack_components}/com_playjoomadmin/admin">
+			<fileset refid="comp_pack_playjoomadmin_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_playjoomadmin/playjoomadmin.xml" todir="${release_update_pack_components}/com_playjoomadmin/" />
+		<copy file="${src}/administrator/components/com_playjoomadmin/setupscript.php" todir="${release_update_pack_components}/com_playjoomadmin/" />
+		<!--  Language files for playjoomadmin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_playjoomadmin.ini" todir="${release_update_pack_components}/com_playjoomadmin/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_playjoomadmin.ini" todir="${release_update_pack_components}/com_playjoomadmin/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_playjoomadmin.sys.ini" todir="${release_update_pack_components}/com_playjoomadmin/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_playjoomadmin.sys.ini" todir="${release_update_pack_components}/com_playjoomadmin/admin/language" />
+
+		<!-- ************** Users component *************************************************//-->
+		<!-- Copy files for Users admin parts //-->
+		<copy todir="${release_update_pack_components}/com_users/admin">
+			<fileset refid="comp_pack_users_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_users/users.xml" todir="${release_update_pack_components}/com_users/" />
+		<copy file="${src}/administrator/components/com_users/setupscript.php" todir="${release_update_pack_components}/com_users/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_users.ini" todir="${release_update_pack_components}/com_users/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_users.ini" todir="${release_update_pack_components}/com_users/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_users.sys.ini" todir="${release_update_pack_components}/com_users/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_users.sys.ini" todir="${release_update_pack_components}/com_users/admin/language" />
+
+		<!-- Copy files for site parts //-->
+		<copy todir="${release_update_pack_components}/com_users/site">
+			<fileset refid="update_pack_users_sitefiles" />
+		</copy>
+		<copy file="${src}/language/de-DE/de-DE.com_users.ini" todir="${release_update_pack_components}/com_users/site/language" />
+		<copy file="${src}/language/en-GB/en-GB.com_users.ini" todir="${release_update_pack_components}/com_users/site/language" />
+
+		<!-- ************** Cache component **********************************************//-->
+		<!-- Copy files for Cache admin parts //-->
+		<copy todir="${release_update_pack_components}/com_cache/admin">
+			<fileset refid="comp_pack_cache_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_cache/cache.xml" todir="${release_update_pack_components}/com_cache/" />
+		<copy file="${src}/administrator/components/com_cache/setupscript.php" todir="${release_update_pack_components}/com_cache/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_cache.ini" todir="${release_update_pack_components}/com_cache/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_cache.ini" todir="${release_update_pack_components}/com_cache/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_cache.sys.ini" todir="${release_update_pack_components}/com_cache/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_cache.sys.ini" todir="${release_update_pack_components}/com_cache/admin/language" />
+
+		<!-- ************** Categories component **********************************************//-->
+		<!-- Copy files for Categories admin parts //-->
+		<copy todir="${release_update_pack_components}/com_categories/admin">
+			<fileset refid="comp_pack_categories_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_categories/categories.xml" todir="${release_update_pack_components}/com_categories/" />
+		<copy file="${src}/administrator/components/com_categories/setupscript.php" todir="${release_update_pack_components}/com_categories/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_categories.ini" todir="${release_update_pack_components}/com_categories/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_categories.ini" todir="${release_update_pack_components}/com_categories/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_categories.sys.ini" todir="${release_update_pack_components}/com_categories/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_categories.sys.ini" todir="${release_update_pack_components}/com_categories/admin/language" />
+
+		<!-- ************** Checkin component **********************************************//-->
+		<!-- Copy files for Checkin admin parts //-->
+		<copy todir="${release_update_pack_components}/com_checkin/admin">
+			<fileset refid="comp_pack_checkin_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_checkin/checkin.xml" todir="${release_update_pack_components}/com_checkin/" />
+		<copy file="${src}/administrator/components/com_checkin/setupscript.php" todir="${release_update_pack_components}/com_checkin/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_checkin.ini" todir="${release_update_pack_components}/com_checkin/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_checkin.ini" todir="${release_update_pack_components}/com_checkin/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_checkin.sys.ini" todir="${release_update_pack_components}/com_checkin/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_checkin.sys.ini" todir="${release_update_pack_components}/com_checkin/admin/language" />
+
+		<!-- ************** CPanel component **********************************************//-->
+		<!-- Copy files for CPanel admin parts //-->
+		<copy todir="${release_update_pack_components}/com_cpanel/admin">
+			<fileset refid="comp_pack_cpanel_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_cpanel/cpanel.xml" todir="${release_update_pack_components}/com_cpanel/" />
+		<copy file="${src}/administrator/components/com_cpanel/setupscript.php" todir="${release_update_pack_components}/com_cpanel/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_cpanel.ini" todir="${release_update_pack_components}/com_cpanel/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_cpanel.ini" todir="${release_update_pack_components}/com_cpanel/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_cpanel.sys.ini" todir="${release_update_pack_components}/com_cpanel/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_cpanel.sys.ini" todir="${release_update_pack_components}/com_cpanel/admin/language" />
+
+		<!-- ************** Installer component **********************************************//-->
+		<!-- Copy files for Installer admin parts //-->
+		<copy todir="${release_update_pack_components}/com_installer/admin">
+			<fileset refid="comp_pack_installer_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_installer/installer.xml" todir="${release_update_pack_components}/com_installer/" />
+		<copy file="${src}/administrator/components/com_installer/setupscript.php" todir="${release_update_pack_components}/com_installer/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_installer.ini" todir="${release_update_pack_components}/com_installer/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_installer.ini" todir="${release_update_pack_components}/com_installer/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_installer.sys.ini" todir="${release_update_pack_components}/com_installer/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_installer.sys.ini" todir="${release_update_pack_components}/com_installer/admin/language" />
+
+		<!-- ************** Languages component **********************************************//-->
+		<!-- Copy files for Languages admin parts //-->
+		<copy todir="${release_update_pack_components}/com_languages/admin">
+			<fileset refid="comp_pack_languages_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_languages/languages.xml" todir="${release_update_pack_components}/com_languages/" />
+		<copy file="${src}/administrator/components/com_languages/setupscript.php" todir="${release_update_pack_components}/com_languages/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_languages.ini" todir="${release_update_pack_components}/com_languages/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_languages.ini" todir="${release_update_pack_components}/com_languages/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_languages.sys.ini" todir="${release_update_pack_components}/com_languages/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_languages.sys.ini" todir="${release_update_pack_components}/com_languages/admin/language" />
+
+		<!-- ************** Login component **********************************************//-->
+		<!-- Copy files for Login admin parts //-->
+		<copy todir="${release_update_pack_components}/com_login/admin">
+			<fileset refid="comp_pack_login_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_login/login.xml" todir="${release_update_pack_components}/com_login/" />
+		<copy file="${src}/administrator/components/com_login/setupscript.php" todir="${release_update_pack_components}/com_login/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_login.ini" todir="${release_update_pack_components}/com_login/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_login.ini" todir="${release_update_pack_components}/com_login/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_login.sys.ini" todir="${release_update_pack_components}/com_login/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_login.sys.ini" todir="${release_update_pack_components}/com_login/admin/language" />
+
+		<!-- ************** Menus component **********************************************//-->
+		<!-- Copy files for Menus admin parts //-->
+		<copy todir="${release_update_pack_components}/com_menus/admin">
+			<fileset refid="comp_pack_menus_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_menus/menus.xml" todir="${release_update_pack_components}/com_menus/" />
+		<copy file="${src}/administrator/components/com_menus/setupscript.php" todir="${release_update_pack_components}/com_menus/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_menus.ini" todir="${release_update_pack_components}/com_menus/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_menus.ini" todir="${release_update_pack_components}/com_menus/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_menus.sys.ini" todir="${release_update_pack_components}/com_menus/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_menus.sys.ini" todir="${release_update_pack_components}/com_menus/admin/language" />
+
+		<!-- ************** Messages component **********************************************//-->
+		<!-- Copy files for Messages admin parts //-->
+		<copy todir="${release_update_pack_components}/com_messages/admin">
+			<fileset refid="comp_pack_messages_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_messages/messages.xml" todir="${release_update_pack_components}/com_messages/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_messages.ini" todir="${release_update_pack_components}/com_messages/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_messages.ini" todir="${release_update_pack_components}/com_messages/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_messages.sys.ini" todir="${release_update_pack_components}/com_messages/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_messages.sys.ini" todir="${release_update_pack_components}/com_messages/admin/language" />
+		<!--  Language files for site part //-->
+		<copy file="${src}/language/de-DE/de-DE.com_messages.ini" todir="${release_update_pack_components}/com_messages/site/language" />
+		<copy file="${src}/language/en-GB/en-GB.com_messages.ini" todir="${release_update_pack_components}/com_messages/site/language" />
+
+		<!-- ************** Modules component **********************************************//-->
+		<!-- Copy files for Modules admin parts //-->
+		<copy todir="${release_update_pack_components}/com_modules/admin">
+			<fileset refid="comp_pack_modules_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_modules/modules.xml" todir="${release_update_pack_components}/com_modules/" />
+		<copy file="${src}/administrator/components/com_modules/setupscript.php" todir="${release_update_pack_components}/com_modules/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_modules.ini" todir="${release_update_pack_components}/com_modules/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_modules.ini" todir="${release_update_pack_components}/com_modules/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_modules.sys.ini" todir="${release_update_pack_components}/com_modules/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_modules.sys.ini" todir="${release_update_pack_components}/com_modules/admin/language" />
+
+		<!-- ************** PlayJoomUpdate component **********************************************//-->
+		<!-- Copy files for PlayJoomUpdate admin parts //-->
+		<copy todir="${release_update_pack_components}/com_playjoomupdate/admin">
+			<fileset refid="comp_pack_playjoomupdate_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_playjoomupdate/playjoomupdate.xml" todir="${release_update_pack_components}/com_playjoomupdate/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_playjoomupdate.ini" todir="${release_update_pack_components}/com_playjoomupdate/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_playjoomupdate.ini" todir="${release_update_pack_components}/com_playjoomupdate/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_playjoomupdate.sys.ini" todir="${release_update_pack_components}/com_playjoomupdate/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_playjoomupdate.sys.ini" todir="${release_update_pack_components}/com_playjoomupdate/admin/language" />
+		
+		<!-- ************** Plugins component **********************************************//-->
+		<!-- Copy files for Plugins admin parts //-->
+		<copy todir="${release_update_pack_components}/com_plugins/admin">
+			<fileset refid="comp_pack_plugins_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_plugins/plugins.xml" todir="${release_update_pack_components}/com_plugins/" />
+		<copy file="${src}/administrator/components/com_plugins/setupscript.php" todir="${release_update_pack_components}/com_plugins/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_plugins.ini" todir="${release_update_pack_components}/com_plugins/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_plugins.ini" todir="${release_update_pack_components}/com_plugins/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_plugins.sys.ini" todir="${release_update_pack_components}/com_plugins/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_plugins.sys.ini" todir="${release_update_pack_components}/com_plugins/admin/language" />
+
+		<!-- ************** Postinstall component **********************************************//-->
+		<!-- Copy files for Postinstall admin parts //-->
+		<copy todir="${release_update_pack_components}/com_postinstall/admin">
+			<fileset refid="comp_pack_postinstall_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_postinstall/postinstall.xml" todir="${release_update_pack_components}/com_postinstall/" />
+		<copy file="${src}/administrator/components/com_postinstall/setupscript.php" todir="${release_update_pack_components}/com_postinstall/" />
+		<!--  Language files for admin part //-->
+		<!-- <copy file="${src}/administrator/language/de-DE/de-DE.com_postinstall.ini" todir="${release_update_pack_components}/com_postinstall/admin/language" /> //-->
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_postinstall.ini" todir="${release_update_pack_components}/com_postinstall/admin/language" />
+		<!-- <copy file="${src}/administrator/language/de-DE/de-DE.com_postinstall.sys.ini" todir="${release_update_pack_components}/com_postinstall/admin/language" /> //-->
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_postinstall.sys.ini" todir="${release_update_pack_components}/com_postinstall/admin/language" />
+
+		<!-- ************** Redirect component ***********************************************//-->
+		<!-- Copy files for Redirect admin parts //-->
+		<copy todir="${release_update_pack_components}/com_redirect/admin">
+			<fileset refid="comp_pack_redirect_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_redirect/redirect.xml" todir="${release_update_pack_components}/com_redirect/" />
+		<copy file="${src}/administrator/components/com_redirect/setupscript.php" todir="${release_update_pack_components}/com_redirect/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_redirect.ini" todir="${release_update_pack_components}/com_redirect/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_redirect.ini" todir="${release_update_pack_components}/com_redirect/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_redirect.sys.ini" todir="${release_update_pack_components}/com_redirect/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_redirect.sys.ini" todir="${release_update_pack_components}/com_redirect/admin/language" />
+
+		<!-- ************** Tags component **********************************************//-->
+		<!-- Copy files for Users admin parts //-->
+		<copy todir="${release_update_pack_components}/com_tags/admin">
+			<fileset refid="comp_pack_tags_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_tags/tags.xml" todir="${release_update_pack_components}/com_tags/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_tags.ini" todir="${release_update_pack_components}/com_tags/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_tags.ini" todir="${release_update_pack_components}/com_tags/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_tags.sys.ini" todir="${release_update_pack_components}/com_tags/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_tags.sys.ini" todir="${release_update_pack_components}/com_tags/admin/language" />
+
+		<!-- Copy files for site parts //-->
+		<copy todir="${release_update_pack_components}/com_tags/site">
+			<fileset refid="update_pack_tags_sitefiles" />
+		</copy>
+		<copy file="${src}/language/de-DE/de-DE.com_tags.ini" todir="${release_update_pack_components}/com_tags/site/language" />
+		<copy file="${src}/language/en-GB/en-GB.com_tags.ini" todir="${release_update_pack_components}/com_tags/site/language" />
+
+		<!-- ************** Templates component **********************************************//-->
+		<!-- Copy files for Templates admin parts //-->
+		<copy todir="${release_update_pack_components}/com_templates/admin">
+			<fileset refid="comp_pack_templates_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_templates/templates.xml" todir="${release_update_pack_components}/com_templates/" />
+		<copy file="${src}/administrator/components/com_templates/setupscript.php" todir="${release_update_pack_components}/com_templates/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_templates.ini" todir="${release_update_pack_components}/com_templates/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_templates.ini" todir="${release_update_pack_components}/com_templates/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_templates.sys.ini" todir="${release_update_pack_components}/com_templates/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_templates.sys.ini" todir="${release_update_pack_components}/com_templates/admin/language" />
+
+		<!-- ************** Search component **********************************************//-->
+		<!-- Copy files for Search admin parts //-->
+		<copy todir="${release_update_pack_components}/com_search/admin">
+			<fileset refid="comp_pack_search_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_search/search.xml" todir="${release_update_pack_components}/com_search/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_search.ini" todir="${release_update_pack_components}/com_search/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_search.ini" todir="${release_update_pack_components}/com_search/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_search.sys.ini" todir="${release_update_pack_components}/com_search/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_search.sys.ini" todir="${release_update_pack_components}/com_search/admin/language" />
+
+		<!-- Copy files for site parts //-->
+		<copy todir="${release_update_pack_components}/com_search/site">
+			<fileset refid="update_pack_search_sitefiles" />
+		</copy>
+		<copy file="${src}/language/de-DE/de-DE.com_search.ini" todir="${release_update_pack_components}/com_search/site/language" />
+		<copy file="${src}/language/en-GB/en-GB.com_search.ini" todir="${release_update_pack_components}/com_search/site/language" />
+		
+		<!-- ************** Config component **********************************************//-->
+		<!-- Copy files for Config admin parts //-->
+		<copy todir="${release_update_pack_components}/com_config/admin">
+			<fileset refid="comp_pack_config_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_config/config.xml" todir="${release_update_pack_components}/com_config/" />
+		<copy file="${src}/administrator/components/com_config/setupscript.php" todir="${release_update_pack_components}/com_config/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_config.ini" todir="${release_update_pack_components}/com_config/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_config.ini" todir="${release_update_pack_components}/com_config/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_config.sys.ini" todir="${release_update_pack_components}/com_config/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_config.sys.ini" todir="${release_update_pack_components}/com_config/admin/language" />
+
+		<!-- Copy files for site parts //-->
+		<copy todir="${release_update_pack_components}/com_config/site">
+			<fileset refid="update_pack_config_sitefiles" />
+		</copy>
+		<copy file="${src}/language/de-DE/de-DE.com_config.ini" todir="${release_update_pack_components}/com_config/site/language" />
+		<copy file="${src}/language/en-GB/en-GB.com_config.ini" todir="${release_update_pack_components}/com_config/site/language" />
+
+		<!-- ************** Media component **********************************************//-->
+		<!-- Copy files for Media admin parts //-->
+		<copy todir="${release_update_pack_components}/com_media/admin">
+			<fileset refid="comp_pack_media_adminfiles" />
+		</copy>
+		<copy file="${src}/administrator/components/com_media/media.xml" todir="${release_update_pack_components}/com_media/" />
+		<copy file="${src}/administrator/components/com_media/setupscript.php" todir="${release_update_pack_components}/com_media/" />
+		<!--  Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_media.ini" todir="${release_update_pack_components}/com_media/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_media.ini" todir="${release_update_pack_components}/com_media/admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.com_media.sys.ini" todir="${release_update_pack_components}/com_media/admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.com_media.sys.ini" todir="${release_update_pack_components}/com_media/admin/language" />
+
+		<!-- Copy files for site parts
+		<copy todir="${release_update_pack_components}/com_media/site">
+			<fileset refid="update_pack_media_sitefiles" />
+		</copy>//-->
+		<copy file="${src}/language/de-DE/de-DE.com_media.ini" todir="${release_update_pack_components}/com_media/site/language" />
+		<copy file="${src}/language/en-GB/en-GB.com_media.ini" todir="${release_update_pack_components}/com_media/site/language" />
+
+		<!-- *************** Copy Media files ******************************************//-->
+		<copy todir="${release}/comp_pack/media/com_playjoom">
+			<fileset refid="comp_pack_media-files-playjoom-folder" />
+		</copy>
+		<copy file="${src}/media/index.html" todir="${release}/comp_pack/media" />
+		<copy file="${src}/media/index.html" todir="${release}/comp_pack/media/com_playjoom" />
+
+		<copy todir="${release_update_pack_components}/com_playjoom/media/com_playjoom">
+			<fileset refid="comp_pack_media-files-playjoom-folder" />
+		</copy>
+		<copy file="${src}/media/index.html" todir="${release_update_pack_components}/com_playjoom/media" />
+		<copy file="${src}/media/index.html" todir="${release_update_pack_components}/com_playjoom/media/com_playjoom" />
+
+		<!--************ Copy module files ***********************//-->
+
+		<!--  Files for admin mod_logged part //-->
+		<copy todir="${release_update_pack_modules}/admin_mod_logged">
+			<fileset refid="update_pack_mod-files-admin-mod_logged" />
+		</copy>
+		<!--  Language files for mod_logged part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_logged.ini" todir="${release_update_pack_modules}/admin_mod_logged/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_logged.ini" todir="${release_update_pack_modules}/admin_mod_logged/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_logged.sys.ini" todir="${release_update_pack_modules}/admin_mod_logged/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_logged.sys.ini" todir="${release_update_pack_modules}/admin_mod_logged/language" />
+		<!--  Files for admin mod_login part //-->
+		<copy todir="${release_update_pack_modules}/admin_mod_login">
+			<fileset refid="update_pack_mod-files-admin-mod_login" />
+		</copy>
+		<!--  Language files for mod_login part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_login.ini" todir="${release_update_pack_modules}/admin_mod_login/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_login.ini" todir="${release_update_pack_modules}/admin_mod_login/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_login.sys.ini" todir="${release_update_pack_modules}/admin_mod_login/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_login.sys.ini" todir="${release_update_pack_modules}/admin_mod_login/language" />
+		<!--  Files for admin mod_menu part //-->
+		<copy todir="${release_update_pack_modules}/admin_mod_menu">
+			<fileset refid="update_pack_mod-files-admin-mod_menu" />
+		</copy>
+		<!--  Language files for mod_menu part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_menu.ini" todir="${release_update_pack_modules}/admin_mod_menu/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_menu.ini" todir="${release_update_pack_modules}/admin_mod_menu/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_menu.sys.ini" todir="${release_update_pack_modules}/admin_mod_menu/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_menu.sys.ini" todir="${release_update_pack_modules}/admin_mod_menu/language" />
+		<!--  Files for admin mod_multilangstatus part //-->
+		<copy todir="${release_update_pack_modules}/admin_mod_multilangstatus">
+			<fileset refid="update_pack_mod-files-admin-mod_multilangstatus" />
+		</copy>
+		<!--  Language files for mod_multilangstatus part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_multilangstatus.ini" todir="${release_update_pack_modules}/admin_mod_multilangstatus/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_multilangstatus.ini" todir="${release_update_pack_modules}/admin_mod_multilangstatus/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_multilangstatus.sys.ini" todir="${release_update_pack_modules}/admin_mod_multilangstatus/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_multilangstatus.sys.ini" todir="${release_update_pack_modules}/admin_mod_multilangstatus/language" />
+		<!--  Files for admin mod_online part //-->
+		<copy todir="${release_update_pack_modules}/admin_mod_online">
+			<fileset refid="update_pack_mod-files-admin-mod_online" />
+		</copy>
+
+		<!--  Files for admin mod_stats_admin part //-->
+		<copy todir="${release_update_pack_modules}/admin_mod_stats_admin">
+			<fileset refid="update_pack_mod-files-admin-mod_stats_admin" />
+		</copy>
+		<!--  Language files for mod_stats_admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_stats_admin.ini" todir="${release_update_pack_modules}/admin_mod_stats_admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_stats_admin.ini" todir="${release_update_pack_modules}/admin_mod_stats_admin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_stats_admin.sys.ini" todir="${release_update_pack_modules}/admin_mod_stats_admin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_stats_admin.sys.ini" todir="${release_update_pack_modules}/admin_mod_stats_admin/language" />
+
+		<!--  Files for admin mod_status part //-->
+		<copy todir="${release_update_pack_modules}/admin_mod_status">
+			<fileset refid="update_pack_mod-files-admin-mod_status" />
+		</copy>
+		<!--  Language files for mod_status part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_status.ini" todir="${release_update_pack_modules}/admin_mod_status/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_status.ini" todir="${release_update_pack_modules}/admin_mod_status/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_status.sys.ini" todir="${release_update_pack_modules}/admin_mod_status/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_status.sys.ini" todir="${release_update_pack_modules}/admin_mod_status/language" />
+
+		<!--  Files for admin mod_submenu part //-->
+		<copy todir="${release_update_pack_modules}/admin_mod_submenu">
+			<fileset refid="update_pack_mod-files-admin-mod_submenu" />
+		</copy>
+		<!--  Language files for mod_submenu part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_submenu.ini" todir="${release_update_pack_modules}/admin_mod_submenu/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_submenu.ini" todir="${release_update_pack_modules}/admin_mod_submenu/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_submenu.sys.ini" todir="${release_update_pack_modules}/admin_mod_submenu/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_submenu.sys.ini" todir="${release_update_pack_modules}/admin_mod_submenu/language" />
+
+		<!--  Files for admin mod_title part //-->
+		<copy todir="${release_update_pack_modules}/admin_mod_title">
+			<fileset refid="update_pack_mod-files-admin-mod_title" />
+		</copy>
+		<!--  Language files for mod_title part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_title.ini" todir="${release_update_pack_modules}/admin_mod_title/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_title.ini" todir="${release_update_pack_modules}/admin_mod_title/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_title.sys.ini" todir="${release_update_pack_modules}/admin_mod_title/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_title.sys.ini" todir="${release_update_pack_modules}/admin_mod_title/language" />
+
+		<!--  Files for admin mod_toolbar part //-->
+		<copy todir="${release_update_pack_modules}/admin_mod_toolbar">
+			<fileset refid="update_pack_mod-files-admin-mod_toolbar" />
+		</copy>
+		<!--  Language files for mod_toolbar part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_toolbar.ini" todir="${release_update_pack_modules}/admin_mod_toolbar/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_toolbar.ini" todir="${release_update_pack_modules}/admin_mod_toolbar/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_toolbar.sys.ini" todir="${release_update_pack_modules}/admin_mod_toolbar/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_toolbar.sys.ini" todir="${release_update_pack_modules}/admin_mod_toolbar/language" />
+
+		<!--  Files for admin mod_unread part //-->
+		<copy todir="${release_update_pack_modules}/admin_mod_unread">
+			<fileset refid="update_pack_mod-files-admin-mod_unread" />
+		</copy>
+
+		<!--  Files for admin mod_version part //-->
+		<copy todir="${release_update_pack_modules}/admin_mod_version">
+			<fileset refid="update_pack_mod-files-admin-mod_version" />
+		</copy>
+		<!--  Language files for mod_unread part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_version.ini" todir="${release_update_pack_modules}/admin_mod_version/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_version.ini" todir="${release_update_pack_modules}/admin_mod_version/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_version.sys.ini" todir="${release_update_pack_modules}/admin_mod_version/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_version.sys.ini" todir="${release_update_pack_modules}/admin_mod_version/language" />
+
+		<!--  Files for mod_breadcrumbs part //-->
+		<copy todir="${release_update_pack_modules}/mod_breadcrumbs">
+			<fileset refid="update_pack_mod-files-mod_breadcrumbs" />
+		</copy>
+		<!--  Language files for mod_breadcrumbs part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_breadcrumbs.ini" todir="${release_update_pack_modules}/mod_breadcrumbs/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_breadcrumbs.ini" todir="${release_update_pack_modules}/mod_breadcrumbs/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_breadcrumbs.sys.ini" todir="${release_update_pack_modules}/mod_breadcrumbs/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_breadcrumbs.sys.ini" todir="${release_update_pack_modules}/mod_breadcrumbs/language" />
+
+		<!--  Files for mod_languages part //-->
+		<copy todir="${release_update_pack_modules}/mod_languages">
+			<fileset refid="update_pack_mod-files-mod_languages" />
+		</copy>
+		<!--  Language files for mod_languages part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_languages.ini" todir="${release_update_pack_modules}/mod_languages/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_languages.ini" todir="${release_update_pack_modules}/mod_languages/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_languages.sys.ini" todir="${release_update_pack_modules}/mod_languages/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_languages.sys.ini" todir="${release_update_pack_modules}/mod_languages/language" />
+		
+		<!--  Files for mod_login part //-->
+		<copy todir="${release_update_pack_modules}/mod_login">
+			<fileset refid="update_pack_mod-files-mod_login" />
+		</copy>
+		<!--  Language files for mod_login part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_login.ini" todir="${release_update_pack_modules}/mod_login/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_login.ini" todir="${release_update_pack_modules}/mod_login/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_login.sys.ini" todir="${release_update_pack_modules}/mod_login/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_login.sys.ini" todir="${release_update_pack_modules}/mod_login/language" />
+		
+		<!--  Files for mod_menu part //-->
+		<copy todir="${release_update_pack_modules}/mod_menu">
+			<fileset refid="update_pack_mod-files-mod_menu" />
+		</copy>
+		<!--  Language files for mod_login part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_menu.ini" todir="${release_update_pack_modules}/mod_menu/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_menu.ini" todir="${release_update_pack_modules}/mod_menu/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_menu.sys.ini" todir="${release_update_pack_modules}/mod_menu/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_menu.sys.ini" todir="${release_update_pack_modules}/mod_menu/language" />
+
+		<!--  Files for pj_alphabeticalbar part //-->
+		<copy todir="${release}/comp_pack/extensions/mod_pj_alphabeticalbar">
+			<fileset refid="comp_pack_mod-files-pj-alphabeticalbar" />
+		</copy>
+		<copy todir="${release_update_pack_modules}/mod_pj_alphabeticalbar">
+			<fileset refid="comp_pack_mod-files-pj-alphabeticalbar" />
+		</copy>
+		<!--  Language files for pj_alphabeticalbar part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_alphabeticalbar.ini" todir="${release}/comp_pack/extensions/mod_pj_alphabeticalbar/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_alphabeticalbar.ini" todir="${release}/comp_pack/extensions/mod_pj_alphabeticalbar/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_alphabeticalbar.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_alphabeticalbar/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_alphabeticalbar.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_alphabeticalbar/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_alphabeticalbar.ini" todir="${release_update_pack_modules}/mod_pj_alphabeticalbar/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_alphabeticalbar.ini" todir="${release_update_pack_modules}/mod_pj_alphabeticalbar/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_alphabeticalbar.sys.ini" todir="${release_update_pack_modules}/mod_pj_alphabeticalbar/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_alphabeticalbar.sys.ini" todir="${release_update_pack_modules}/mod_pj_alphabeticalbar/language" />
+
+		<!--  Files for pj_lastplayed part //-->
+		<copy todir="${release}/comp_pack/extensions/mod_pj_lastplayed">
+			<fileset refid="comp_pack_mod-files-pj-lastplayed" />
+		</copy>
+		<copy todir="${release_update_pack_modules}/mod_pj_lastplayed">
+			<fileset refid="comp_pack_mod-files-pj-lastplayed" />
+		</copy>
+		<!--  Language files for lastplayed part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_lastplayed.ini" todir="${release}/comp_pack/extensions/mod_pj_lastplayed/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_lastplayed.ini" todir="${release}/comp_pack/extensions/mod_pj_lastplayed/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_lastplayed.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_lastplayed/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_lastplayed.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_lastplayed/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_lastplayed.ini" todir="${release_update_pack_modules}/mod_pj_lastplayed/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_lastplayed.ini" todir="${release_update_pack_modules}/mod_pj_lastplayed/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_lastplayed.sys.ini" todir="${release_update_pack_modules}/mod_pj_lastplayed/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_lastplayed.sys.ini" todir="${release_update_pack_modules}/mod_pj_lastplayed/language" />
+
+		<!--  Files for pj-footer part //-->
+		<copy todir="${release}/comp_pack/extensions/mod_pj_footer">
+			<fileset refid="comp_pack_mod-files-pj-footer" />
+		</copy>
+		<copy todir="${release_update_pack_modules}/mod_pj_footer">
+			<fileset refid="comp_pack_mod-files-pj-footer" />
+		</copy>
+		<!--  Language files for PJ footer part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_footer.ini" todir="${release}/comp_pack/extensions/mod_pj_footer/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_footer.ini" todir="${release}/comp_pack/extensions/mod_pj_footer/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_footer.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_footer/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_footer.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_footer/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_footer.ini" todir="${release_update_pack_modules}/mod_pj_footer/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_footer.ini" todir="${release_update_pack_modules}/mod_pj_footer/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_footer.sys.ini" todir="${release_update_pack_modules}/mod_pj_footer/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_footer.sys.ini" todir="${release_update_pack_modules}/mod_pj_footer/language" />
+
+		<!--  Files for pj-search part //-->
+		<copy todir="${release}/comp_pack/extensions/mod_pj_search">
+			<fileset refid="comp_pack_mod-files-pj-search" />
+		</copy>
+		<copy todir="${release_update_pack_modules}/mod_pj_search">
+			<fileset refid="comp_pack_mod-files-pj-search" />
+		</copy>
+		<!--  Language files for PJ footer part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_search.ini" todir="${release}/comp_pack/extensions/mod_pj_search/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_search.ini" todir="${release}/comp_pack/extensions/mod_pj_search/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_search.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_search/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_search.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_search/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_search.ini" todir="${release_update_pack_modules}/mod_pj_search/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_search.ini" todir="${release_update_pack_modules}/mod_pj_search/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_search.sys.ini" todir="${release_update_pack_modules}/mod_pj_search/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_search.sys.ini" todir="${release_update_pack_modules}/mod_pj_search/language" />
+
+		<!--  Files for pj-menu part //-->
+		<copy todir="${release}/comp_pack/extensions/mod_pj_menu">
+			<fileset refid="comp_pack_mod-files-pj-menu" />
+		</copy>
+		<copy todir="${release_update_pack_modules}/mod_pj_menu">
+			<fileset refid="comp_pack_mod-files-pj-menu" />
+		</copy>
+		<!-- Language files for admin part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_pj_menu.ini" todir="${release}/comp_pack/extensions/mod_pj_menu/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_pj_menu.ini" todir="${release}/comp_pack/extensions/mod_pj_menu/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_pj_menu.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_menu/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_pj_menu.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_menu/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_pj_menu.ini" todir="${release_update_pack_modules}/mod_pj_menu/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_pj_menu.ini" todir="${release_update_pack_modules}/mod_pj_menu/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_pj_menu.sys.ini" todir="${release_update_pack_modules}/mod_pj_menu/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_pj_menu.sys.ini" todir="${release_update_pack_modules}/mod_pj_menu/language" />
+
+		<!--  Files for newcontents part //-->
+		<copy todir="${release}/comp_pack/extensions/mod_pj_newcontents">
+			<fileset refid="comp_pack_mod-files-pj-newcontents" />
+		</copy>
+		<copy todir="${release_update_pack_modules}/mod_pj_newcontents">
+			<fileset refid="comp_pack_mod-files-pj-newcontents" />
+		</copy>
+		<!--  Language files for newcontents part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_newcontents.ini" todir="${release}/comp_pack/extensions/mod_pj_newcontents/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_newcontents.ini" todir="${release}/comp_pack/extensions/mod_pj_newcontents/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_newcontents.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_newcontents/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_newcontents.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_newcontents/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_newcontents.ini" todir="${release_update_pack_modules}/mod_pj_newcontents/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_newcontents.ini" todir="${release_update_pack_modules}/mod_pj_newcontents/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_newcontents.sys.ini" todir="${release_update_pack_modules}/mod_pj_newcontents/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_newcontents.sys.ini" todir="${release_update_pack_modules}/mod_pj_newcontents/language" />
+
+		<!--  Files for populartracks part //-->
+		<copy todir="${release}/comp_pack/extensions/mod_pj_populartracks">
+			<fileset refid="comp_pack_mod-files-pj-populartracks" />
+		</copy>
+		<copy todir="${release_update_pack_modules}/mod_pj_populartracks">
+			<fileset refid="comp_pack_mod-files-pj-populartracks" />
+		</copy>
+		<!--  Language files for PJ Populartracks part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_populartracks.ini" todir="${release}/comp_pack/extensions/mod_pj_populartracks/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_populartracks.ini" todir="${release}/comp_pack/extensions/mod_pj_populartracks/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_populartracks.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_populartracks/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_populartracks.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_populartracks/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_populartracks.ini" todir="${release_update_pack_modules}/mod_pj_populartracks/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_populartracks.ini" todir="${release_update_pack_modules}/mod_pj_populartracks/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_populartracks.sys.ini" todir="${release_update_pack_modules}/mod_pj_populartracks/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_populartracks.sys.ini" todir="${release_update_pack_modules}/mod_pj_populartracks/language" />
+
+		<!--  Files for quickicon part //-->
+		<copy todir="${release}/comp_pack/extensions/mod_pj_quickicon">
+			<fileset refid="comp_pack_mod-files-pj-quickicon" />
+		</copy>
+		<copy todir="${release_update_pack_modules}/mod_pj_quickicon">
+			<fileset refid="comp_pack_mod-files-pj-quickicon" />
+		</copy>
+		<!--  Language files for quickicon part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_pj_quickicon.ini" todir="${release}/comp_pack/extensions/mod_pj_quickicon/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_pj_quickicon.ini" todir="${release}/comp_pack/extensions/mod_pj_quickicon/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_pj_quickicon.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_quickicon/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_pj_quickicon.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_quickicon/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_pj_quickicon.ini" todir="${release_update_pack_modules}/mod_pj_quickicon/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_pj_quickicon.ini" todir="${release_update_pack_modules}/mod_pj_quickicon/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.mod_pj_quickicon.sys.ini" todir="${release_update_pack_modules}/mod_pj_quickicon/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.mod_pj_quickicon.sys.ini" todir="${release_update_pack_modules}/mod_pj_quickicon/language" />
+
+		<!--  Files for statistics part //-->
+		<copy todir="${release}/comp_pack/extensions/mod_pj_statistics">
+			<fileset refid="comp_pack_mod-files-pj-statistics" />
+		</copy>
+		<copy todir="${release_update_pack_modules}/mod_pj_statistics">
+			<fileset refid="comp_pack_mod-files-pj-statistics" />
+		</copy>
+		<!--  Language files for statistics part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_statistics.ini" todir="${release}/comp_pack/extensions/mod_pj_statistics/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_statistics.ini" todir="${release}/comp_pack/extensions/mod_pj_statistics/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_statistics.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_statistics/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_statistics.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_statistics/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_statistics.ini" todir="${release_update_pack_modules}/mod_pj_statistics/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_statistics.ini" todir="${release_update_pack_modules}/mod_pj_statistics/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_statistics.sys.ini" todir="${release_update_pack_modules}/mod_pj_statistics/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_statistics.sys.ini" todir="${release_update_pack_modules}/mod_pj_statistics/language" />
+
+		<!--  Files for tags popular part //-->
+		<copy todir="${release}/comp_pack/extensions/mod_pj_tags_popular">
+			<fileset refid="comp_pack_mod-files-pj-tags-popular" />
+		</copy>
+		<copy todir="${release_update_pack_modules}/mod_pj_tags_popular">
+			<fileset refid="comp_pack_mod-files-pj-tags-popular" />
+		</copy>
+		<!--  Language files for tags popular part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_tags_popular.ini" todir="${release}/comp_pack/extensions/mod_pj_tags_popular/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_tags_popular.ini" todir="${release}/comp_pack/extensions/mod_pj_tags_popular/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_tags_popular.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_tags_popular/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_tags_popular.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_tags_popular/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_tags_popular.ini" todir="${release_update_pack_modules}/mod_pj_tags_popular/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_tags_popular.ini" todir="${release_update_pack_modules}/mod_pj_tags_popular/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_tags_popular.sys.ini" todir="${release_update_pack_modules}/mod_pj_tags_popular/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_tags_popular.sys.ini" todir="${release_update_pack_modules}/mod_pj_tags_popular/language" />
+
+		<!--  Files for mod_stats part //-->
+		<copy todir="${release_update_pack_modules}/mod_stats">
+			<fileset refid="update_pack_mod-files-mod_stats" />
+		</copy>
+		<!--  Language files for mod_stats part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_stats.ini" todir="${release_update_pack_modules}/mod_stats/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_stats.ini" todir="${release_update_pack_modules}/mod_stats/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_stats.sys.ini" todir="${release_update_pack_modules}/mod_stats/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_stats.sys.ini" todir="${release_update_pack_modules}/mod_stats/language" />
+
+		<!--  Files for mod_tags_popular part //-->
+		<copy todir="${release_update_pack_modules}/mod_tags_popular">
+			<fileset refid="update_pack_mod-files-mod_tags_popular" />
+		</copy>
+		<!--  Language files for mod_tags_popular part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_tags_popular.ini" todir="${release_update_pack_modules}/mod_tags_popular/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_tags_popular.ini" todir="${release_update_pack_modules}/mod_tags_popular/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_tags_popular.sys.ini" todir="${release_update_pack_modules}/mod_tags_popular/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_tags_popular.sys.ini" todir="${release_update_pack_modules}/mod_tags_popular/language" />
+		
+		<!--  Files for mod_tags_similar part //-->
+		<copy todir="${release_update_pack_modules}/mod_tags_similar">
+			<fileset refid="update_pack_mod-files-mod_tags_similar" />
+		</copy>
+		<!--  Language files for mod_tags_similar part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_tags_similar.ini" todir="${release_update_pack_modules}/mod_tags_similar/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_tags_similar.ini" todir="${release_update_pack_modules}/mod_tags_similar/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_tags_similar.sys.ini" todir="${release_update_pack_modules}/mod_tags_similar/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_tags_similar.sys.ini" todir="${release_update_pack_modules}/mod_tags_similar/language" />
+
+		<!--  Files for mod_whosonline part //-->
+		<copy todir="${release_update_pack_modules}/mod_whosonline">
+			<fileset refid="update_pack_mod-files-mod_whosonline" />
+		</copy>
+		<!--  Language files for mod_whosonline part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_whosonline.ini" todir="${release_update_pack_modules}/mod_whosonline/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_whosonline.ini" todir="${release_update_pack_modules}/mod_whosonline/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_whosonline.sys.ini" todir="${release_update_pack_modules}/mod_whosonline/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_whosonline.sys.ini" todir="${release_update_pack_modules}/mod_whosonline/language" />
+
+		<!-- ************** Copy Plugin files ********************* //-->
+		<!-- ############# Authentication Plugins ##############################//-->	
+		<copy todir="${release_update_pack_plugins}/authentication">
+			<fileset refid="update_pack_plugin-files-plugins-authentication-folder" />
+		</copy>
+		<!--  Language files for authentication_ldap part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_authentication_ldap.ini" todir="${release_update_pack_plugins}/authentication/ldap/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_authentication_ldap.ini" todir="${release_update_pack_plugins}/authentication/ldap/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_authentication_ldap.sys.ini" todir="${release_update_pack_plugins}/authentication/ldap/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_authentication_ldap.sys.ini" todir="${release_update_pack_plugins}/authentication/ldap/language" />
+		<!--  Language files for authentication_joomla part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_authentication_joomla.ini" todir="${release_update_pack_plugins}/authentication/joomla/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_authentication_joomla.ini" todir="${release_update_pack_plugins}/authentication/joomla/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_authentication_joomla.sys.ini" todir="${release_update_pack_plugins}/authentication/joomla/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_authentication_joomla.sys.ini" todir="${release_update_pack_plugins}/authentication/joomla/language" />
+		<!--  Language files for authentication_cookie part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_authentication_cookie.ini" todir="${release_update_pack_plugins}/authentication/cookie/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_authentication_cookie.ini" todir="${release_update_pack_plugins}/authentication/cookie/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_authentication_cookie.sys.ini" todir="${release_update_pack_plugins}/authentication/cookie/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_authentication_cookie.sys.ini" todir="${release_update_pack_plugins}/authentication/cookie/language" />
+		<!--  Language files for authentication_gmail part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_authentication_gmail.ini" todir="${release_update_pack_plugins}/authentication/gmail/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_authentication_gmail.ini" todir="${release_update_pack_plugins}/authentication/gmail/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_authentication_gmail.sys.ini" todir="${release_update_pack_plugins}/authentication/gmail/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_authentication_gmail.sys.ini" todir="${release_update_pack_plugins}/authentication/gmail/language" />
+		<!-- ############# Content Plugins ##############################//-->	
+		<copy todir="${release_update_pack_plugins}/content">
+			<fileset refid="update_pack_plugin-files-plugins-content-folder" />
+		</copy>
+		<!--  Language files for content_playjoom part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_content_playjoom.ini" todir="${release_update_pack_plugins}/content/playjoom/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_content_playjoom.ini" todir="${release_update_pack_plugins}/content/playjoom/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_content_playjoom.sys.ini" todir="${release_update_pack_plugins}/content/playjoom/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_content_playjoom.sys.ini" todir="${release_update_pack_plugins}/content/playjoom/language" />
+		
+		<!-- ############# Editors Plugins #####################################//-->	
+		<copy todir="${release_update_pack_plugins}/editors">
+			<fileset refid="update_pack_plugin-files-plugins-editors-folder" />
+		</copy>
+		<!--  Language files for editors_codemirror part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_editors_codemirror.ini" todir="${release_update_pack_plugins}/editors/codemirror/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_editors_codemirror.ini" todir="${release_update_pack_plugins}/editors/codemirror/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_editors_codemirror.sys.ini" todir="${release_update_pack_plugins}/editors/codemirror/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_editors_codemirror.sys.ini" todir="${release_update_pack_plugins}/editors/codemirror/language" />
+		<!--  Language files for editors_none part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_editors_none.ini" todir="${release_update_pack_plugins}/editors/none/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_editors_none.ini" todir="${release_update_pack_plugins}/editors/none/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_editors_none.sys.ini" todir="${release_update_pack_plugins}/editors/none/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_editors_none.sys.ini" todir="${release_update_pack_plugins}/editors/none/language" />
+		<!--  Language files for editors_tinymce part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_editors_tinymce.ini" todir="${release_update_pack_plugins}/editors/tinymce/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_editors_tinymce.ini" todir="${release_update_pack_plugins}/editors/tinymce/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_editors_tinymce.sys.ini" todir="${release_update_pack_plugins}/editors/tinymce/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_editors_tinymce.sys.ini" todir="${release_update_pack_plugins}/editors/tinymce/language" />
+
+		<!-- ############# Editors-XTD Plugins #####################################//-->	
+		<copy todir="${release_update_pack_plugins}/editors-xtd">
+			<fileset refid="update_pack_plugin-files-plugins-editorsxtd-folder" />
+		</copy>
+		<!--  Language files for editors_codemirror part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_editors-xtd_image.ini" todir="${release_update_pack_plugins}/editors-xtd/image/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_editors-xtd_image.ini" todir="${release_update_pack_plugins}/editors-xtd/image/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_editors-xtd_image.sys.ini" todir="${release_update_pack_plugins}/editors-xtd/image/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_editors-xtd_image.sys.ini" todir="${release_update_pack_plugins}/editors-xtd/image/language" />
+
+		<!-- ############# Extension Plugins ##################################//-->	
+		<copy todir="${release_update_pack_plugins}/extension">
+			<fileset refid="update_pack_plugin-files-plugins-extension-folder" />
+		</copy>
+		<!--  Language files for extension_joomla part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_extension_joomla.ini" todir="${release_update_pack_plugins}/extension/joomla/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_extension_joomla.ini" todir="${release_update_pack_plugins}/extension/joomla/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_extension_joomla.sys.ini" todir="${release_update_pack_plugins}/extension/joomla/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_extension_joomla.sys.ini" todir="${release_update_pack_plugins}/extension/joomla/language" />
+	
+		<!-- ############## PlayJoom Plugins #################################//-->
+		<copy todir="${release}/comp_pack/extensions/playjoom">
+			<fileset refid="comp_pack_plugin-files-playjoom-folder" />
+		</copy>
+		<copy todir="${release_update_pack_plugins}/playjoom">
+			<fileset refid="comp_pack_plugin-files-playjoom-folder" />
+		</copy>
+		<!--  Language files for playbutton part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_playbutton.ini" todir="${release}/comp_pack/extensions/playjoom/playbutton/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_playbutton.ini" todir="${release}/comp_pack/extensions/playjoom/playbutton/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_playbutton.sys.ini" todir="${release}/comp_pack/extensions/playjoom/playbutton/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_playbutton.sys.ini" todir="${release}/comp_pack/extensions/playjoom/playbutton/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_playbutton.ini" todir="${release_update_pack_plugins}/playjoom/playbutton/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_playbutton.ini" todir="${release_update_pack_plugins}/playjoom/playbutton/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_playbutton.sys.ini" todir="${release_update_pack_plugins}/playjoom/playbutton/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_playbutton.sys.ini" todir="${release_update_pack_plugins}/playjoom/playbutton/language" />
+		<!--  Language files for trackcontrol part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_trackcontrol.ini" todir="${release}/comp_pack/extensions/playjoom/trackcontrol/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_trackcontrol.ini" todir="${release}/comp_pack/extensions/playjoom/trackcontrol/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_trackcontrol.sys.ini" todir="${release}/comp_pack/extensions/playjoom/trackcontrol/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_trackcontrol.sys.ini" todir="${release}/comp_pack/extensions/playjoom/trackcontrol/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_trackcontrol.ini" todir="${release_update_pack_plugins}/playjoom/trackcontrol/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_trackcontrol.ini" todir="${release_update_pack_plugins}/playjoom/trackcontrol/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_trackcontrol.sys.ini" todir="${release_update_pack_plugins}/playjoom/trackcontrol/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_trackcontrol.sys.ini" todir="${release_update_pack_plugins}/playjoom/trackcontrol/language" />
+		<!--  Language files for tracktimeinfo part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_tracktimeinfo.ini" todir="${release}/comp_pack/extensions/playjoom/tracktimeinfo/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_tracktimeinfo.ini" todir="${release}/comp_pack/extensions/playjoom/tracktimeinfo/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_tracktimeinfo.sys.ini" todir="${release}/comp_pack/extensions/playjoom/tracktimeinfo/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_tracktimeinfo.sys.ini" todir="${release}/comp_pack/extensions/playjoom/tracktimeinfo/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_tracktimeinfo.ini" todir="${release_update_pack_plugins}/playjoom/tracktimeinfo/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_tracktimeinfo.ini" todir="${release_update_pack_plugins}/playjoom/tracktimeinfo/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_tracktimeinfo.sys.ini" todir="${release_update_pack_plugins}/playjoom/tracktimeinfo/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_tracktimeinfo.sys.ini" todir="${release_update_pack_plugins}/playjoom/tracktimeinfo/language" />
+		<!--  Language files for trackvote part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_trackvote.ini" todir="${release}/comp_pack/extensions/playjoom/trackvote/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_trackvote.ini" todir="${release}/comp_pack/extensions/playjoom/trackvote/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_trackvote.sys.ini" todir="${release}/comp_pack/extensions/playjoom/trackvote/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_trackvote.sys.ini" todir="${release}/comp_pack/extensions/playjoom/trackvote/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_trackvote.ini" todir="${release_update_pack_plugins}/playjoom/trackvote/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_trackvote.ini" todir="${release_update_pack_plugins}/playjoom/trackvote/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_trackvote.sys.ini" todir="${release_update_pack_plugins}/playjoom/trackvote/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_trackvote.sys.ini" todir="${release_update_pack_plugins}/playjoom/trackvote/language" />
+		<!--  Language files for download part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_download.ini" todir="${release}/comp_pack/extensions/playjoom/download/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_download.ini" todir="${release}/comp_pack/extensions/playjoom/download/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_download.sys.ini" todir="${release}/comp_pack/extensions/playjoom/download/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_download.sys.ini" todir="${release}/comp_pack/extensions/playjoom/download/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_download.ini" todir="${release_update_pack_plugins}/playjoom/download/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_download.ini" todir="${release_update_pack_plugins}/playjoom/download/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_download.sys.ini" todir="${release_update_pack_plugins}/playjoom/download/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_download.sys.ini" todir="${release_update_pack_plugins}/playjoom/download/language" />
+		<!--  Language files for playlist part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_playlist.ini" todir="${release}/comp_pack/extensions/playjoom/playlist/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_playlist.ini" todir="${release}/comp_pack/extensions/playjoom/playlist/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_playlist.sys.ini" todir="${release}/comp_pack/extensions/playjoom/playlist/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_playlist.sys.ini" todir="${release}/comp_pack/extensions/playjoom/playlist/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_playlist.ini" todir="${release_update_pack_plugins}/playjoom/playlist/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_playlist.ini" todir="${release_update_pack_plugins}/playjoom/playlist/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_playlist.sys.ini" todir="${release_update_pack_plugins}/playjoom/playlist/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_playlist.sys.ini" todir="${release_update_pack_plugins}/playjoom/playlist/language" />
+		<!--  Language files for barplayer part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_barplayer.ini" todir="${release}/comp_pack/extensions/playjoom/barplayer/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_barplayer.ini" todir="${release}/comp_pack/extensions/playjoom/barplayer/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_barplayer.sys.ini" todir="${release}/comp_pack/extensions/playjoom/barplayer/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_barplayer.sys.ini" todir="${release}/comp_pack/extensions/playjoom/barplayer/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_barplayer.ini" todir="${release_update_pack_plugins}/playjoom/barplayer/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_barplayer.ini" todir="${release_update_pack_plugins}/playjoom/barplayer/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_barplayer.sys.ini" todir="${release_update_pack_plugins}/playjoom/barplayer/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_barplayer.sys.ini" todir="${release_update_pack_plugins}/playjoom/barplayer/language" />
+		<!--  Language files for 360player part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_360player.ini" todir="${release}/comp_pack/extensions/playjoom/360player/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_360player.ini" todir="${release}/comp_pack/extensions/playjoom/360player/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_360player.sys.ini" todir="${release}/comp_pack/extensions/playjoom/360player/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_360player.sys.ini" todir="${release}/comp_pack/extensions/playjoom/360player/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_360player.ini" todir="${release_update_pack_plugins}/playjoom/360player/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_360player.ini" todir="${release_update_pack_plugins}/playjoom/360player/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_playjoom_360player.sys.ini" todir="${release_update_pack_plugins}/playjoom/360player/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_playjoom_360player.sys.ini" todir="${release_update_pack_plugins}/playjoom/360player/language" />
+
+		<!-- ############# Quickicon Plugins ##################################//-->	
+		<copy todir="${release_update_pack_plugins}/quickicon">
+			<fileset refid="update_pack_plugin-files-plugins-quickicon-folder" />
+		</copy>
+		<!--  Language files for quickicon pj_extensionupdate part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_quickicon_pjextensionupdate.ini" todir="${release_update_pack_plugins}/quickicon/pjextensionupdate/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_quickicon_pjextensionupdate.ini" todir="${release_update_pack_plugins}/quickicon/pjextensionupdate/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_quickicon_pjextensionupdate.sys.ini" todir="${release_update_pack_plugins}/quickicon/pjextensionupdate/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_quickicon_pjextensionupdate.sys.ini" todir="${release_update_pack_plugins}/quickicon/pjextensionupdate/language" />
+		<!--  Language files for quickicon_playjoomupdate part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_quickicon_playjoomupdate.ini" todir="${release_update_pack_plugins}/quickicon/playjoomupdate/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_quickicon_playjoomupdate.ini" todir="${release_update_pack_plugins}/quickicon/playjoomupdate/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_quickicon_playjoomupdate.sys.ini" todir="${release_update_pack_plugins}/quickicon/playjoomupdate/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_quickicon_playjoomupdate.sys.ini" todir="${release_update_pack_plugins}/quickicon/playjoomupdate/language" />
+		
+		<!-- ################## PJSearch Plugins #####################################//-->
+		<copy todir="${release}/comp_pack/extensions/search">
+			<fileset refid="comp_pack_plugin-files-search-folder" />
+		</copy>
+		<copy todir="${release_update_pack_plugins}/search">
+			<fileset refid="comp_pack_plugin-files-search-folder" />
+		</copy>
+		<!--  Language files for pj_albums search part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_albums.ini" todir="${release}/comp_pack/extensions/search/pj_albums/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_albums.ini" todir="${release}/comp_pack/extensions/search/pj_albums/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_albums.sys.ini" todir="${release}/comp_pack/extensions/search/pj_albums/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_albums.sys.ini" todir="${release}/comp_pack/extensions/search/pj_albums/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_albums.ini" todir="${release_update_pack_plugins}/search/pj_albums/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_albums.ini" todir="${release_update_pack_plugins}/search/pj_albums/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_albums.sys.ini" todir="${release_update_pack_plugins}/search/pj_albums/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_albums.sys.ini" todir="${release_update_pack_plugins}/search/pj_albums/language" />
+		<!--  Language files for pj_artists search part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_artists.ini" todir="${release}/comp_pack/extensions/search/pj_artists/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_artists.ini" todir="${release}/comp_pack/extensions/search/pj_artists/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_artists.sys.ini" todir="${release}/comp_pack/extensions/search/pj_artists/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_artists.sys.ini" todir="${release}/comp_pack/extensions/search/pj_artists/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_artists.ini" todir="${release_update_pack_plugins}/search/pj_artists/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_artists.ini" todir="${release_update_pack_plugins}/search/pj_artists/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_artists.sys.ini" todir="${release_update_pack_plugins}/search/pj_artists/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_artists.sys.ini" todir="${release_update_pack_plugins}/search/pj_artists/language" />
+		<!--  Language files for pj_tracks search part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_tracks.ini" todir="${release}/comp_pack/extensions/search/pj_tracks/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_tracks.ini" todir="${release}/comp_pack/extensions/search/pj_tracks/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_tracks.sys.ini" todir="${release}/comp_pack/extensions/search/pj_tracks/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_tracks.sys.ini" todir="${release}/comp_pack/extensions/search/pj_tracks/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_tracks.ini" todir="${release_update_pack_plugins}/search/pj_tracks/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_tracks.ini" todir="${release_update_pack_plugins}/search/pj_tracks/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_tracks.sys.ini" todir="${release_update_pack_plugins}/search/pj_tracks/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_tracks.sys.ini" todir="${release_update_pack_plugins}/search/pj_tracks/language" />
+		<!--  Language files for pj_tags search part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_tags.ini" todir="${release}/comp_pack/extensions/search/pj_tags/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_tags.ini" todir="${release}/comp_pack/extensions/search/pj_tags/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_tags.sys.ini" todir="${release}/comp_pack/extensions/search/pj_tags/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_tags.sys.ini" todir="${release}/comp_pack/extensions/search/pj_tags/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_tags.ini" todir="${release_update_pack_plugins}/search/pj_tags/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_tags.ini" todir="${release_update_pack_plugins}/search/pj_tags/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_search_pj_tags.sys.ini" todir="${release_update_pack_plugins}/search/pj_tags/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_search_pj_tags.sys.ini" todir="${release_update_pack_plugins}/search/pj_tags/language" />
+
+		<!-- ############ System Plugins ##########################################//-->	
+		<copy todir="${release}/comp_pack/extensions/system">
+			<fileset refid="comp_pack_plugin-files-system-folder" />
+		</copy>
+		<copy todir="${release_update_pack_plugins}/system">
+			<fileset refid="update_pack_plugin-files-plugins-system-folder" />
+		</copy>
+		<!--  Language files for system_cache part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_cache.ini" todir="${release_update_pack_plugins}/system/cache/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_cache.ini" todir="${release_update_pack_plugins}/system/cache/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_cache.sys.ini" todir="${release_update_pack_plugins}/system/cache/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_cache.sys.ini" todir="${release_update_pack_plugins}/system/cache/language" />
+		<!--  Language files for system_debug part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_debug.ini" todir="${release_update_pack_plugins}/system/debug/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_debug.ini" todir="${release_update_pack_plugins}/system/debug/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_debug.sys.ini" todir="${release_update_pack_plugins}/system/debug/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_debug.sys.ini" todir="${release_update_pack_plugins}/system/debug/language" />
+		<!--  Language files for system_languagecode part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_languagecode.ini" todir="${release_update_pack_plugins}/system/languagecode/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_languagecode.ini" todir="${release_update_pack_plugins}/system/languagecode/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_languagecode.sys.ini" todir="${release_update_pack_plugins}/system/languagecode/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_languagecode.sys.ini" todir="${release_update_pack_plugins}/system/languagecode/language" />
+		<!--  Language files for system_languagefilter part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_languagefilter.ini" todir="${release_update_pack_plugins}/system/languagefilter/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_languagefilter.ini" todir="${release_update_pack_plugins}/system/languagefilter/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_languagefilter.sys.ini" todir="${release_update_pack_plugins}/system/languagefilter/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_languagefilter.sys.ini" todir="${release_update_pack_plugins}/system/languagefilter/language" />
+		<!--  Language files for system_log part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_log.ini" todir="${release_update_pack_plugins}/system/log/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_log.ini" todir="${release_update_pack_plugins}/system/log/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_log.sys.ini" todir="${release_update_pack_plugins}/system/log/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_log.sys.ini" todir="${release_update_pack_plugins}/system/log/language" />
+		<!--  Language files for system_logout part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_logout.ini" todir="${release_update_pack_plugins}/system/logout/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_logout.ini" todir="${release_update_pack_plugins}/system/logout/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_logout.sys.ini" todir="${release_update_pack_plugins}/system/logout/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_logout.sys.ini" todir="${release_update_pack_plugins}/system/logout/language" />
+		<!--  Language files for system_p3p part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_p3p.ini" todir="${release_update_pack_plugins}/system/p3p/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_p3p.ini" todir="${release_update_pack_plugins}/system/p3p/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_p3p.sys.ini" todir="${release_update_pack_plugins}/system/p3p/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_p3p.sys.ini" todir="${release_update_pack_plugins}/system/p3p/language" />
+		<!--  Language files for system_redirect part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_redirect.ini" todir="${release_update_pack_plugins}/system/redirect/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_redirect.ini" todir="${release_update_pack_plugins}/system/redirect/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_redirect.sys.ini" todir="${release_update_pack_plugins}/system/redirect/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_redirect.sys.ini" todir="${release_update_pack_plugins}/system/redirect/language" />
+		<!--  Language files for system_remember part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_remember.ini" todir="${release_update_pack_plugins}/system/remember/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_remember.ini" todir="${release_update_pack_plugins}/system/remember/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_remember.sys.ini" todir="${release_update_pack_plugins}/system/remember/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_remember.sys.ini" todir="${release_update_pack_plugins}/system/remember/language" />
+		<!--  Language files for system_sef part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_sef.ini" todir="${release_update_pack_plugins}/system/sef/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_sef.ini" todir="${release_update_pack_plugins}/system/sef/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_system_sef.sys.ini" todir="${release_update_pack_plugins}/system/sef/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_system_sef.sys.ini" todir="${release_update_pack_plugins}/system/sef/language" />
+		
+		<!-- ############ Twofactorauth Plugins ########################################//-->	
+		<copy todir="${release_update_pack_plugins}/twofactorauth">
+			<fileset refid="update_pack_plugin-files-plugins-twofactorauth-folder" />
+		</copy>
+		<!--  Language files for twofactorauth_totp part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_twofactorauth_totp.ini" todir="${release_update_pack_plugins}/twofactorauth/totp/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_twofactorauth_totp.ini" todir="${release_update_pack_plugins}/twofactorauth/totp/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_twofactorauth_totp.sys.ini" todir="${release_update_pack_plugins}/twofactorauth/totp/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_twofactorauth_totp.sys.ini" todir="${release_update_pack_plugins}/twofactorauth/totp/language" />
+		<!--  Language files for twofactorauth_yubikey part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_twofactorauth_yubikey.ini" todir="${release_update_pack_plugins}/twofactorauth/yubikey/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_twofactorauth_yubikey.ini" todir="${release_update_pack_plugins}/twofactorauth/yubikey/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_twofactorauth_yubikey.sys.ini" todir="${release_update_pack_plugins}/twofactorauth/yubikey/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_twofactorauth_yubikey.sys.ini" todir="${release_update_pack_plugins}/twofactorauth/yubikey/language" />
+		
+		<!-- ############ User Plugins ########################################//-->	
+		<copy todir="${release_update_pack_plugins}/user">
+			<fileset refid="update_pack_plugin-files-plugins-user-folder" />
+		</copy>
+		<!--  Language files for user_joomla part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_user_joomla.ini" todir="${release_update_pack_plugins}/user/joomla/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_user_joomla.ini" todir="${release_update_pack_plugins}/user/joomla/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_user_joomla.sys.ini" todir="${release_update_pack_plugins}/user/joomla/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_user_joomla.sys.ini" todir="${release_update_pack_plugins}/user/joomla/language" />
+		<!--  Language files for user_profile part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_user_profile.ini" todir="${release_update_pack_plugins}/user/profile/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_user_profile.ini" todir="${release_update_pack_plugins}/user/profile/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_user_profile.sys.ini" todir="${release_update_pack_plugins}/user/profile/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_user_profile.sys.ini" todir="${release_update_pack_plugins}/user/profile/language" />
+		
+		<!-- ################ Copy Template files ########################################//-->
+		<copy todir="${release}/comp_pack/extensions/templates/tegloadmin">
+			<fileset refid="comp_pack_templ-files-tegloadmin-folder" />
+		</copy>
+		<copy todir="${release_update_pack_templates}/tpl_tegloadmin">
+			<fileset refid="comp_pack_templ-files-tegloadmin-folder" />
+		</copy>
+		<!-- ########### Language files for admin template part #############################################//-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.tpl_tegloadmin.ini" todir="${release}/comp_pack/extensions/templates/tegloadmin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.tpl_tegloadmin.ini" todir="${release}/comp_pack/extensions/templates/tegloadmin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.tpl_tegloadmin.sys.ini" todir="${release}/comp_pack/extensions/templates/tegloadmin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.tpl_tegloadmin.sys.ini" todir="${release}/comp_pack/extensions/templates/tegloadmin/language" />
+
+		<copy todir="${release}/comp_pack/extensions/templates/teglofound">
+			<fileset refid="comp_pack_templ-files-teglofound-folder" />
+		</copy>
+		<copy todir="${release_update_pack_templates}/tpl_teglofound">
+			<fileset refid="comp_pack_templ-files-teglofound-folder" />
+		</copy>
+		
+		<!-- ################ Copy library files ########################################//-->
+		<!-- ################ Joomla! ##################################################// -->
+		<copy todir="${release_update_pack_libraries}/lib_joomla">
+			<fileset refid="lib_pack_joomla_files" />
+		</copy>
+		<copy file="${src}/administrator/manifests/libraries/joomla.xml" todir="${release_update_pack_libraries}/lib_joomla/" />
+		<!-- ################ phpmailer #############################################// -->
+		<copy todir="${release_update_pack_libraries}/lib_phpmailer">
+			<fileset refid="lib_pack_phpmailer_files" />
+		</copy>
+		<copy file="${src}/administrator/manifests/libraries/phpmailer.xml" todir="${release_update_pack_libraries}/lib_phpmailer/" />
+		<!-- ################ phpuft8 #############################################// -->
+		<copy todir="${release_update_pack_libraries}/lib_phputf8">
+			<fileset refid="lib_pack_phputf8_files" />
+		</copy>
+		<copy file="${src}/administrator/manifests/libraries/phputf8.xml" todir="${release_update_pack_libraries}/lib_phputf8/" />
+		<!-- ################ simplepie #############################################// -->
+		<copy todir="${release_update_pack_libraries}/lib_simplepie">
+			<fileset refid="lib_pack_simplepie_files" />
+		</copy>
+		<copy file="${src}/administrator/manifests/libraries/simplepie.xml" todir="${release_update_pack_libraries}/lib_simplepie/" />
+		<!-- ################ playjoom #############################################// -->
+		<copy todir="${release_update_pack_libraries}/lib_playjoom">
+			<fileset refid="lib_pack_playjoom_files" />
+		</copy>
+		<copy todir="${release_update_pack_libraries}/lib_playjoom/media">
+			<fileset refid="update_pack_media-files-lib_playjoom-folder" />
+		</copy>
+		<copy file="${src}/administrator/manifests/libraries/playjoom.xml" todir="${release_update_pack_libraries}/lib_playjoom/" />
+		<!-- ################PlayJoom Library for comp_pack##########################################// -->
+		<copy todir="${release}/comp_pack/extensions/lib_playjoom">
+			<fileset refid="lib_pack_playjoom_files" />
+		</copy>
+		<copy todir="${release}/comp_pack/extensions/lib_playjoom/media">
+			<fileset refid="update_pack_media-files-lib_playjoom-folder" />
+		</copy>
+		<copy file="${src}/administrator/manifests/libraries/playjoom.xml" todir="${release}/comp_pack/extensions/lib_playjoom/" />
+
+		<!-- ########## Language files for found template part ###############################################//-->
+		<copy file="${src}/language/de-DE/de-DE.tpl_teglofound.ini" todir="${release}/comp_pack/extensions/templates/teglofound/language" />
+		<copy file="${src}/language/en-GB/en-GB.tpl_teglofound.ini" todir="${release}/comp_pack/extensions/templates/teglofound/language" />
+		<copy file="${src}/language/de-DE/de-DE.tpl_teglofound.sys.ini" todir="${release}/comp_pack/extensions/templates/teglofound/language" />
+		<copy file="${src}/language/en-GB/en-GB.tpl_teglofound.sys.ini" todir="${release}/comp_pack/extensions/templates/teglofound/language" />
+
+		<echo msg="Creating archives..." />
+		<echo msg="######################################################" />
+		<zip destfile="${release}/playjoom-${release_version}-install_package.zip">
+			<fileset refid="install_package_archive" />
+		</zip>
+		<zip destfile="${release}/playjoom-${release_version}-update_package.zip">
+			<fileset refid="update_package_archive" />
+		</zip>
+		<zip destfile="${release}/com_playjoom-${release_version}.zip">
+			<fileset refid="component_package_archive" />
+		</zip>
+
+ 	</target>
+</project>

@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+.ui-widget {
+    font-size: 0.7em;
+}
+.ui-widget-content {
+    border: 2px solid #AAAAAA;
+    width: 250px;
+}
+.ui-autocomplete {
+	max-height: 600px;
+	overflow-y: auto;
+	/* prevent horizontal scrollbar */
+	overflow-x: hidden;
+}
+.ui-autocomplete li.ui-autocomplete-category {
+	font-weight: bold;
+	border-bottom: 1px solid #AAAAAA;
+}

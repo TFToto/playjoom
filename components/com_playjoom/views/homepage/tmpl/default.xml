@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+   <layout title="COM_PLAYJOOM_HOMEPAGE_VIEW_DEFAULT_TITLE">
+         <message>COM_PLAYJOOM_HOMEPAGE_VIEW_DEFAULT_TITLE_DESC</message>
+   </layout>
+   <fields name="params">
+       <fieldset name="request">  
+           <field name="welcometxt" 
+                  type="editor" 
+                  label="COM_PLAYJOOM_HOMEPAGE_FIELD_WELCOME" 
+                  description="COM_PLAYJOOM_HOMEPAGE_FIELD_WELCOME_DESC" 
+                  class="inputbox validate-trackrules" 
+                  buttons="true" 
+           />
+           <field
+					name="count_artist"
+					type="text"
+					default="5"
+					size="1"
+					label="COM_PLAYJOOM_HOMEPAGE_FIELD_COUNT_ARTIST"
+					description="COM_PLAYJOOM_HOMEPAGE_FIELD_COUNT_ARTIST_DESC" />
+
+				<field
+					name="ordering_artist"
+					type="list"
+					default="published"
+					label="COM_PLAYJOOM_HOMEPAGE_FIELD_ORDERING_ARTIST"
+					description="COM_PLAYJOOM_HOMEPAGE_FIELD_ORDERING_ARTIST_DESC">
+					<option
+						value="c_dsc">COM_PLAYJOOM_HOMEPAGE_FIELD_ADDED</option>
+					<option
+						value="m_dsc">COM_PLAYJOOM_HOMEPAGE_FIELD_MODIFIED</option>
+					<option
+						value="mc_dsc">COM_PLAYJOOM_HOMEPAGE_FIELD_TOUCHED</option>
+				</field>
+				<field
+					name="count_album"
+					type="text"
+					default="5"
+					size="1"
+					label="COM_PLAYJOOM_HOMEPAGE_FIELD_COUNT_ALBUM"
+					description="COM_PLAYJOOM_HOMEPAGE_FIELD_COUNT_ALBUM_DESC" />
+
+				<field
+					name="ordering_album"
+					type="list"
+					default="published"
+					label="COM_PLAYJOOM_HOMEPAGE_FIELD_ORDERING_ALBUM"
+					description="COM_PLAYJOOM_HOMEPAGE_FIELD_ORDERING_ALBUM_DESC">
+					<option
+						value="c_dsc">COM_PLAYJOOM_HOMEPAGE_FIELD_ADDED</option>
+					<option
+						value="m_dsc">COM_PLAYJOOM_HOMEPAGE_FIELD_MODIFIED</option>
+					<option
+						value="mc_dsc">COM_PLAYJOOM_HOMEPAGE_FIELD_TOUCHED</option>
+				</field>
+				<field
+                       name="homepage_show_cover"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_HOMEPAGE_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_HOMEPAGE_LABEL_DESC"
+                       default="1"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+                <field
+                       name="homepage_cover_size"
+                       type="text"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_HOMEPAGE_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_HOMEPAGE_LABEL_DESC"
+                       size="10"
+                       class="inputbox validate-trackrules"
+                       default=""
+               />
+				<field
+					name="count_playlist"
+					type="text"
+					default="5"
+					size="1"
+					label="COM_PLAYJOOM_HOMEPAGE_FIELD_COUNT_PLAYLIST"
+					description="COM_PLAYJOOM_HOMEPAGE_FIELD_COUNT_PLAYLIST_DESC" />
+
+				<field
+					name="ordering_playlist"
+					type="list"
+					default="published"
+					label="COM_PLAYJOOM_HOMEPAGE_FIELD_ORDERING_PLAYLIST"
+					description="COM_PLAYJOOM_HOMEPAGE_FIELD_ORDERING_PLAYLIST_DESC">
+					<option
+						value="c_dsc">COM_PLAYJOOM_HOMEPAGE_FIELD_ADDED</option>
+					<option
+						value="m_dsc">COM_PLAYJOOM_HOMEPAGE_FIELD_MODIFIED</option>
+					<option
+						value="mc_dsc">COM_PLAYJOOM_HOMEPAGE_FIELD_TOUCHED</option>
+				</field>
+       </fieldset>
+   </fields>
+</metadata>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.2.0" method="upgrade">
+	<name>PlayJoom</name>
+	<creationDate>April 2014</creationDate>
+	<author>Torsten Freyda</author>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>http://playjoom.teglo.info</authorUrl>
+	<copyright>(c) 2010-2014 by teglo</copyright>
+	<license>GNU/GPL, http://www.gnu.org/copyleft/gpl.html</license>
+	<version>0.9.932</version>
+	<description>PlayJoom gives you the possibility to play your stuff whereever you want! It´s a multi media streamer server basics on Joomla!</description>
+
+	<install> <!-- Runs on install -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/install.jos_jpalbums.sql</file>
+			<file driver="mysql" charset="utf8">sql/install.jos_jpartists.sql</file>
+			<file driver="mysql" charset="utf8">sql/install.jos_jpaudiotracks.sql</file>
+			<file driver="mysql" charset="utf8">sql/install.jos_jpaudiotracks_rating.sql</file>
+			<file driver="mysql" charset="utf8">sql/install.jos_jpcoverblobs.sql</file>
+			<file driver="mysql" charset="utf8">sql/install.jos_jpplaylist_content.sql</file>
+			<file driver="mysql" charset="utf8">sql/install.jos_jpplaylists.sql</file>
+		</sql>
+	</install>
+	<uninstall> <!-- Runs on uninstall -->
+		<sql>
+			<file driver="mysql" charset="utf8">sql/uninstall.jos_jptables.sql</file>  
+		</sql>
+	</uninstall>
+	<update> <!-- Runs on update; New in 1.6 -->
+		<schemas>
+			<schemapath type="mysql">sql/updates/mysql</schemapath>
+		</schemas>
+	</update>
+	<files folder="site">
+		<folder>apis</folder>
+		<folder>assets</folder>
+		<folder>exec</folder>
+		<folder>helpers</folder>
+		<folder>images</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+		<filename>index.html</filename>
+		<filename>playjoom.php</filename>
+		<filename>controller.php</filename>
+	</files>
+	<languages folder="site">
+		<language tag="en-GB">language/en-GB.com_playjoom.ini</language>
+		<language tag="de-DE">language/de-DE.com_playjoom.ini</language>
+	</languages>
+	<media destination="com_playjoom" folder="media">
+		<filename>index.html</filename>
+		<folder>com_playjoom</folder>
+	</media>
+	<administration>
+		<!-- Administration Menu Section -->
+		<menu img="components/com_playjoom/images/16x16/a-logo16x16.gif">COM_PLAYJOOM</menu>       
+		<submenu>
+			<menu img="components/com_playjoom/images/16x16/icon-16-tracks-managment.gif" link="option=com_playjoom&amp;view=audiotracks">COM_PLAYJOOM_SUBMENU_AUDIOTRACKS</menu>
+			<menu img="components/com_playjoom/images/16x16/icon-16-artists-managment.gif" link="option=com_playjoom&amp;view=artists">COM_PLAYJOOM_SUBMENU_ARTISTS</menu>
+			<menu img="components/com_playjoom/images/16x16/icon-16-albums-managment.gif" link="option=com_playjoom&amp;view=albums">COM_PLAYJOOM_SUBMENU_ALBUMS</menu>
+			<menu img="components/com_playjoom/images/16x16/icon-16-cover-managment.gif" link="option=com_playjoom&amp;view=covers">COM_PLAYJOOM_SUBMENU_COVERS</menu>
+			<menu img="components/com_playjoom/images/16x16/icon-16-category.gif" link="option=com_categories&amp;view=categories&amp;extension=com_playjoom">COM_PLAYJOOM_SUBMENU_CATEGORIES</menu>
+            <menu img="components/com_playjoom/images/16x16/icon-16-category.gif" link="option=com_categories&amp;view=categories&amp;extension=com_playjoom.playlist">COM_PLAYJOOM_SUBMENU_PLAYLIST_CATEGORIES</menu>
+            <menu img="components/com_playjoom/images/16x16/icon-16-category.gif" link="option=com_categories&amp;view=categories&amp;extension=com_playjoom.trackfilter">COM_PLAYJOOM_SUBMENU_TRACKFILTER_CATEGORIES</menu>		
+		</submenu>
+		<files folder="admin">
+			<!-- Admin Main File Copy Section -->
+			<folder>assets</folder>
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>images</folder>
+			<folder>layouts</folder>
+			<folder>models</folder>
+			<folder>sql</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>index.html</filename>
+			<filename>playjoom.php</filename>
+			<filename>controller.php</filename>
+		</files>
+		<languages folder="admin">
+			<language tag="en-GB">language/en-GB.com_playjoom.ini</language>
+			<language tag="en-GB">language/en-GB.com_playjoom.sys.ini</language>
+			<language tag="de-DE">language/de-DE.com_playjoom.ini</language>
+			<language tag="de-DE">language/de-DE.com_playjoom.sys.ini</language>
+		</languages>
+	</administration>
+	<updateservers>
+		<server type="collection" priority="1" name="PlayJoom Update Service"><![CDATA[http://files.teglo.info/playjoom/beta_release_list.xml]]></server>
+	</updateservers>
+</extension>

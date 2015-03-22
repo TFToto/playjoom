@@ -1,0 +1,16 @@
+@CHARSET "UTF-8";
+
+a.image	{  
+	background:url(../../images/loader_blue.gif) left center no-repeat transparent; 
+	padding:5px; 
+	display:block; 
+	margin:0;
+}	
+
+a.flv {  
+	background-color: transparent; 
+}
+
+.clear { 
+	clear:both; 
+}

@@ -1,0 +1,39 @@
+div.addtracksheader {
+	font-size: 1.5em;
+	font-weight: bold;
+	line-height: 2em;
+	padding-left: 48px;
+	padding-top: 10px;
+	margin-left: 10px;
+	height: 50px;
+	color: #555555;
+
+	background-repeat: no-repeat;
+}
+.spacescetion {
+	height: 20px;
+}
+.desc_txt {
+	margin: 20px;
+	font-size: 1.2em;
+}
+a.selectionbutton {
+	padding: 6px;
+    color: #000000;
+	background-color: #eeeeee;
+	border: 0 solid #000000;
+    border-width:1px;
+    font-size: 1.4em;
+    margin-left: 18px;
+}
+a.selectionbutton:hover {
+	background-color: #ffffff;
+	text-decoration:none;
+}
+#selectedfolder.hiddenform {
+	background-color: #ffffff;
+	color: #ffffff;
+	width: 0px;
+	height: 0px;
+	border: 0 solid #ffffff;
+}

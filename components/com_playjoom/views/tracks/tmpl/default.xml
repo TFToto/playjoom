@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="COM_PLAYJOOM_PLAYJOOM_VIEW_TRACKS">
+		<message>COM_PLAYJOOM_PLAYJOOM_VIEW_TRACKS_DESC</message>
+	</layout>
+	<fields name="params">
+		<fieldset name="request">       
+			<field
+				name="show_cover"
+				type="radio"
+				label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_LABEL"
+				description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_LABEL_DESC"
+				default="0"
+			>
+					<option value="0">JHIDE</option>
+					<option value="1">JSHOW</option>
+			</field>
+			<field
+				name="maxsize_cover"
+				type="text"
+				label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_LABEL"
+				description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_LABEL_DESC"
+				size="5"
+				class="inputbox validate-trackrules"
+				default="100"
+			/>
+			<field
+				name="icon_class"
+				type="text"
+				label="MOD_PJ_LASTPLAYED_FIELD_ICONCLASS_LABEL"
+				description="MOD_PJ_LASTPLAYED_FIELD_ICONCLASS_LABEL_DESC"
+			/>
+		</fieldset>
+	</fields>
+</metadata>

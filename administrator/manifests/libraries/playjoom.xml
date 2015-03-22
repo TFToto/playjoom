@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="library" version="3.1" method="upgrade">
+	<name>PlayJoom Library</name>
+	<libraryname>playjoom</libraryname>
+	<version>1.0.0</version>
+	<description>LIB_PLAYJOOM_XML_DESCRIPTION</description>
+	<creationDate>March 2015</creationDate>
+	<copyright>Copyright (C) 2010 - 2015 by telgo.info. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<author>PlayJoom Project</author>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>download.teglo.info</authorUrl>
+	<packager>PlayJoom</packager>
+	<files folder="libraries">
+		<folder>cms</folder>
+		<file>index.html</file>
+	</files>
+        <media destination="lib_playjoom" folder="media">
+		<filename>index.html</filename>
+		<folder>soundmanager</folder>
+	</media>
+</extension>

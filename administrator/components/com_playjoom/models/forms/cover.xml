@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+        <fieldset name="details">
+                <field
+                        name="id"
+                        type="hidden"
+                />
+                <field
+                        name="album"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_COVER_ALBUM_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_COVER_ALBUM_LABEL_DESC"
+                        size="40"                        
+                        required="false"
+                        default=""
+                />
+                <field
+                        name="artist"
+                        type="text"
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_COVER_ARTIST_LABEL"
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_COVER_ARTIST_LABEL_DESC"
+                        size="40"                        
+                        required="false"
+                        default=""
+                />
+                <field
+                        name="mime"
+                        type="text" 
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_COVER_MIME_LABEL" 
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_COVER_MIME_LABEL_DESC" 
+                        size="25"
+                />
+                <field
+                        name="width"
+                        type="text" 
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_COVER_WIDTH_LABEL" 
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_COVER_WIDTH_LABEL_DESC" 
+                        size="15"
+                />
+                <field
+                        name="height"
+                        type="text" 
+                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_COVER_HEIGHT_LABEL" 
+                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_COVER_HEIGHT_LABEL_DESC" 
+                        size="15"
+                />
+                <field
+				   type="spacer" 
+				    />
+        </fieldset>
+        <fieldset name="image">
+           
+        </fieldset>
+</form>

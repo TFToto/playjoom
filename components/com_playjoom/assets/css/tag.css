@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+.trackno {
+    width: 1.35em;
+    float: left;
+}
+.trackno a:link,
+.trackno a:visited,
+.trackno a:active {
+    font-weight: normal;
+    font-size: 0.8em;
+    color: #999999;
+}
+
+.tracktitle {
+	font-weight: bold;
+    font-size: 1.0em;
+    color: #999999;
+    float: left;
+}
+.tracktitle a:link,
+.tracktitle a:visited,
+.tracktitle a:active {
+    font-weight: bold;
+    font-size: 1.0em;
+    color: #999999;
+    margin-right: 0.2em;
+}
+.tracktitle a:hover {
+    font-weight: bold;
+    font-size: 1.0em;
+    color: #999999;
+    margin-right: 0.2em;
+}
+
+.add2playlist a:link,
+.add2playlist a:visited,
+.add2playlist a:active {
+    text-decoration: none;
+    font-weight: normal;
+    font-size: 0.95em;
+    margin-left: 1.5em;
+}
+
+.add2playlist a:hover,
+.tracktitle a:hover {
+    text-decoration: underline;
+}
+.trackminutes {
+	font-weight: normal;
+    font-size: 0.7em;
+    color: #999999;
+    margin-left: 5.5em;
+}

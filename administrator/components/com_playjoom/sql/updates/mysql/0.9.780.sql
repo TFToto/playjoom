@@ -1,0 +1,1 @@
+ALTER TABLE `#__jpaudiotracks` ADD `trackfilterid` INT( 11 ) NOT NULL AFTER `catid`;
