@@ -1,5 +1,5 @@
 /**
- * Contains the PlayJoom complete component for Joomla 3.1
+ * Contains the PlayJoom complete component for Joomla! 3.3
  * 
   * PlayJoom and the basic package Joomla! is free software. This version may have been modified pursuant to the
  * GNU General Public License, and as distributed it includes or is derivative
@@ -8,13 +8,13 @@
  * 
  * @package PlayJoom
  * @link http://playjoom.teglo.info
- * @copyright Copyright (C) 2010-2013 by www.teglo.info. All rights reserved.
+ * @copyright Copyright (C) 2010-2015 by www.teglo.info. All rights reserved.
  * @license	GNU/GPL, see LICENSE.php
  * @PlayJoom Server
  */
  
     - PlayJoom -
-    Copyright (C) 2010-2013 by Torsten Freyda
+    Copyright (C) 2010-2015 by Torsten Freyda
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@
 System requirements
 ----------------------------------------------------------------------
 - Joomla CMS
-  Version 3.1.x or greater
+  Version 3.3.x or greater
 - Webserver with support with:
   - php framework, Version 5.3.1 or greater
   - XML Support
@@ -66,10 +66,6 @@ Windows: \mysql\bin\my.ini
 
 External software parts
 ----------------------------------------------------------------------
-Icons 16x16 pixel by famfamfam | Mark James
-http://www.famfamfam.com/lab/icons/silk/
-_________________________________________
-
 This work is licensed under a
 Creative Commons Attribution 2.5 License.
 [ http://creativecommons.org/licenses/by/2.5/ ]
@@ -124,7 +120,5 @@ This code is released under MIT-style license
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-PlayJoom Copyright (C) 2010-2013 by Torsten Freyda
-    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
-    This is free software, and you are welcome to redistribute it
+PlayJoom Copyright (C) 2010-2015 welcome to redistribute it
     under certain conditions; type `show c' for details.
