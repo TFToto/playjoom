@@ -176,7 +176,7 @@ defined('_JEXEC') or die;
 				<td>
 					<?php
 					$doc = JFactory::getDocument();
-					$doc->addScript(JURI::root(true).'/templates/teglofound/foundation/js/foundation.min.js');
+					$doc->addScript(JURI::root(true).$this->UpdateConf->get('PJ_Admin_FOUNDATION_JS_PATH'));
 					?>
 					<div id="getFoundationversion"></div>
 					<script type="text/javascript">jQuery( "#getFoundationversion" ).append( document.createTextNode( Foundation.version ) );</script>
@@ -189,7 +189,7 @@ defined('_JEXEC') or die;
 				<td>
 					<?php
 					$doc = JFactory::getDocument();
-					$doc->addScript(JURI::root(true).'/plugins/playjoom/360player/js/soundmanager2-jsmin.js');
+					$doc->addScript(JURI::root(true).$this->UpdateConf->get('PJ_Admin_SOUNDMANAGER_JS_PATH'));
 					?>
 					<div id="getSoundManagerversion"></div>
 					<script type="text/javascript">jQuery( "#getSoundManagerversion" ).append( document.createTextNode( soundManager.versionNumber ) );</script>
@@ -203,7 +203,7 @@ defined('_JEXEC') or die;
 					<div id="getFontAwesomeversion"></div>
 					<script type="text/javascript">
 						jQuery(function () {
-							jQuery.get("../templates/teglofound/css/font-awesome.min.css", function (data) {
+							jQuery.get("<?php echo JURI::root(true).$this->UpdateConf->get('PJ_Admin_FONTAWESOME_CSS_PATH'); ?>", function (data) {
 								jQuery( "#getFontAwesomeversion" ).append( document.createTextNode( data.match(/[.\d]+[.\d]/) ) );
 							});
 						});
