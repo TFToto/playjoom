@@ -1,51 +1,19 @@
 <?php
 /**
- * @package Joomla 3.0
- * @copyright	Copyright (C) 2005 - 2013 Open Source Matters. All rights reserved.
- * @license		GNU/GPL, see LICENSE.php
- * Joomla! is free software. This version may have been modified pursuant to the
- * GNU General Public License, and as distributed it includes or is derivative
- * of works licensed under the GNU General Public License or other free or open
- * source software licenses. See COPYRIGHT.php for copyright notices and
- * details.
+ * @package     PlayJoom.Site
+ * @subpackage  com_playjoom
  *
- * @PlayJoom Component
- * @copyright Copyright (C) 2010-2013 by www.teglo.info
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @date $Date$
- * @revision $Revision$
- * @author $Author$
- * @headurl $HeadURL$
+ * @copyright Copyright (C) 2010-2016 by www.playjoom.org
+ * @license http://www.playjoom.org/en/about/licenses/gnu-general-public-license.html
  */
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
-// load tooltip behavior
-JHtml::_('behavior.tooltip');
-
 header("Cache-Control: no-cache, must-revalidate");
 header("Pragma: no-cache");
 
-//echo print_r($this->AlbumItems);
 echo '<div class="albumsview">';
-echo '<h4>'.JText::_('COM_PLAYJOOM_HOMEPAGE_NEWALBUMS').'</h4>';
-echo '<ul class="list_of_albums">';
-foreach($this->AlbumItems as $i => $item) {
-
-	$albumsting = base64_encode($item->album);
-	$artiststing = base64_encode($item->artist);
-	$albumlink = JRoute::_('index.php?option=com_playjoom&view=album&album='.$albumsting.'&artist='.$artiststing.'&Itemid='.JRequest::getVar('Itemid').'&cat='.base64_encode($item->category_title).'&catid='.$item->catid);
-
-	$SamplerCheck = PlayJoomHelper::checkForSampler($item->album, $item->artist);
-
-	//Get Album thumbnail
-	if ($this->params->get(JRequest::getVar('view').'_show_cover', 1) == 1) {
-		$cover = new PlayJoomHelperCover();
-		$coverthumb = $cover->getCoverHTMLTag($item, $SamplerCheck);
-	}
-
-	echo '<li class="genre_item"><a href="'.$albumlink.'" title="Continue to the album view">'.$coverthumb.$item->album.'</a> ('.$item->year.')</li>';
-}
-echo '<ul>';
+	echo '<h4>'.JText::_('COM_PLAYJOOM_HOMEPAGE_NEWALBUMS').'</h4>';
+	echo '<ul class="list_of_albums"></ul>';
 echo '</div>';

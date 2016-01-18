@@ -1,21 +1,10 @@
 <?php
 /**
- * @package Joomla 1.6.x
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
- * @license		GNU/GPL, see LICENSE.php
- * Joomla! is free software. This version may have been modified pursuant to the
- * GNU General Public License, and as distributed it includes or is derivative
- * of works licensed under the GNU General Public License or other free or open
- * source software licenses. See COPYRIGHT.php for copyright notices and
- * details.
+ * @package     PlayJoom.Site
+ * @subpackage  com_playjoom
  *
- * @PlayJoom Component
- * @copyright Copyright (C) 2010 by www.teglo.info
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @date $Date: 2011-04-16 11:08:33 +0200 (Sa, 16. Apr 2011) $
- * @revision $Revision: 145 $
- * @author $Author: toto $
- * @headurl $HeadURL: http://dev.teglo.info/svn/playjoom/components/com_playjoom/views/sections/tmpl/default.php $
+ * @copyright Copyright (C) 2010-2016 by www.playjoom.org
+ * @license http://www.playjoom.org/en/about/licenses/gnu-general-public-license.html
  */
 
 // No direct access to this file
@@ -39,23 +28,18 @@ echo '<form action="'.JRoute::_('index.php?option=com_playjoom&view=albums').'" 
     	    }
     	    else { 
     		    echo '<h3 class="subheader">'.$this->escape($this->params->get('page_heading')).' | '.JText::_('COM_PLAYJOOM_HEADER_TITEL_TOTAL').' '.$this->pagination->total.'</h3>';
-    	    }
-    	
-    	echo '</div>';
-    }
-    
-    echo $this->loadTemplate('filter');
-    
-    echo '<table width="100%">';
-        echo '<thead>'.$this->loadTemplate('head').'</thead>';
-        echo '<tbody>'.$this->loadTemplate('body').'</tbody>';
-        echo '<tfoot>'.$this->loadTemplate('foot').'</tfoot>';
-    echo '</table>';
-    
-    echo '<input type="hidden" name="task" value="" />';
-    echo '<input type="hidden" name="boxchecked" value="0" />';
-    echo '<input type="hidden" name="filter_order" value="'.$this->state->get('list.ordering').'" />';
-    echo '<input type="hidden" name="filter_order_Dir" value="'.$this->state->get('list.direction').'" />';
-    echo JHtml::_('form.token');  
+			}
+
+		echo '</div>';
+	}
+
+	echo $this->loadTemplate('filter');
+
+	echo '<div class="albumsview">';
+		echo '<h4>'.JText::_('COM_PLAYJOOM_HOMEPAGE_NEWALBUMS').'</h4>';
+		echo '<ul class="list_of_albums"></ul>';
+	echo '</div>';
+
+	echo $this->pagination->getListFooter();
 
 echo '</form>';

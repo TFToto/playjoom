@@ -1,28 +1,17 @@
 <?php
 /**
- * @package Joomla 3.0
- * @copyright	Copyright (C) 2005 - 2013 Open Source Matters. All rights reserved.
- * @license		GNU/GPL, see LICENSE.php
- * Joomla! is free software. This version may have been modified pursuant to the
- * GNU General Public License, and as distributed it includes or is derivative
- * of works licensed under the GNU General Public License or other free or open
- * source software licenses. See COPYRIGHT.php for copyright notices and
- * details.
+ * @package     PlayJoom.Site
+ * @subpackage  com_playjoom
  *
- * @PlayJoom Component
- * @copyright Copyright (C) 2010-2013 by www.teglo.info
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @date $Date$
- * @revision $Revision$
- * @author $Author$
- * @headurl $HeadURL$
+ * @copyright Copyright (C) 2010-2016 by www.playjoom.org
+ * @license http://www.playjoom.org/en/about/licenses/gnu-general-public-license.html
  */
 
 // No direct access to this file
 defined('_JEXEC') or die('Restricted access');
 
 // load tooltip behavior
-JHtml::_('behavior.tooltip');
+//JHtml::_('behavior.tooltip');
 
 header("Cache-Control: no-cache, must-revalidate");
 header("Pragma: no-cache");
@@ -46,6 +35,6 @@ echo '<div class"welcometxt">';
     echo $this->params->get('welcometxt');
 echo '</div>';
 
-echo $this->loadTemplate('newartist');
+//echo $this->loadTemplate('newartist');
 echo $this->loadTemplate('newalbum');
-echo $this->loadTemplate('newplaylist');
+//echo $this->loadTemplate('newplaylist');
