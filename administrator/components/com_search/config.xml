@@ -12,6 +12,17 @@
 			<option value="0">JNO</option>
 		</field>
 
+		<field name="search_phrases"
+				type="radio"
+				class="btn-group btn-group-yesno"
+				default="1"
+				description="COM_SEARCH_FIELD_SEARCH_PHRASES_DESC"
+				label="COM_SEARCH_FIELD_SEARCH_PHRASES_LABEL"
+			>
+				<option value="1">JYES</option>
+				<option value="0">JNO</option>
+		</field>
+
 		<field name="search_areas"
 				type="radio"
 				class="btn-group btn-group-yesno"
@@ -47,22 +58,6 @@
 			label="COM_SEARCH_CONFIG_FIELD_OPENSEARCH_DESCRIPTON_LABEL"
 			description="COM_SEARCH_CONFIG_FIELD_OPENSEARCH_DESCRIPTON_DESC"
 			cols="30" rows="2"
-		/>
-		<field
-			name="upper_limit_searchword"
-			type="number"
-			size="2"
-			class="inputbox span1"
-			label="COM_SEARCH_CONFIG_FIELD_UPPER_LIMIT_SEARCHWORLD_LABEL"
-			description="COM_SEARCH_CONFIG_FIELD_UPPER_LIMIT_SEARCHWORLD_DESC"
-		/>
-		<field
-			name="lower_limit_searchword"
-			type="number"
-			size="2"
-			class="inputbox span1"
-			label="COM_SEARCH_CONFIG_FIELD_LOWER_LIMIT_SEARCHWORLD_LABEL"
-			description="COM_SEARCH_CONFIG_FIELD_LOWER_LIMIT_SEARCHWORLD_DESC"
 		/>
 	</fieldset>
 

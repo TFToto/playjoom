@@ -3,7 +3,7 @@
  * @package     Joomla.Administrator
  * @subpackage  com_installer
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,13 +12,10 @@ defined('_JEXEC') or die;
 /**
  * Installer helper.
  *
- * @package     Joomla.Administrator
- * @subpackage  com_installer
- * @since       1.6
+ * @since  1.6
  */
 class InstallerHelper
 {
-	public static $PJconfig = null;
 	/**
 	 * Configure the Linkbar.
 	 *
@@ -63,6 +60,11 @@ class InstallerHelper
 			'index.php?option=com_installer&view=languages',
 			$vName == 'languages'
 		);
+		JHtmlSidebar::addEntry(
+			JText::_('COM_INSTALLER_SUBMENU_UPDATESITES'),
+			'index.php?option=com_installer&view=updatesites',
+			$vName == 'updatesites'
+		);
 	}
 
 	/**
@@ -82,6 +84,7 @@ class InstallerHelper
 		$types = $db->loadColumn();
 
 		$options = array();
+
 		foreach ($types as $type)
 		{
 			$options[] = JHtml::_('select.option', $type, 'COM_INSTALLER_TYPE_' . strtoupper($type));
@@ -109,6 +112,7 @@ class InstallerHelper
 		$folders = $db->loadColumn();
 
 		$options = array();
+
 		foreach ($folders as $folder)
 		{
 			$options[] = JHtml::_('select.option', $folder, $folder);
@@ -123,58 +127,16 @@ class InstallerHelper
 	 * @return  JObject
 	 *
 	 * @since   1.6
+	 * @deprecated  3.2  Use JHelperContent::getActions() instead
 	 */
-	public static function getActions() {
+	public static function getActions()
+	{
+		// Log usage of deprecated function
+		JLog::add(__METHOD__ . '() is deprecated, use JHelperContent::getActions() with new arguments order instead.', JLog::WARNING, 'deprecated');
 
-		$user	= JFactory::getUser();
-		$result	= new JObject;
-
-		$assetName = 'com_installer';
-
-		$actions = JAccess::getActions($assetName);
-
-		foreach ($actions as $action)
-		{
-			$result->set($action->name,	$user->authorise($action->name, $assetName));
-		}
+		// Get list of actions
+		$result = JHelperContent::getActions('com_installer');
 
 		return $result;
-	}
-	public static function getConfig($namespace = null, $file = null) {
-
-		if ($file === null || $namespace == null) {
-
-			//Set standard config file
-			$file = null;
-		}
-		self::$PJconfig = self::_createPJConfig($file, $namespace);
-
-		return self::$PJconfig;
-	}
-
-	protected static function _createPJConfig($file, $namespace) {
-
-		jimport('joomla.registry.registry');
-
-		if (is_file($file)) {
-			include_once $file;
-		}
-
-		// Create the registry with a default namespace of config
-		$registry = new JRegistry();
-
-		// Build the config name.
-		$name = 'PJConfig'.$namespace;
-
-		// Handle the PHP configuration type.
-		if (class_exists($name)) {
-			// Create the JConfig object
-			$config = new $name();
-
-			// Load the configuration values into the registry
-			$registry->loadObject($config);
-		}
-
-		return $registry;
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * Contains the PlayJoom complete component for Joomla! 3.3
+ * Contains the PlayJoom complete component for Joomla! 3.4
  * 
   * PlayJoom and the basic package Joomla! is free software. This version may have been modified pursuant to the
  * GNU General Public License, and as distributed it includes or is derivative
@@ -8,13 +8,13 @@
  * 
  * @package PlayJoom
  * @link http://playjoom.teglo.info
- * @copyright Copyright (C) 2010-2015 by www.teglo.info. All rights reserved.
+ * @copyright Copyright (C) 2010-2016 by www.teglo.info. All rights reserved.
  * @license	GNU/GPL, see LICENSE.php
  * @PlayJoom Server
  */
  
     - PlayJoom -
-    Copyright (C) 2010-2015 by Torsten Freyda
+    Copyright (C) 2010-2016 by Torsten Freyda
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -120,5 +120,4 @@ This code is released under MIT-style license
 
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
-PlayJoom Copyright (C) 2010-2015 welcome to redistribute it
-    under certain conditions; type `show c' for details.
+Welcome to redistribute it, under certain conditions;
