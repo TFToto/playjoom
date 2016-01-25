@@ -1299,10 +1299,10 @@
 			<fileset refid="comp_pack_templ-files-tegloadmin-folder" />
 		</copy>
 		<!-- ########### Language files for admin template part #############################################//-->
-		<copy file="${src}/administrator/language/de-DE/de-DE.tpl_tegloadmin.ini" todir="${release}/comp_pack/extensions/templates/tegloadmin/language" />
-		<copy file="${src}/administrator/language/en-GB/en-GB.tpl_tegloadmin.ini" todir="${release}/comp_pack/extensions/templates/tegloadmin/language" />
-		<copy file="${src}/administrator/language/de-DE/de-DE.tpl_tegloadmin.sys.ini" todir="${release}/comp_pack/extensions/templates/tegloadmin/language" />
-		<copy file="${src}/administrator/language/en-GB/en-GB.tpl_tegloadmin.sys.ini" todir="${release}/comp_pack/extensions/templates/tegloadmin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.tpl_tpl_tegloadmin.ini" todir="${release}/comp_pack/extensions/templates/tegloadmin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.tpl_tpl_tegloadmin.ini" todir="${release}/comp_pack/extensions/templates/tegloadmin/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.tpl_tpl_tegloadmin.sys.ini" todir="${release}/comp_pack/extensions/templates/tegloadmin/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.tpl_tpl_tegloadmin.sys.ini" todir="${release}/comp_pack/extensions/templates/tegloadmin/language" />
 
 		<copy todir="${release}/comp_pack/extensions/templates/teglofound">
 			<fileset refid="comp_pack_templ-files-teglofound-folder" />
@@ -1350,10 +1350,10 @@
 		<copy file="${src}/administrator/manifests/libraries/playjoom.xml" todir="${release}/comp_pack/extensions/lib_playjoom/" />
 
 		<!-- ########## Language files for found template part ###############################################//-->
-		<copy file="${src}/language/de-DE/de-DE.tpl_teglofound.ini" todir="${release}/comp_pack/extensions/templates/teglofound/language" />
-		<copy file="${src}/language/en-GB/en-GB.tpl_teglofound.ini" todir="${release}/comp_pack/extensions/templates/teglofound/language" />
-		<copy file="${src}/language/de-DE/de-DE.tpl_teglofound.sys.ini" todir="${release}/comp_pack/extensions/templates/teglofound/language" />
-		<copy file="${src}/language/en-GB/en-GB.tpl_teglofound.sys.ini" todir="${release}/comp_pack/extensions/templates/teglofound/language" />
+		<copy file="${src}/language/de-DE/de-DE.tpl_tpl_teglofound.ini" todir="${release}/comp_pack/extensions/templates/teglofound/language" />
+		<copy file="${src}/language/en-GB/en-GB.tpl_tpl_teglofound.ini" todir="${release}/comp_pack/extensions/templates/teglofound/language" />
+		<copy file="${src}/language/de-DE/de-DE.tpl_tpl_teglofound.sys.ini" todir="${release}/comp_pack/extensions/templates/teglofound/language" />
+		<copy file="${src}/language/en-GB/en-GB.tpl_tpl_teglofound.sys.ini" todir="${release}/comp_pack/extensions/templates/teglofound/language" />
 
 		<echo msg="Creating archives..." />
 		<echo msg="######################################################" />
