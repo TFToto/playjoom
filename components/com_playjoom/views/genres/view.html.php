@@ -1,74 +1,147 @@
 <?php
 /**
- * @package Joomla 1.6.x
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
- * @license		GNU/GPL, see LICENSE.php
- * Joomla! is free software. This version may have been modified pursuant to the
- * GNU General Public License, and as distributed it includes or is derivative
- * of works licensed under the GNU General Public License or other free or open
- * source software licenses. See COPYRIGHT.php for copyright notices and
- * details.
+ * @package     PlayJoom.Site
+ * @subpackage  com_playjoom
  *
- * @PlayJoom Component
- * @copyright Copyright (C) 2010-2013 by www.teglo.info
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @date $Date$
- * @revision $Revision$
- * @author $Author$
- * @headurl $HeadURL$
+ * @copyright Copyright (C) 2010-2016 by www.playjoom.org
+ * @license http://www.playjoom.org/en/about/licenses/gnu-general-public-license.html
  */
 
 defined('_JEXEC') or die('Restricted access');
- 
+
 // import Joomla view library
 jimport('joomla.application.component.view');
 jimport( 'joomla.application.component.helper' );
 
- 
 /**
- * HTML View class for the PlayJoom Component
+ * Class for artists viewer
+ * 
+ * @package PlayJoom.Site
+ * @subpackage views.albums
  */
 class PlayJoomViewGenres extends JViewLegacy {
 	
-	// Overwriting JView display method
-    function display($tpl = null) {
-    	
-    	// Get data from the model
-        $items       = $this->get('Items');
-        $pagination  = $this->get('Pagination');
-               
-        //Get setting values from xml file
-        $app		= JFactory::getApplication();
-        $params		= $app->getParams();
-                
-        // Assign data to the view
-        $this->items = $items;
-        $this->pagination = $pagination;
-                
-        //For filter and ordering function
-        $this->state = $this->get('State');
-        $this->authors = $this->get('Authors');
-        
-        $this->assignRef('params',		$params);
-                
-        // add style sheet
-        if ($this->params->get('css_type', 'pj_css') == 'pj_css') {
-        	$document	= JFactory::getDocument();
-            $document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/filter.css');
-        }
-        
-        $this->_prepareDocument();
-        
-        parent::display($tpl);
-    }
-    
-    /**
-     * Prepares the document
-     */
-    protected function _prepareDocument() {
+	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array()) {
 
-    	$app	= JFactory::getApplication();
-    	//Set Page title
-    	$this->document->setTitle($app->getCfg('sitename').' - '.ucfirst(JRequest::getVar('view')));
+		$this->input_items = JFactory::getApplication()->input;
+
+		parent::__construct($config);
+	}
+	/**
+	 * Method to display the view
+	 *
+	 * @access    public
+	 */
+	function display($tpl = null) {
+
+		$app  = JFactory::getApplication();
+		$this->params	= $app->getParams();
+
+		//Get parameters for current menu item
+		$active       = $app->getMenu()->getActive();
+		//Save number of covers
+		JFactory::getApplication()->setUserState('com_playjoom.genres.numcover', $active->params->get('number_of_cover',5));
+
+		//For filter and ordering function
+		$this->state = $this->get('State');
+		$this->authors = $this->get('Authors');
+
+		// Set the document
+		$this->setDocument();
+		$this->pagination = $this->get('Pagination');
+
+		/**
+		 * Build genres array output
+		 */
+		$complete_output =array();
+
+		//Build output array for json data
+		foreach($this->get('Items') as $i => $item){
+
+			// Get an instance of the generic items model for albums
+			$model = JModelLegacy::getInstance('Items', 'PlayjoomModel', array('ignore_request' => true));
+
+			// Set the filters based on the module params
+			$model->setState('list.start', 0);
+			$model->setState('list.limit', JFactory::getApplication()->getUserState('com_playjoom.genres.numcover'));
+			
+			// Set the order params
+			//$model->setState('list.start', 0);
+			//$model->setState('list.limit', JFactory::getApplication()->getUserState('com_playjoom.genres.numcover'));
+
+			// Access filter
+			$access = !JComponentHelper::getParams('com_playjoom')->get('show_noauth', 1);
+			$authorised = JAccess::getAuthorisedViewLevels(JFactory::getUser()->get('id'));
+			$model->setState('filter.access', $access);
+
+			$model->setState('itemorder','RAND()');
+
+			// Category filter
+			$model->setState('filter.category_id', (int)$item->catid);
+
+			$genre_albums = $model->getItems();
+
+			foreach($genre_albums as $i => $albums_items) {
+
+				$album_base64    = base64_encode($albums_items->album);
+				$artist_base64   = base64_encode($albums_items->artist);
+				$category_base64 = base64_encode($albums_items->category_title);
+				
+				//Create item for Samplercheck
+				$sampler_check = PlayJoomHelper::checkForSampler($albums_items->album, $albums_items->artist);
+				if($sampler_check) {
+					$albums_items->sampler = true;
+				}
+
+				//Create cover link
+				$albums_items->coverlink = PlayJoomHelper::createCoverlink($albums_items,$album_base64,$artist_base64,$category_base64, $this->input_items->get('view'));
+				
+				//Create album link 
+				$albums_items->albumlink = PlayJoomHelper::createAlbumlink($albums_items,$album_base64,$artist_base64,$category_base64);
+				
+				//Create Item Title
+				$albums_items->itemtitle = PlayJoomHelper::createItemtitle($albums_items, $sampler_check);
+			}
+
+			$genre_output = array(
+					$item->category_title => $genre_albums,
+					'catid' => $item->catid
+			);
+			array_push($complete_output, $genre_output);
+		}
+
+		$output_array = array(
+				'genre_list' => $complete_output
+		);
+
+		$this->genres = $output_array;
+
+		parent::display($tpl);
     }
+    /**
+     * Method to set up the document properties
+     *
+     * @return void
+     */
+	protected function setDocument() {
+
+		//load javascripts
+		JHtml::_('jquery.framework');
+
+		//load PlayJoom scripts
+		JHtml::addIncludePath(JPATH_LIBRARIES . '/playjoom/cms/html');
+		JHtml::_('Cover.library',$this->input_items->get('view'));
+
+		$document = JFactory::getDocument();
+
+		$document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/album_view.css');
+		$document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/artist_view.css');
+	}
 }

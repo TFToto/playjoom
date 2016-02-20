@@ -162,7 +162,7 @@ class PlayJoomModelAlbums extends JModelList {
 		$query->join('LEFT', '#__categories AS c ON c.id = a.catid');
 
 		// Join over the covers.
-		$query->select('cb.id AS cover_id');
+		$query->select('cb.id AS coverid, cb.mime');
 		$query->join('LEFT', '#__jpcoverblobs AS cb ON cb.id = a.coverid');
 
 		// Implement View Level Access

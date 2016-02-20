@@ -35,6 +35,6 @@ echo '<div class"welcometxt">';
     echo $this->params->get('welcometxt');
 echo '</div>';
 
-//echo $this->loadTemplate('newartist');
+echo $this->loadTemplate('newartist');
 echo $this->loadTemplate('newalbum');
-//echo $this->loadTemplate('newplaylist');
+echo $this->loadTemplate('newplaylist');

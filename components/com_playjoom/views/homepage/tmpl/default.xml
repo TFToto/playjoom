@@ -67,10 +67,10 @@
                 </field>
                 <field
                        name="homepage_cover_size"
-                       type="text"
+                       type="number"
                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_HOMEPAGE_LABEL"
                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_HOMEPAGE_LABEL_DESC"
-                       size="10"
+                       size="1"
                        class="inputbox validate-trackrules"
                        default=""
                />

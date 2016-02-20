@@ -629,4 +629,109 @@ abstract class PlayJoomHelper {
     	    return $_SERVER['HTTP_CLIENT_IP'];
         }
     }
+    
+	/**
+	 * Method to create a link string to the album view
+	 * 
+	 * @param array $albums_items
+	 * @param string $album_base64 Name of the current album, coded in base64
+	 * @param string $artist_base64 Name of the current artist, coded in base64
+	 * @param string $artist_base64 Name of the current category, coded in base64
+	 * @return string
+	 */
+	public static function createAlbumlink($albums_items,$album_base64,$artist_base64,$category_base64) {
+
+		$url_parameters_album =
+			'option=com_playjoom'.
+			'&amp;view=album'.
+			'&amp;coverid='.$albums_items->coverid.
+			'&amp;album='.$album_base64.
+			'&amp;artist='.$artist_base64.
+			'&amp;cat='.$category_base64.
+			'&amp;catid='.$albums_items->catid.
+			'&amp;Itemid='.JRequest::getVar('Itemid');
+		
+		return JRoute::_('index.php?'.$url_parameters_album);
+	}
+	/**
+	 * Method to create a link string for to get a cover
+	 *
+	 * @param array $albums_items
+	 * @param string $album_base64 Name of the current album, coded in base64
+	 * @param string $artist_base64 Name of the current artist, coded in base64
+	 * @param string $artist_base64 Name of the current category, coded in base64
+	 * @return string
+	 */
+	public static function createCoverlink($albums_items,$album_base64,$artist_base64,$category_base64,$view) {
+
+		$session = JFactory::getSession();
+
+		switch ($albums_items->mime) {
+			case "image/jpeg" :
+				$image_type = 'jpeg';
+				break;
+			case "image/jpg" :
+				$image_type = 'jpg';
+				break;
+			case "image/gif" :
+				$image_type = 'gif';
+				break;
+			case "image/png" :
+				$image_type = 'png';
+				break;
+			default:
+				$image_type = null;
+		}
+
+		//Create image link
+		$url_parameters_cover = 
+			'option=com_playjoom'.
+			'&amp;view=coverdata'.
+			'&amp;format=image'.
+			'&amp;type='.$image_type.
+			'&amp;coverid='.$albums_items->coverid.
+			'&amp;album='.$album_base64.
+			'&amp;artist='.$artist_base64.
+			'&amp;cat='.$category_base64.
+			'&amp;catid='.$albums_items->catid.
+			'&amp;Itemid='.JRequest::getVar('Itemid').
+			'&amp;coverview='.$view.
+			'&tlk='.hash('sha256',$session->getId().'+'.PlayJoomHelper::getUserIP().'+'.$albums_items->catid);
+
+		return JRoute::_('index.php?'.$url_parameters_cover);
+	}
+	/**
+	 * Method to create a link string for to get a cover
+	 *
+	 * @param array $albums_items
+	 *
+	 * @return string
+	 */
+	public static function createItemtitle($albums_items,$sampler_check=false) {
+
+		//Check for albumname as sampler
+		if ($sampler_check) {
+			$artist = JText::_('COM_PLAYJOOM_ALBUM_SAMPLER');
+		} else {
+			$artist = $albums_items->artist;
+		}
+
+		//create artist string
+		$NameLenght = strlen($artist);
+		if ($NameLenght > 15) {
+			$ArtistName = substr($artist,0, 14).'...';
+		} else {
+			$ArtistName = $artist;
+		}
+
+		//create album string
+		$AlbumLenght = strlen($albums_items->album);
+		if ($AlbumLenght > 36) {
+			$AlbumName = substr($albums_items->album,0, 35).'...';
+		} else {
+			$AlbumName = $albums_items->album;
+		}
+		
+		return $ArtistName.' - '.$AlbumName.' ('.$albums_items->year.')';
+	}
 }

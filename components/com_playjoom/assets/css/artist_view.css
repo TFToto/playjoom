@@ -32,12 +32,13 @@ li.list_of_albums_entrie {
     margin: 50px;
     width: 100%;
 }
-li.genre_item:hover {
+li.album_item:hover,
+ul.list_of_albums li.album_item:hover {
 	background:none repeat scroll 0 0 #acacac;
 	border:1px solid #555555;
-	cursor:pointer;
+	color: #fefefe;
 }
-.genre_item:hover,
-.genre_item a:hover {
+.album_item:hover,
+.album_item a:hover {
    color: #fefefe;
 }

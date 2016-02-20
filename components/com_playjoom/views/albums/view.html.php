@@ -23,6 +23,19 @@ jimport( 'joomla.application.component.helper' );
 class PlayJoomViewAlbums extends JViewLegacy {
 	
 	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array()) {
+	
+		$this->input_items = JFactory::getApplication()->input;
+	
+		parent::__construct($config);
+	}
+	/**
      * Method to display the view
      *
      * @access    public
@@ -44,6 +57,37 @@ class PlayJoomViewAlbums extends JViewLegacy {
 		$this->state = $this->get('State');
 		$this->authors = $this->get('Authors');
 
+		$complete_output =array();
+
+		/**
+		 * Build genres array output
+		 */
+		foreach($this->get('Items') as $i => $albums_items){
+
+			$album_base64    = base64_encode($albums_items->album);
+			$artist_base64   = base64_encode($albums_items->artist);
+			$category_base64 = base64_encode($albums_items->category_title);
+		
+			//Create item for Samplercheck
+			$sampler_check = PlayJoomHelper::checkForSampler($albums_items->album, $albums_items->artist);
+			if($sampler_check) {
+				$albums_items->sampler = true;
+			}
+		
+			//Create cover link
+			$albums_items->coverlink = PlayJoomHelper::createCoverlink($albums_items,$album_base64,$artist_base64,$category_base64, $this->input_items->get('view'));
+		
+			//Create album link
+			$albums_items->albumlink = PlayJoomHelper::createAlbumlink($albums_items,$album_base64,$artist_base64,$category_base64);
+		
+			//Create Item Title
+			$albums_items->itemtitle = PlayJoomHelper::createItemtitle($albums_items, $sampler_check);
+			
+			array_push($complete_output, $albums_items);
+		}
+		
+		$this->items = $complete_output;
+		
 		// Set the document
 		$this->setDocument();
 
@@ -53,39 +97,20 @@ class PlayJoomViewAlbums extends JViewLegacy {
      * Method to set up the document properties
      *
      * @return void
-     */
-    protected function setDocument() {
-    
-    	$input_items = JFactory::getApplication()->input;
-    
-    	$this->rootURL = rtrim(JURI::base(),'/');
-    	$subpathURL = JURI::base(true);
-    	if(!empty($subpathURL) && ($subpathURL != '/')) {
-    		$this->rootURL = substr($this->rootURL, 0, -1 * strlen($subpathURL));
-    	}
-    
+	 */
+	protected function setDocument() {
+
     	//load javascripts
-    	JHtml::_('jquery.framework');
-    
-    	//load PlayJoom scripts
-    	JHtml::addIncludePath(JPATH_LIBRARIES . '/playjoom/cms/html');
-    	JHtml::_('AjaxData.library',$input_items->get('view'));
-    
-    	$document = JFactory::getDocument();
-    
-    	$js = "
-				ajaxdata.init({
-					view: '".$input_items->get('view')."',
-					root_url: '".$this->rootURL.JRoute::_("index.php")."',
-					itemid: ".$input_items->get('Itemid').",
-				});
-				ajaxdata.getAlbumlist();
-		";
-    	//load external scripts
-    	$document->addScriptDeclaration($js);
-    	
-    	$document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/album_view.css');
-    	$document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/artist_view.css');
-    
-    }
+		JHtml::_('jquery.framework');
+
+		//load PlayJoom scripts
+		JHtml::addIncludePath(JPATH_LIBRARIES . '/playjoom/cms/html');
+		JHtml::_('Cover.library',$this->input_items->get('view'));
+
+		$document = JFactory::getDocument();
+
+		$document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/album_view.css');
+		$document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/artist_view.css');
+
+	}
 }

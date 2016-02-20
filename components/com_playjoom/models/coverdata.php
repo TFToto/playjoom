@@ -1,20 +1,10 @@
 <?php
 /**
- * Contains the module Methods for the PlayJoom album
+ * @package     PlayJoom.Site
+ * @subpackage  com_playjoom
  *
- * PlayJoom and the basic package Joomla! is free software. This version may have been modified pursuant to the
- * GNU General Public License, and as distributed it includes or is derivative
- * of works licensed under the GNU General Public License or other free or open
- * source software licenses. See COPYRIGHT.php for copyright notices and details.
- *
- * @link http://playjoom.teglo.info
- * @copyright Copyright (C) 2010-2013 by www.teglo.info. All rights reserved.
- * @license	GNU/GPL, see LICENSE.php
- * @PlayJoom Component
- * @date $Date$
- * @revision $Revision$
- * @author $Author$
- * @headurl $HeadURL$
+ * @copyright Copyright (C) 2010-2016 by www.playjoom.org
+ * @license https://www.playjoom.org/en/about/licenses/gnu-general-public-license.html
  */
 
 // No direct access to this file
@@ -113,6 +103,10 @@ class PlayJoomModelCoverData extends JModelItem {
 					}
 				}
 
+				// Join over the add_by id user.
+				//$query->select('a.add_by');
+				//$query->join('LEFT', '#__jpaudiotracks AS a ON a.coverid = cb.id');
+
 				$db->setQuery($query);
 				$data = $db->loadObject();
 
@@ -125,7 +119,9 @@ class PlayJoomModelCoverData extends JModelItem {
 					$this->_item[$pk] = false;
 				}
         	}
-/*
+
+        	//TODO session check for to get image data
+        	/*
         	if (self::checkValidSession($data->add_by, $pk)) {
         		$this->_item[$pk] = $data;
         		return $this->_item[$pk];
@@ -134,10 +130,27 @@ class PlayJoomModelCoverData extends JModelItem {
         		JError::raiseError('Access denied');
         		exit();
         	}
-*/
-			$this->_item[$pk] = $data;
-			return self::ResampleImage($this->_item[$pk]);
+        	*/
 
+			if(!$data) {
+				//check for default cover
+				$default_cover = JPATH_BASE.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.$this->params->get('StandardCoverImage');
+				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'No cover available! Path for default cover is: '.$default_cover, 'priority' => JLog::WARNING, 'section' => 'site')));
+				
+				if (file_exists($default_cover) && $this->params->get('StandardCoverImage') != '') {
+				
+					$handle = fopen($default_cover, "rb");
+					$contents = stream_get_contents($handle);
+					fclose($handle);
+					echo $contents;
+				} else {
+					$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Can not open file for default cover: ', 'priority' => JLog::ERROR, 'section' => 'site')));
+					$this->_item[$pk] = null;
+				}
+			} else {
+				$this->_item[$pk] = $data;
+			}
+			return self::ResampleImage($this->_item[$pk]);
 		}
 	}
 	/**
@@ -206,9 +219,12 @@ class PlayJoomModelCoverData extends JModelItem {
 				$imgdata = ob_get_contents();
 				break;
 			default:
-				'MISSING COVER IMAGE TYPE';
-				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Missing or unknow mime type for cover img. mime: '.$coverdata->mime, 'priority' => JLog::ERROR, 'section' => 'site')));
-				return null;
+				//'MISSING COVER IMAGE TYPE';
+				//$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Missing or unknow mime type for cover img. mime: '.$coverdata->mime, 'priority' => JLog::ERROR, 'section' => 'site')));
+				//return null;
+				ob_start();
+				imagegif($dest_img);
+				$imgdata = ob_get_contents();
 		}
 		ob_get_clean();
 

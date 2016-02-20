@@ -1,21 +1,10 @@
 <?php
 /**
- * @package Joomla 1.6.x
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
- * @license		GNU/GPL, see LICENSE.php
- * Joomla! is free software. This version may have been modified pursuant to the
- * GNU General Public License, and as distributed it includes or is derivative
- * of works licensed under the GNU General Public License or other free or open
- * source software licenses. See COPYRIGHT.php for copyright notices and
- * details.
+ * @package     PlayJoom.Site
+ * @subpackage  com_playjoom
  *
- * @PlayJoom Component
- * @copyright Copyright (C) 2010-2011 by www.teglo.info
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @date $Date$
- * @revision $Revision$
- * @author $Author$
- * @headurl $HeadURL$
+ * @copyright Copyright (C) 2010-2016 by www.playjoom.org
+ * @license http://www.playjoom.org/en/about/licenses/gnu-general-public-license.html
  */
 
 // No direct access to this file
@@ -27,13 +16,47 @@ JHtml::_('behavior.tooltip');
 header("Cache-Control: no-cache, must-revalidate");
 header("Pragma: no-cache");
 
-// add style sheet
-if ($this->params->get('css_type', 'pj_css') == 'pj_css') {
-	$document	= JFactory::getDocument();
-    $document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/genres_view.css');
-}
-echo '<form action="'.JRoute::_('index.php?option=com_playjoom&view=genres&Itemid='.JRequest::getVar('Itemid')).'" method="post" name="adminForm" id="adminForm">';
-echo $this->loadTemplate('filter');
-echo $this->loadTemplate('body');
-echo $this->pagination->getListFooter();
+echo '<form action="'.JRoute::_('index.php?option=com_playjoom&view=genres').'" method="post" name="adminForm" id="adminForm">';
+
+	echo $this->pagination->getListFooter();
+
+	echo '<div class="btn-group pull-right">';
+		echo '<label for="limit" class="element-invisible">';
+			echo JText::_('JGLOBAL_DISPLAY_NUM');
+		echo '</label>';
+		echo $this->pagination->getLimitBox();
+	echo '</div>';
+
+	//Page Title configuration
+	if ($this->params->get('show_page_heading') == 1) {
+
+		echo '<div class="item-page'.$this->params->get('pageclass_sfx').'">';
+
+			if (!$this->escape($this->params->get('page_heading'))) {
+				echo '<h3 class="subheader">'.ucfirst(JRequest::getVar('view')).' | '.JText::_('COM_PLAYJOOM_HEADER_TITEL_TOTAL').' '.$this->pagination->total.'</h3>';
+			} else { 
+				echo '<h3 class="subheader">'.$this->escape($this->params->get('page_heading')).' | '.JText::_('COM_PLAYJOOM_HEADER_TITEL_TOTAL').' '.$this->pagination->total.'</h3>';
+			}
+
+		echo '</div>';
+	}
+
+	//Build List of genre titles
+	echo '<div class="albumsview">';
+		foreach($this->genres['genre_list'] as $i => $genre_item){
+			
+			echo '<h2 class="genres_title">';
+				echo '<a title="Continue to the genre view" href="'.JRoute::_('index.php?option=com_playjoom&view=genre&catid='.$genre_item['catid']).'">'.key($genre_item).'</a>';
+			echo '</h2>';
+
+			echo '<ul class="list_of_albums">';
+				foreach ($genre_item[key($genre_item)]  as $i2 => $genre_albums) {
+					echo '<li class="album_item"><a title="Continue to the album view" href="'.$genre_albums->albumlink.'"><img class="cover" data-src="'.$genre_albums->coverlink.'" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />'.$genre_albums->itemtitle.'</a></li>';
+				}
+			echo '</ul>';
+		}
+	echo '</div>';
+
+	echo $this->pagination->getListFooter();
+
 echo '</form>';

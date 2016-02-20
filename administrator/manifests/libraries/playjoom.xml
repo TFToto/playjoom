@@ -4,8 +4,8 @@
 	<libraryname>playjoom</libraryname>
 	<version>1.0.0</version>
 	<description>LIB_PLAYJOOM_XML_DESCRIPTION</description>
-	<creationDate>March 2015</creationDate>
-	<copyright>Copyright (C) 2010 - 2015 by telgo.info. All rights reserved.</copyright>
+	<creationDate>March 2016</creationDate>
+	<copyright>Copyright (C) 2010 - 2016 by telgo.info. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<author>PlayJoom Project</author>
 	<authorEmail>admin@teglo.info</authorEmail>
@@ -17,6 +17,9 @@
 	</files>
         <media destination="lib_playjoom" folder="media">
 		<filename>index.html</filename>
+		<folder>ajaxdata</folder>
+		<folder>cover</folder>
 		<folder>soundmanager</folder>
+		<folder>tools</folder>
 	</media>
 </extension>
