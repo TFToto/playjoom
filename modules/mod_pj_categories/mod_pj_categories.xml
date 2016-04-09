@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="3.1" client="site" method="upgrade">
+	<name>mod_pj_categories</name>
+	<author>Teglo Project</author>
+	<creationDate>February 2016</creationDate>
+	<copyright>Copyright (C) 2010 - 2016 by teglo. All rights reserved.</copyright>
+	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
+	<authorEmail>admin@teglo.org</authorEmail>
+	<authorUrl>www.playjoom.org</authorUrl>
+	<version>1.0.0</version>
+	<description>MOD_PJ_CATEGORIES_XML_DESCRIPTION</description>
+	<files>
+		<filename module="mod_pj_categories">mod_pj_categories.php</filename>
+		<folder>tmpl</folder>
+		<filename>helper.php</filename>
+	</files>	
+	<languages>
+        <language tag="en-GB">language/en-GB.mod_pj_categories.ini</language>
+        <language tag="en-GB">language/en-GB.mod_pj_categories.sys.ini</language>
+        <language tag="de-DE">language/de-DE.mod_pj_categories.ini</language>
+        <language tag="de-DE">language/de-DE.mod_pj_categories.sys.ini</language>
+    </languages>
+    
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_ARTICLES_CATEGORIES" />
+	<config>
+		<fields name="params">
+			<fieldset addfieldpath="/modules/mod_pj_categories/models/fields" name="basic">
+				<field 
+                    name="cat_extension" 
+                    type="Categorie_Extension"
+                    required="true"
+                    label="MOD_PJ_CATEGORIES_CATEGORIE_EXTENSION"
+                    description="MOD_PJ_CATEGORIES_CATEGORIE_EXTENSION_DESC"
+                />
+                <field
+                    name="parent"
+                    type="pjcategories"
+                    extension="com_playjoom"
+                    show_root="true"
+                    label="MOD_PJ_CATEGORIES_FIELD_PARENT_LABEL"
+                    description="MOD_PJ_CATEGORIES_FIELD_PARENT_DESC"
+                />
+		<field
+			name="icon_class"
+			type="text"
+			label="MOD_PJ_CATEGORIES_ICONCLASS_LABEL"
+			description="COM_PLAYJOOM_PLAYJOOM_FIELD_ICONCLASS_LABEL_DESC"
+		/>
+				<field
+					name="show_description"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="0"
+					label="MOD_PJ_CATEGORIES_FIELD_SHOW_DESCRIPTION_LABEL"
+					description="MOD_PJ_CATEGORIES_FIELD_SHOW_DESCRIPTION_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>	
+				<field
+					name="numitems"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="0"
+					label="MOD_PJ_CATEGORIES_FIELD_NUMITEMS_LABEL"
+					description="MOD_PJ_CATEGORIES_FIELD_NUMITEMS_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>	
+				<field
+					name="show_children"
+					type="radio"
+					class="btn-group btn-group-yesno"
+					default="0"
+					label="MOD_PJ_CATEGORIES_FIELD_SHOW_CHILDREN_LABEL"
+					description="MOD_PJ_CATEGORIES_FIELD_SHOW_CHILDREN_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field
+                    name="show_empty_item"
+                    type="radio"
+                    class="btn-group btn-group-yesno"
+                    default="0"
+                    label="MOD_PJ_CATEGORIES_FIELD_SHOW_EMPTY_ITEM_LABEL"
+                    description="MOD_PJ_CATEGORIES_FIELD_SHOW_EMPTY_ITEM_LABEL_DESC">
+                    <option value="1">JYES</option>
+                    <option value="0">JNO</option>
+                </field>	
+				<field
+					name="count"
+					type="list"
+					label="MOD_PJ_CATEGORIES_FIELD_COUNT_LABEL"
+					description="MOD_PJ_CATEGORIES_FIELD_COUNT_DESC"
+					default="0"
+				>
+					<option value="0">JALL</option>
+					<option value="1">J1</option>
+					<option value="2">J2</option>
+					<option value="3">J3</option>
+					<option value="4">J4</option>
+					<option value="5">J5</option>
+					<option value="6">J6</option>
+					<option value="7">J7</option>
+					<option value="8">J8</option>
+					<option value="9">J9</option>
+					<option value="10">J10</option>
+				</field>
+	
+				<field
+					name="maxlevel"
+					type="list"
+					label="MOD_PJ_CATEGORIES_FIELD_MAXLEVEL_LABEL"
+					description="MOD_PJ_CATEGORIES_FIELD_MAXLEVEL_DESC"
+					default="0"
+				>
+					<option value="0">JALL</option>
+					<option value="1">J1</option>
+					<option value="2">J2</option>
+					<option value="3">J3</option>
+					<option value="4">J4</option>
+					<option value="5">J5</option>
+					<option value="6">J6</option>
+					<option value="7">J7</option>
+					<option value="8">J8</option>
+					<option value="9">J9</option>
+					<option value="10">J10</option>
+				</field>
+			</fieldset>
+			<fieldset name="MOD_PJ_CATEGORIES_VIEW_SETTINGS">
+				<field
+				name="number_of_cover"
+				type="number"
+				label="MOD_PJ_CATEGORIES_FIELD_NUMBEROFCOVER_COVER_LABEL"
+				description="MOD_PJ_CATEGORIES_FIELD_NUMBEROFCOVER_COVER_LABEL_DESC"
+				max="40"
+                min="1"
+				size="4"
+                class="inputbox span2"
+				default="100"
+			/>
+			<field
+                name="genres_cover_size"
+                type="number"
+                label="MOD_PJ_CATEGORIES_FIELD_MAXSIZE_COVER_LABEL"
+                description="MOD_PJ_CATEGORIES_FIELD_MAXSIZE_COVER_LABEL_DESC"
+                max="600"
+                min="60"
+                default="120"
+                size="4"
+                class="inputbox span2"
+            />
+            <field
+                name="genre_cover_size"
+                type="number"
+                label="MOD_PJ_CATEGORIES_FIELD_MAXSIZE_COVER4GENRE_LABEL"
+                description="MOD_PJ_CATEGORIES_FIELD_MAXSIZE_COVER4GENRE_LABEL_DESC"
+                max="600"
+                min="60"
+                default="120"
+                size="4"
+                class="inputbox span2"
+            />
+			</fieldset>
+			<fieldset name="advanced">
+				<field
+					name="layout"
+					type="modulelayout"
+					label="JFIELD_ALT_LAYOUT_LABEL"
+					description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+	
+				<field
+					name="item_heading"
+					type="list"
+					default="4"
+					label="MOD_PJ_CATEGORIES_TITLE_HEADING_LABEL"
+					description="MOD_PJ_CATEGORIES_TITLE_HEADING_DESC"
+				>
+					<option value="none">JFIELD_OPTION_NONE</option>
+					<option value="1">JH1</option>
+					<option value="2">JH2</option>
+					<option value="3">JH3</option>
+					<option value="4">JH4</option>
+					<option value="5">JH5</option>
+				</field>
+	
+				<field
+					name="moduleclass_sfx"
+					type="textarea"
+					rows="3"
+					label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+					description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+	
+				<field
+					name="owncache"
+					type="list"
+					default="1"
+					label="COM_MODULES_FIELD_CACHING_LABEL"
+					description="COM_MODULES_FIELD_CACHING_DESC"
+				>
+					<option value="1">JGLOBAL_USE_GLOBAL</option>
+					<option value="0">COM_MODULES_FIELD_VALUE_NOCACHING</option>
+				</field>
+	
+				<field
+					name="cache_time"
+					type="text"
+					default="900"
+					label="COM_MODULES_FIELD_CACHE_TIME_LABEL"
+					description="COM_MODULES_FIELD_CACHE_TIME_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>
