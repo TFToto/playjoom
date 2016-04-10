@@ -148,7 +148,7 @@ class PlayJoomModelSavetracks extends JModelLegacy {
 		$query = $db->getQuery(true);
 		$query->select('COUNT(*) as counter');
 		$query->from('#__jpalbums');
-		$query->where('title = "'.$name_album.'"');
+		$query->where('title = '.$db->quote($name_album));
 
 		$db->setQuery($query);
 		$result = $db->loadObject();
