@@ -1,9 +1,9 @@
 <?php
 /**
- * @package     PlayJoom.Site
- * @subpackage  lib_playjoom
+ * @package     PlayJoom.Library
+ * @subpackage  Cover
  *
- * @copyright Copyright (C) 2010-2016 by www.playjoom.org
+ * @copyright Copyright (C) 2010-2016 by teglo. All rights reserved.
  * @license http://www.playjoom.org/en/about/licenses/gnu-general-public-license.html
  */
 
@@ -26,31 +26,26 @@ abstract class JHtmlCover {
 	/**
 	 * Method for calculate the image height with width as basis value
 	 *
+	 * @param integre $cover_size Value of the width size of a cover
 	 * @param integre $width
 	 * @param integre $height
+	 * @param string $view current view as string value
 	 *
 	 * @return integer calculated height value with correct image radio
 	 */
-	public static function calcImageSize($view, $width, $height) {
-
-		//Get setting values from xml file
-		$app		= JFactory::getApplication();
-
-		//Get parameters for current menu item
-		$menuitem   = $app->getMenu()->getActive();
-		$params = $menuitem->params;
+	public static function calcImageSize($cover_size, $view, $width, $height) {
 
 		//Calculate the smaller cover values
 		if ($width && $height) {
 			if ($width > $height) {
 				$ratio = $width / $height;
-				return $params->get($view.'_cover_size',100) / $ratio;
+				return $cover_size / $ratio;
 			} else {
 				$ratio = $height / $width;
-				return $params->get($view.'_cover_size',100) / $ratio;
+				return $cover_size / $ratio;
 			}
 		} else {
-			return $params->get($view.'_cover_size',100);
+			return $cover_size;
 		}
 	}
 	/**
@@ -63,14 +58,29 @@ abstract class JHtmlCover {
 	*/
 	public static function library($view) {
 
+		$dispatcher	= JDispatcher::getInstance();
+		
 		$document = JFactory::getDocument();
-
 		//Get setting values from xml file
 		$app		= JFactory::getApplication();
 
+		//If link comes of a module, then get also the params of this module
+		if ($moduletype = base64_decode($app->input->get('moduletype')) 
+		    && $moduletitle = base64_decode($app->input->get('moduletitle'))) {
+
+		    $module = JModuleHelper::getModule($moduletype,$moduletitle);
+		    $module_params = new JRegistry($module->params);
+		} else {
+		    $module_params = null;
+		}
+
 		//Get parameters for current menu item
 		$menuitem   = $app->getMenu()->getActive();
-		$params = $menuitem->params;
+		if ($menuitem) {
+		    $params = $menuitem->params;
+		} else {
+		    $params = JComponentHelper::getParams( 'com_playjoom' );;
+		}
 
 		if (!empty(static::$loaded[__METHOD__])) {
 			return;
@@ -78,12 +88,23 @@ abstract class JHtmlCover {
 
 		JHtml::_('script', 'lib_playjoom/cover/jquery.unveil.js', false, true, false, false);
 
+		if (isset($params)) {
+		    $dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'coversize is: '.$params->get($view.'_cover_size',100), 'priority' => JLog::INFO, 'section' => 'site')));
+		    $coverframe_height = $params->get($view.'_cover_size',100) +60;
+		    $cover_width = $params->get($view.'_cover_size',100);
+		} else {
+		    if ($module_params) {
+			$coverframe_height = $module_params->get($view.'_cover_size',100) +60;
+			$cover_width = $module_params->get($view.'_cover_size',100);
+		    } else {
+			$coverframe_height = 100 +60;
+			$cover_width = 100;
+		    }
+		}
+
 		//get cover size
-		//$pj_params = JComponentHelper::getParams('com_playjoom');
 		$defaultcoverimg = getimagesize(JURI::base(false).'media/lib_playjoom/ajaxdata/images/cd-mono.png');
-		$defaultcoverimg_height = round(self::calcImageSize($view, $defaultcoverimg[0], $defaultcoverimg[1])) -10;
-		$defaultcoverimg_width = $params->get($view.'_cover_size',100) -10;
-		$coverframe_height = $params->get($view.'_cover_size',100) +60;
+		$defaultcoverimg_height = round(self::calcImageSize($cover_width, $view, $defaultcoverimg[0], $defaultcoverimg[1])) -10;
 
 		$styles  = '<style type="text/css">';
 		$styles .= ' 
@@ -98,7 +119,7 @@ abstract class JHtmlCover {
 						display: block;
 					}
 					 ul.list_of_albums li {
-						width: '.$params->get($view.'_cover_size',100).'px;
+						width: '.$cover_width.'px;
 						height: '.$coverframe_height.'px;
 					}
 					 img.cover {
@@ -111,13 +132,22 @@ abstract class JHtmlCover {
 
 		$js = "
 				jQuery(function() {
+				
 					jQuery('img.cover').unveil(10, function() {
 						jQuery(this).load(function() {
 							this.style.opacity = 1;
   						});
 					});
+					jQuery('section').click(function() {
+						jQuery('img.cover').unveil(10, function() {
+							jQuery(this).load(function() {
+								this.style.opacity = 1;
+							});
+  						});
+					});
 				});
 		";
+		
 		//load external scripts
 		$document->addScriptDeclaration($js);
 
