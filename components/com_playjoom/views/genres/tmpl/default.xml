@@ -23,7 +23,18 @@
                 description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_LABEL_DESC"
                 max="600"
                 min="60"
-                default="100"
+                default="120"
+                size="4"
+                class="inputbox span2"
+            />
+            <field
+                name="genre_cover_size"
+                type="number"
+                label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER4GENRE_LABEL"
+                description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER4GENRE_LABEL_DESC"
+                max="600"
+                min="60"
+                default="120"
                 size="4"
                 class="inputbox span2"
             />

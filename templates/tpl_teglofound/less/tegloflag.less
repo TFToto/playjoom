@@ -160,7 +160,8 @@ nav.top-bar section.top-bar-section ul.right li.has-dropdown.not-click a.dropdow
     line-height: @tpl_teglofound_main_config_mainheadbar_height;
 }
 nav.top-bar.expanded section.top-bar-section ul.left ul.nav.menu li a,
-nav.top-bar.expanded section.top-bar-section ul.right li.has-dropdown.not-click a.dropdown-link {
+nav.top-bar.expanded section.top-bar-section ul.right li.has-dropdown.not-click a.dropdown-link,
+nav.top-bar.expanded section.top-bar-section ul.left ul.menu li.has-dropdown.not-click a.dropdown-link {
 	line-height: 28px;
 }
 nav.top-bar section.top-bar-section ul.left ul.nav li ul.dropdown li {
@@ -187,12 +188,11 @@ nav.top-bar section.top-bar-section ul.left ul.nav li {
 }
 .top-bar-section ul li > a:hover {
     background: none repeat scroll 0 0 @tpl_teglofound_head_config_main_hoveractive_color;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    font-weight: normal;
     color: @tpl_teglofound_head_config_main_font_hoveractive_color;
 }
 .top-bar-section ul li.active > a {
     background: none repeat scroll 0 0 @tpl_teglofound_head_config_main_hoveractive_color;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
     color: @tpl_teglofound_head_config_main_font_hoveractive_color;
 }
 .top-bar ul.title-area li.name {
@@ -222,6 +222,21 @@ nav.top-bar section.top-bar-section ul.left ul.nav li {
 	border-style: solid;
 	border-width: 2px;
 	box-shadow:8px 8px 8px -1px #777777;
+}
+nav.top-bar section.top-bar-section ul.left ul.nav.menu li.has-dropdown.not-click ul.dropdown li.menuitem a {
+    height: 35px;
+    line-height: 20px;
+}
+
+.top-bar-section ul li.menuitem > a {
+    background: none repeat scroll 0 0 #ccc !important;
+    border: #a8a8a8 solid 1px;
+    color: #444 !important;
+    text-shadow: 0 0 0 rgba(0, 0, 0, 0);
+}
+.top-bar-section ul li.menuitem > a:hover {
+    background: none repeat scroll 0 0 @tpl_teglofound_head_config_main_hoveractive_color !important;
+    color: @tpl_teglofound_head_config_main_font_hoveractive_color !important;
 }
 //End********************************************
 

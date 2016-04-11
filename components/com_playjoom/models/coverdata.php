@@ -99,7 +99,7 @@ class PlayJoomModelCoverData extends JModelItem {
 						$query->where('(cb.album = "'.$this->albumname. '" AND cb.artist = "'.$this->artistname. '")');
 					} else {
 						//Request for Sampler
-						$query->where('cb.album = "'.$this->albumname. '"');
+						$query->where('cb.album = '.$db->quote($this->albumname));
 					}
 				}
 
@@ -163,13 +163,29 @@ class PlayJoomModelCoverData extends JModelItem {
 	 */
 	public function ResampleImage($coverdata) {
 
-		$dispatcher	= JDispatcher::getInstance();
-		$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Starting resample cover with '.$this->params->get(JRequest::getVar('coverview').'_cover_size',100).'px.', 'priority' => JLog::INFO, 'section' => 'site')));
+		$dispatcher	= JDispatcher::getInstance();		
+		$app = JFactory::getApplication();
+		$view = $app->input->get('coverview');
+		
+		//If link comes of a module, then get also the params of this module
+		if ($moduletype = base64_decode($app->input->get('moduletype')) 
+		    && $moduletitle = base64_decode($app->input->get('moduletitle'))) {
 
-		//Get parameters for current menu item
-		$app		= JFactory::getApplication();
-		$menuitem   = $app->getMenu()->getActive();
-		$params = $menuitem->params;
+		    $module = JModuleHelper::getModule($moduletype,$moduletitle);
+		    $module_params = new JRegistry($module->params);
+		} else {
+		    $module_params = null;
+		}
+		
+		if ($module_params) {
+			$cover_width = $module_params->get($view.'_cover_size',100);
+		} else {
+		    if (isset($this->params)) {
+		    $cover_width = $this->params->get($view.'_cover_size',100);
+		} else {
+			$cover_width = 100;
+		    }
+		}
 
 		if(!$coverdata->width || !$coverdata->height) {
 			$short_img_height = 100;
@@ -177,10 +193,10 @@ class PlayJoomModelCoverData extends JModelItem {
 			//Calculate the smaller cover values
 			if ($coverdata->width > $coverdata->height) {
 				$ratio = $coverdata->width / $coverdata->height;
-				$short_img_height = $this->params->get(JRequest::getVar('coverview').'_cover_size',100) / $ratio;
+				$short_img_height = $cover_width / $ratio;
 			} else {
 				$ratio = $coverdata->height / $coverdata->width;
-				$short_img_height = $this->params->get(JRequest::getVar('coverview').'_cover_size',100) / $ratio;
+				$short_img_height = $cover_width / $ratio;
 			}
 		}
 
@@ -188,11 +204,11 @@ class PlayJoomModelCoverData extends JModelItem {
 		$src_img = @imagecreatefromstring($coverdata->data);
 
 		//Create the thumbnail cover
-		$dest_img = imageCreateTrueColor($this->params->get(JRequest::getVar('coverview').'_cover_size',100), round($short_img_height));
+		$dest_img = imageCreateTrueColor($cover_width, round($short_img_height));
 
 		//Resample the thumbnail cover
 		if ($coverdata->height && $coverdata->width) {
-			imageCopyResampled($dest_img, $src_img, 0, 0, 0 ,0, $this->params->get(JRequest::getVar('coverview').'_cover_size',100), round($short_img_height), $coverdata->width, $coverdata->height);
+			imageCopyResampled($dest_img, $src_img, 0, 0, 0 ,0, $cover_width, round($short_img_height), $coverdata->width, $coverdata->height);
 		}
 
 		ob_start();
@@ -220,7 +236,7 @@ class PlayJoomModelCoverData extends JModelItem {
 				break;
 			default:
 				//'MISSING COVER IMAGE TYPE';
-				//$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Missing or unknow mime type for cover img. mime: '.$coverdata->mime, 'priority' => JLog::ERROR, 'section' => 'site')));
+				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Missing or unknow mime type for cover img. mime: '.$coverdata->mime, 'priority' => JLog::ERROR, 'section' => 'site')));
 				//return null;
 				ob_start();
 				imagegif($dest_img);
@@ -236,11 +252,13 @@ class PlayJoomModelCoverData extends JModelItem {
 
 		$covers_items = array(
 				"data" => $imgdata,
-				"width" => $this->params->get(JRequest::getVar('coverview').'_cover_size',100),
+				"width" => $cover_width,
 				"height" => round($short_img_height),
 				"mime" => $coverdata->mime
 		);
-
+		
+		$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Done with resample image data.', 'priority' => JLog::INFO, 'section' => 'site')));
+				
 		return (object) $covers_items;
 	}
 	/**

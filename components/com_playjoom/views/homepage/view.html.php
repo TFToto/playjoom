@@ -37,10 +37,10 @@ class PlayJoomViewHomepage extends JViewLegacy {
 
 		//Get setting values from xml file
 		$app  = JFactory::getApplication();
-		$this->params	= $app->getParams();
+		$this->params = $app->getParams();
 		
 		//Get parameters for current menu item
-		$active       = $app->getMenu()->getActive();
+		$active = $app->getMenu()->getActive();
 		
 		//For filter and ordering function
 		$this->state = $this->get('State');
@@ -59,19 +59,7 @@ class PlayJoomViewHomepage extends JViewLegacy {
 		$authorised = JAccess::getAuthorisedViewLevels(JFactory::getUser()->get('id'));
 		$model->setState('filter.access', $access);
 
-		// Set ordering
-		$order_map = array(
-				'm_dsc' => 'a.mod_datetime DESC, a.add_datetime',
-				'mc_dsc' => 'CASE WHEN (a.mod_datetime = '.$db->quote($db->getNullDate()).') THEN a.add_datetime ELSE a.mod_datetime END',
-				'c_dsc' => 'a.add_datetime',
-		);
-
-		$ordering = JArrayHelper::getValue($order_map,null);
-		$ordering = JArrayHelper::getValue($order_map, $active->params->get('ordering_album'));
-		$dir = 'DESC';
-
-		$model->setState('list.ordering', $ordering);
-		$model->setState('list.direction', $dir);
+		$model->setState('itemorder','CASE WHEN (a.mod_datetime = '.$db->quote($db->getNullDate()).') THEN a.add_datetime ELSE a.mod_datetime END DESC ');
 
 		$homepage_albums = $model->getItems();
 

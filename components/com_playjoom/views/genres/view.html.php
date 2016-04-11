@@ -42,12 +42,18 @@ class PlayJoomViewGenres extends JViewLegacy {
 	function display($tpl = null) {
 
 		$app  = JFactory::getApplication();
+		$dispatcher	= JDispatcher::getInstance();
+
 		$this->params	= $app->getParams();
 
 		//Get parameters for current menu item
 		$active       = $app->getMenu()->getActive();
 		//Save number of covers
-		JFactory::getApplication()->setUserState('com_playjoom.genres.numcover', $active->params->get('number_of_cover',5));
+		if ($active) {
+		    JFactory::getApplication()->setUserState('com_playjoom.genres.numcover', $active->params->get('number_of_cover',5));
+		} else {
+		    JFactory::getApplication()->setUserState('com_playjoom.genres.numcover', 5);
+		}
 
 		//For filter and ordering function
 		$this->state = $this->get('State');
@@ -57,13 +63,13 @@ class PlayJoomViewGenres extends JViewLegacy {
 		$this->setDocument();
 		$this->pagination = $this->get('Pagination');
 
+		$complete_output = array();
+
 		/**
 		 * Build genres array output
 		 */
-		$complete_output =array();
-
 		//Build output array for json data
-		foreach($this->get('Items') as $i => $item){
+		foreach($this->get('Items') as $i => $item) {
 
 			// Get an instance of the generic items model for albums
 			$model = JModelLegacy::getInstance('Items', 'PlayjoomModel', array('ignore_request' => true));
@@ -100,8 +106,13 @@ class PlayJoomViewGenres extends JViewLegacy {
 					$albums_items->sampler = true;
 				}
 
+				if($app->input->get('moduletype') && $app->input->get('moduletitle')) {
+				    $modulelink = '&moduletype='.$app->input->get('moduletype').'&moduletitle='.$app->input->get('moduletitle');
+				} else {
+				    $modulelink = null;
+				}
 				//Create cover link
-				$albums_items->coverlink = PlayJoomHelper::createCoverlink($albums_items,$album_base64,$artist_base64,$category_base64, $this->input_items->get('view'));
+				$albums_items->coverlink = PlayJoomHelper::createCoverlink($albums_items,$album_base64,$artist_base64,$category_base64, $this->input_items->get('view'),$modulelink);
 				
 				//Create album link 
 				$albums_items->albumlink = PlayJoomHelper::createAlbumlink($albums_items,$album_base64,$artist_base64,$category_base64);

@@ -354,7 +354,7 @@ class PlayJoomModelArtist extends JModelList
     	$db		= JFactory::getDbo();
     	$query	= $db->getQuery(true);
 
-    	$query->select('a.album, a.year, a.artist, a.catid');
+    	$query->select('a.album, a.year, a.artist, a.catid, a.coverid');
     	$query->where('a.artist = "'.base64_decode(JRequest::getVar('artist')).'"');
     	$query->order('a.year');
     	$query->group('a.album');
@@ -364,8 +364,12 @@ class PlayJoomModelArtist extends JModelList
     	$query->join('LEFT', '#__categories AS c ON c.id = a.catid');
 
     	// Join over the covers.
-    	$query->select('cb.id AS cover_id');
-    	$query->join('LEFT', '#__jpcoverblobs AS cb ON cb.id = a.coverid');
+    	//$query->select('cb.id AS cover_id, cb.mime');
+    	//$query->join('LEFT', '#__jpcoverblobs AS cb ON cb.id = a.coverid');
+	
+	// Join over the categories.
+	$query->select('b.mime');
+	$query->join('LEFT', '#__jpcoverblobs AS b ON b.id = a.coverid');
 
     	// Implement View Level Access
     	if (!$user->authorise('core.admin')
@@ -502,6 +506,10 @@ class PlayJoomModelArtist extends JModelList
     	// Join over the categories.
     	$query->select('c.title AS category_title');
     	$query->join('LEFT', '#__categories AS c ON c.id = a.catid');
+	
+	// Join over the covers.
+	$query->select('cb.id AS coverid, cb.mime');
+	$query->join('LEFT', '#__jpcoverblobs AS cb ON cb.id = a.coverid');
 
     	// Implement View Level Access
     	if (!$user->authorise('core.admin')

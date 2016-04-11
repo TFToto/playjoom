@@ -37,18 +37,61 @@ class PlayJoomViewArtist extends JViewLegacy {
 	protected $pagination;
 	protected $state;
 
-
+	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array()) {
+	
+		$this->input_items = JFactory::getApplication()->input;
+	
+		parent::__construct($config);
+	}
     /**
      * Overwriting JView display method
      */
     function display($tpl = null) {
 
     	// Get data from the model
-        $this->items       = $this->get('Items');
-        $this->albumitems  = $this->get('Albumitems');
+        $this->items        = $this->get('Items');
+        $artist_albums      = $this->get('Albumitems');
         $this->TrackFilter = $this->get('TrackFilter');
-        $this->plitems     = $this->get('Attachplaylists');
-        $this->pagination  = $this->get('Pagination');
+        $this->plitems      = $this->get('Attachplaylists');
+        $this->pagination   = $this->get('Pagination');
+
+	$complete_output =array();
+
+	/**
+	 * Build genres array output
+	 */
+	foreach($artist_albums as $i => $albums_items){
+	
+		$album_base64    = base64_encode($albums_items->album);
+		$artist_base64   = base64_encode($albums_items->artist);
+		$category_base64 = base64_encode($albums_items->category_title);
+	
+		//Create item for Samplercheck
+		$sampler_check = PlayJoomHelper::checkForSampler($albums_items->album, $albums_items->artist);
+		if($sampler_check) {
+			$albums_items->sampler = true;
+		}
+	
+		//Create cover link
+		$albums_items->coverlink = PlayJoomHelper::createCoverlink($albums_items,$album_base64,$artist_base64,$category_base64, $this->input_items->get('view'));
+	
+		//Create album link
+		$albums_items->albumlink = PlayJoomHelper::createAlbumlink($albums_items,$album_base64,$artist_base64,$category_base64);
+	
+		//Create Item Title
+		$albums_items->itemtitle = PlayJoomHelper::createItemtitle($albums_items, $sampler_check);
+
+		array_push($complete_output, $albums_items);
+	}
+
+	$this->albumitems = $complete_output;
 
         //Get setting values from xml file
         $app    = JFactory::getApplication();
@@ -71,6 +114,7 @@ class PlayJoomViewArtist extends JViewLegacy {
         $this->events->onAfterPJContent = trim(implode("\n", $results));
 
         $this->_prepareDocument();
+	$this->setDocument();
 
         parent::display($tpl);
     }
@@ -110,4 +154,24 @@ class PlayJoomViewArtist extends JViewLegacy {
     	//Set Page title
     	$this->document->setTitle($app->getCfg('sitename').' - Alben von '.$artist);
     }
+    
+    /**
+	 * Method to set up the document properties
+	 *
+	 * @return void
+	 */
+	protected function setDocument() {
+
+		//load javascripts
+		JHtml::_('jquery.framework');
+		
+		//load PlayJoom scripts
+		JHtml::addIncludePath(JPATH_LIBRARIES . '/playjoom/cms/html');
+		JHtml::_('Cover.library',$this->input_items->get('view'));
+		
+		$document = JFactory::getDocument();
+		
+		$document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/album_view.css');
+		$document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/artist_view.css');
+	}
 }

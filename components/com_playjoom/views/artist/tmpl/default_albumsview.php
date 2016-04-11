@@ -1,21 +1,10 @@
 <?php
 /**
- * @package Joomla 1.6.x
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
- * @license		GNU/GPL, see LICENSE.php
- * Joomla! is free software. This version may have been modified pursuant to the
- * GNU General Public License, and as distributed it includes or is derivative
- * of works licensed under the GNU General Public License or other free or open
- * source software licenses. See COPYRIGHT.php for copyright notices and
- * details.
+ * @package     PlayJoom.Site
+ * @subpackage  com_playjoom
  *
- * @PlayJoom Component
- * @copyright Copyright (C) 2010-2013 by www.teglo.info
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @date $Date$
- * @revision $Revision$
- * @author $Author$
- * @headurl $HeadURL$
+ * @copyright Copyright (C) 2010-2016 by www.playjoom.org
+ * @license http://www.playjoom.org/en/about/licenses/gnu-general-public-license.html
  */
 
 // No direct access to this file
@@ -38,7 +27,7 @@ echo '<div class="section-container auto" data-section>';
 
 	//All track tabs
 	echo '<section>';
-		echo '<p class="title" data-section-title><a href="#panel0">'.JText::_('JALL').' ('.count($this->albumitems).')</a></p>';
+		echo '<p class="title" data-section-title><a class="tab" href="#panel0">'.JText::_('JALL').' ('.count($this->albumitems).')</a></p>';
 		echo '<div class="content" data-section-content>';
 			echo '<ul class="list_of_albums">';
 				foreach($this->albumitems as $i => $item) {
@@ -54,8 +43,7 @@ echo '<div class="section-container auto" data-section>';
 						$cover = new PlayJoomHelperCover();
 						$coverthumb = $cover->getCoverHTMLTag($item, $SamplerCheck);
 					}
-
-	           		echo '<li class="genre_item"><a href="'.$albumlink.'" title="Continue to the album view">'.$coverthumb.$item->album.'</a> ('.$item->year.')</li>';
+				echo '<li class="album_item"><a title="Continue to the album view" href="'.$item->albumlink.'"><img class="cover" data-src="'.$item->coverlink.'" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />'.$item->itemtitle.'</a></li>';
            		}
        		echo '</ul>';
 
@@ -74,7 +62,7 @@ echo '<div class="section-container auto" data-section>';
 
   		if(count($this->filteritems) > 0) {
   			echo '<section>';
-  				echo '<p class="title" data-section-title><a href="#panel'.($i+1).'">'.$filteritem->title.' ('.count($this->filteritems).')</a></p>';
+  				echo '<p class="title" data-section-title><a class="tab" href="#panel'.($i+1).'">'.$filteritem->title.' ('.count($this->filteritems).')</a></p>';
   				echo '<div class="content" data-section-content>';
   					//Get filter items
   					$this->filteritems = PlayJoomModelArtist::getFilteritems($filteritem->id);
@@ -85,6 +73,7 @@ echo '<div class="section-container auto" data-section>';
 
   									$albumsting = base64_encode($item->album);
   									$artiststing = base64_encode($item->artist);
+									$categorystring = base64_encode($item->category_title);
   									$albumlink = 'index.php?option=com_playjoom&view=album&album='.$albumsting.'&artist='.$artiststing.'&Itemid='.JRequest::getVar('Itemid').'&cat='.base64_encode($item->category_title).'&catid='.$item->catid;
 
   									//Get Album thumbnail
@@ -92,7 +81,7 @@ echo '<div class="section-container auto" data-section>';
 										$cover = new PlayJoomHelperCover();
 										$coverthumb = $cover->getCoverHTMLTag($item, $SamplerCheck);
 									}
-	           						echo '<li class="genre_item"><a href="'.$albumlink.'" title="Continue to the album view">'.$coverthumb.$item->album.'</a> ('.$item->year.')</li>';
+									echo '<li class="album_item"><a title="Continue to the album view" href="'.PlayJoomHelper::createAlbumlink($item,$albumsting,$artiststing,$categorystring).'"><img class="cover" data-src="'.PlayJoomHelper::createCoverlink($item,$albumsting,$artiststing,$categorystring,JFactory::getApplication()->input->get('view')).'" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />'.PlayJoomHelper::createItemtitle($item, PlayJoomHelper::checkForSampler($item->album, $item->artist)).'</a></li>';
   								}
   							echo '</ul>';
 

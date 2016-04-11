@@ -75,7 +75,7 @@ class PlayJoomViewAlbums extends JViewLegacy {
 			}
 		
 			//Create cover link
-			$albums_items->coverlink = PlayJoomHelper::createCoverlink($albums_items,$album_base64,$artist_base64,$category_base64, $this->input_items->get('view'));
+			$albums_items->coverlink = JRoute::_(PlayJoomHelperRoute::getCoverRoute($albums_items,$album_base64,$artist_base64,$category_base64, $this->input_items->get('view')));
 		
 			//Create album link
 			$albums_items->albumlink = PlayJoomHelper::createAlbumlink($albums_items,$album_base64,$artist_base64,$category_base64);

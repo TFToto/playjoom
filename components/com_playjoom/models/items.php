@@ -111,6 +111,7 @@ class PlayJoomModelItems extends JModelList
 		if ($category_id = $this->getState('filter.category_id')) {
 			$query->where('a.catid = "' . (int)$category_id.'"');
 		}
+
 		return $query;
 	}
 }

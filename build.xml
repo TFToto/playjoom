@@ -207,6 +207,7 @@
 	<fileset dir="${src}/modules/mod_tags_popular" id="update_pack_mod-files-mod_tags_popular"></fileset>
 	<fileset dir="${src}/modules/mod_tags_similar" id="update_pack_mod-files-mod_tags_similar"></fileset>
 	<fileset dir="${src}/modules/mod_whosonline" id="update_pack_mod-files-mod_whosonline"></fileset>
+	<fileset dir="${src}/modules/mod_pj_categories" id="comp_pack_mod-files-pj-categories"></fileset>
 
 	<!-- Fileset for all files in media folder for playjoom //-->
 	<fileset dir="${src}/media/com_playjoom" id="comp_pack_media-files-playjoom-folder"></fileset>
@@ -948,6 +949,23 @@
 		<copy file="${src}/language/en-GB/en-GB.mod_pj_tags_popular.ini" todir="${release_update_pack_modules}/mod_pj_tags_popular/language" />
 		<copy file="${src}/language/de-DE/de-DE.mod_pj_tags_popular.sys.ini" todir="${release_update_pack_modules}/mod_pj_tags_popular/language" />
 		<copy file="${src}/language/en-GB/en-GB.mod_pj_tags_popular.sys.ini" todir="${release_update_pack_modules}/mod_pj_tags_popular/language" />
+
+		<!--  Files for pj-categories part //-->
+		<copy todir="${release}/comp_pack/extensions/mod_pj_categories">
+			<fileset refid="comp_pack_mod-files-pj-categories" />
+		</copy>
+		<copy todir="${release_update_pack_modules}/mod_pj_categories">
+			<fileset refid="comp_pack_mod-files-pj-categories" />
+		</copy>
+		<!--  Language files for PJ footer part //-->
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_categories.ini" todir="${release}/comp_pack/extensions/mod_pj_categories/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_categories.ini" todir="${release}/comp_pack/extensions/mod_pj_categories/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_categories.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_categories/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_categories.sys.ini" todir="${release}/comp_pack/extensions/mod_pj_categories/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_categories.ini" todir="${release_update_pack_modules}/mod_pj_categories/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_categories.ini" todir="${release_update_pack_modules}/mod_pj_categories/language" />
+		<copy file="${src}/language/de-DE/de-DE.mod_pj_categories.sys.ini" todir="${release_update_pack_modules}/mod_pj_categories/language" />
+		<copy file="${src}/language/en-GB/en-GB.mod_pj_categories.sys.ini" todir="${release_update_pack_modules}/mod_pj_categories/language" />
 
 		<!--  Files for mod_stats part //-->
 		<copy todir="${release_update_pack_modules}/mod_stats">

@@ -69,14 +69,14 @@ abstract class PlayJoomHelper {
 		return $row->$xml_value;
 	}
 
-    public static function getConfig($namespace = null, $file = null) {
+	public static function getConfig($namespace = null, $file = null) {
 
 		if ($file === null || $namespace == null) {
 
 			//Set standard config file
 			$file = null;
 		}
-        self::$PJconfig = self::_createPJConfig($file, $namespace);
+	self::$PJconfig = self::_createPJConfig($file, $namespace);
 
 		return self::$PJconfig;
 	}
@@ -140,20 +140,19 @@ abstract class PlayJoomHelper {
 	}
 
 
-	public static function Playtime($playtimeseconds)
-    {
-	     $sign = (($playtimeseconds < 0) ? '-' : '');
-         $playtimeseconds = abs($playtimeseconds);
-	     $contentseconds = round((($playtimeseconds / 60) - floor($playtimeseconds / 60)) * 60);
-	     $contentminutes = floor($playtimeseconds / 60);
-	     if ($contentseconds >= 60)
-	     {
-		      $contentseconds -= 60;
-		      $contentminutes++;
-         }
+	public static function Playtime($playtimeseconds) {
 
-     return $sign.intval($contentminutes).':'.str_pad($contentseconds, 2, 0, STR_PAD_LEFT);
-    }
+	    $sign = (($playtimeseconds < 0) ? '-' : '');
+	    $playtimeseconds = abs($playtimeseconds);
+	    $contentseconds = round((($playtimeseconds / 60) - floor($playtimeseconds / 60)) * 60);
+	    $contentminutes = floor($playtimeseconds / 60);
+	    if ($contentseconds >= 60) {
+		$contentseconds -= 60;
+		$contentminutes++;
+	    }
+
+	    return $sign.intval($contentminutes).':'.str_pad($contentseconds, 2, 0, STR_PAD_LEFT);
+	}
 
     static function ByteValue($size)
     {
@@ -516,7 +515,7 @@ abstract class PlayJoomHelper {
 
 			$query = $db->getQuery(true);
 
-			$query->select('SUM(s.album = "'.$albumname. '" AND s.artist = "'.$artistname. '") AS counterBoth, SUM(s.album = "'.$albumname. '") AS counterJustAlbum');
+			$query->select('SUM(s.album = '.$db->quote($albumname). ' AND s.artist = '.$db->quote($artistname). ') AS counterBoth, SUM(s.album = '.$db->quote($albumname). ') AS counterJustAlbum');
 			$query->from('#__jpaudiotracks AS s');
 
 			$db->setQuery($query);
@@ -662,7 +661,7 @@ abstract class PlayJoomHelper {
 	 * @param string $artist_base64 Name of the current category, coded in base64
 	 * @return string
 	 */
-	public static function createCoverlink($albums_items,$album_base64,$artist_base64,$category_base64,$view) {
+	public static function createCoverlink($albums_items,$album_base64,$artist_base64,$category_base64,$view,$modulelink=null) {
 
 		$session = JFactory::getSession();
 
@@ -698,7 +697,7 @@ abstract class PlayJoomHelper {
 			'&amp;coverview='.$view.
 			'&tlk='.hash('sha256',$session->getId().'+'.PlayJoomHelper::getUserIP().'+'.$albums_items->catid);
 
-		return JRoute::_('index.php?'.$url_parameters_cover);
+		return JRoute::_('index.php?'.$url_parameters_cover.$modulelink);
 	}
 	/**
 	 * Method to create a link string for to get a cover

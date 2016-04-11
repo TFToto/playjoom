@@ -73,7 +73,11 @@ $settings = array(
 		'tpl_teglofound_main_config_shadow_width' => $this->params->get('tpl_teglofound_main_config_shadow_width', 2).'px',
 		'tpl_teglofound_head_config_main_shadow_color' => $this->params->get('tpl_teglofound_head_config_main_shadow_color', '#777777'),
 		'tpl_teglofound_main_config_mainheadbar_height' => $this->params->get('tpl_teglofound_main_config_mainheadbar_height', '45').'px',
-		'tpl_teglofound_main_config_subheadbar_height' => $this->params->get('tpl_teglofound_main_config_subheadbar_height', '45').'px'
+		'tpl_teglofound_main_config_subheadbar_height' => $this->params->get('tpl_teglofound_main_config_subheadbar_height', '45').'px',
+		'tpl_teglofound_lighter_primary_color' => $lighter_primary_color,
+		'tpl_teglofound_darker_primary_color' => $darker_primary_color,
+		'tpl_teglofound_darker_primary_font_color' => '#222222',
+    
 				);
 
 if (file_exists($settingsCache)) {
@@ -381,8 +385,7 @@ echo '<div class="footer_row">';
 	echo '</div>';
 echo '</div>';
 
-echo '<script>jQuery(document).foundation();';
-eval(gzinflate(base64_decode("BcFHkqNIAADAv8ypOzjgXUzMAW8EwgkEXDaEFQhXKgr3+s2st9fw017d1Ayvtf4pXrDmmP+qupyr+uePXOomBLYkSWqAhAvglPVWA/t+BXNyBqQV9/kjsL3rJd89H8MH2xuwE7h11/Esq4oLRA8BC3EPHubk0yIyHgZvfsaoMl0HtKseVHrHaSL92KfAqle3Gg+DDgqjcN9bj6w5MK+u0/ESs61rshloJorkfLM4dIVU0QSdoKsjGsmtWfgk+TLBtoylzKxxmHQnmR4D3rKJ0cpYYbsrqcRI/OJzJuLffmT7w/742XhVVhT7pPRBMWiorK/P5rGdcHOZwZlTBE1pnV6bZPb11ZJkoBpRFKRbK7PfHQpGb/OOUn5dBnUYqNO7Mei381vU8LZY5H0685H7nBp1NyMsF8sOiyGc2zfDdmHiqlTeDgxnZdyN6YaCR2RrvofVE5fXvbJ2qiCo9OvYF0EuzinYaWgNQMVwYXh60/nG2Py5jn62b9g5B/Znmcp9XpiHYtCZn4qppDf1jdTswxnNnbIphQTOU06uQatyBxIVLQO8C/h9Zpndh1JSypqahg1eHwzRrMY05QRQjx0r3kbVzQRI+KLO4g8PECYCBBB7KgAqGWl5VE4DCyOd77QdtRykT8YXoYbFx5vcZemx2SFXlnLAXS83ETH4RCkwyn7cuDjyyUuz9nIBo/qKhEmt9TSLEo6jE0gSe3UDQT31zs7yqKxWKrpjYTfGCmfYLb+cFUr0hh9QNkeMFyNVk8SRpuuOGK1L2Xx2j29RHwuOS5+6iQTBXSgoxCuD4yqTrzscwknd+6nt8rMVvYYW8WZr9n///vz+/v79Hw==")));
-eval(gzinflate(base64_decode("FZO3sqNYAET/ZaI3RYDw3NoIJwmP8JBsIbyHi+fr923aWfc5ne9J91Pe9VB0yZr/fJMlp8l/szwds/znjxhrTzifEceJKJUQm3Asad+efektTZOufdlvDY8S9OaDT+fNvn1DFpNYxm919ZrYhfBmFVHZkaXbsUBJ2XQgdp3BDXVxY3nPW5+cK26rX6m2xrmPDvgLxQOXbqX4EVAzfaOCc27D+uh6KIdV9D0Z9nzxDKYRtKxB1ti/ITkxUKmOvTbN0JLpoYa896iSwKkP4cA6IgJJCPvYsNi1njWhah2LZBQbg5dMHaJBmqjvmJNut4Ne2VI803oyqe+4hZQKjpnBxfLDJOkRteB0dqkN4om17iX/cFDbn0MJQPa6U04ePgAMvHJNlKNBpRAjavUvtzLijc6PBzs1JYH3odInF+rMjPE2Nnq9QEHSDppkgMjHQjl8wG/B12ycHutTW4yGCewqzEW8BtRC9zzcVWOVPmXu6h25gjUb+0h109dGuDdFvi0XdWV2yLBMoVoJr/MOMz4J/bpCxm52X1GBIChS8+ISbqbe5mSYs/bFSj/XR5Kpl6E09O7MpxJPvtQj/M1ulvPR82BWLQO6+mIpRNW9TIjIl2MV/fc17K8b2aQr1RkSSjZNVTOD+UvcCArCSdtxCUUTvks7EgWJlJnvaBgqZ51UN7wQxNYouNRKY+WVqSVoSvOOLUSY5FjN4J945DnflO1HfpnN+v29r2hYSBU0obulZMgZp0NHacQWN5I5MyBaH4UJRCKyy7hR5RU5jVffHgo5/458STwlZEez9g74RGADdomvdlTzAqzp5IKym42GxfbMJOGslXccR0LxBcWwtGdAjgrM6vveAShgpxXovvM8KcmPxI+KvlApdR3fydCa6frgP3mybmrOE1e2/5pmLU+cCrgbto+tSAA+aB8abZ3NSKYwTcfVWa2sn7MsdytJuQhaXIbbn0X/QCDX9KG9O5k8NC3SPN/16mGjHv5fhHPW29FeETVdyOYc7oK7pxxZ6Pt8UOE45BSF66OAEaUtRUJtqwh8MDasaZ5OZM3Cd+Ou0iTTuoGPfUMbAaImGAdZzwGqO+ZckNseQz37TdcowvSVpY8QIMbBZ39HvnTVKCeRafDUwpLdi/VNPCNxjKoQYV3ALB/lFBcC4R0oO5F51ll6i0b0S+xR9VCSR9tXrwtaBT1LJmTzmzornDbwQaQObLugTJqvUJADyHZFFkr4kz70KTcCKcafr+t3FLvNmrQqMDdDBlx47dhrMQ0rd34/U4Udy+1P9mpwBUwCAv1xayHTUSGPHND38tROdGGiIWDSsr5amdoC5cwtnLzwxqAXXW9zPVuK2zwoRpZpSm4GFqdjqN29OHpjy3ddfO22wkUyosazz0kY/8Qwv/0SEqMGJSneygmAXqzSOPd09zbWKivGtYkSIdCVlBi+3JPuBYQc8yFjiWcfaE5CB/P+vks42Yz9fXSd7i2tKxdBziZZJHpET9Kdx3RGGeFqQ3LzK0R5/lcjCHKk2AkURXcd/fP3799//gM=")));
+echo '<script>jQuery(document).foundation();</script>';
+echo '<div style="font-size: 0.65em;color: #5a5b5b;margin-left:20px;margin-top:5px;">Template&nbsp;by&nbsp;<a href="http://download.teglo.info">download.teglo.info</a></div>';
 echo '</body>';
 echo '</html>';

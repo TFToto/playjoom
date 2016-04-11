@@ -59,8 +59,7 @@ abstract class PlayJoomHelperRoute {
 		return $link;
 	}
 
-	public static function getCategoryRoute($catid)
-	{
+	public static function getCategoryRoute($catid) {
 		if ($catid instanceof JCategoryNode)
 		{
 			$id = $catid->id;
@@ -89,7 +88,7 @@ abstract class PlayJoomHelperRoute {
 			else
 			{
 				//Create the link
-				$link = 'index.php?option=com_playjoom&view=category&id='.$id;
+				$link = 'index.php?option=com_playjoom&view=genre&catid='.$id;
 				if($category)
 				{
 					$catids = array_reverse($category->getPath());
@@ -110,8 +109,8 @@ abstract class PlayJoomHelperRoute {
 		return $link;
 	}
 
-	protected static function _findItem($needles = null)
-	{
+	protected static function _findItem($needles = null) {
+
 		$app		= JFactory::getApplication();
 		$menus		= $app->getMenu('site');
 
@@ -244,8 +243,7 @@ abstract class PlayJoomHelperRoute {
 	 *
 	 * @since   3.1
 	 */
-	public static function getItemRoute($contentItemId, $contentItemAlias, $contentCatId, $language, $typeAlias, $routerName)
-	{
+	public static function getItemRoute($contentItemId, $contentItemAlias, $contentCatId, $language, $typeAlias, $routerName) {
 		$link = '';
 		$explodedAlias = explode('.', $typeAlias);
 		$explodedRouter = explode('::', $routerName);
@@ -307,5 +305,53 @@ abstract class PlayJoomHelperRoute {
 		}
 
 		return $link;
+	}
+
+	/**
+	 * Method to create a link string for to get a cover
+	 *
+	 * @param array $albums_items
+	 * @param string $album_base64 Name of the current album, coded in base64
+	 * @param string $artist_base64 Name of the current artist, coded in base64
+	 * @param string $artist_base64 Name of the current category, coded in base64
+	 * @return string
+	 */
+	public static function getCoverRoute($albums_items,$album_base64,$artist_base64,$category_base64,$view,$modulelink=null) {
+
+		$session = JFactory::getSession();
+
+		switch ($albums_items->mime) {
+			case "image/jpeg" :
+				$image_type = 'jpeg';
+				break;
+			case "image/jpg" :
+				$image_type = 'jpg';
+				break;
+			case "image/gif" :
+				$image_type = 'gif';
+				break;
+			case "image/png" :
+				$image_type = 'png';
+				break;
+			default:
+				$image_type = null;
+		}
+
+		//Create image link
+		$url_parameters_cover = 
+			'option=com_playjoom'.
+			'&amp;view=coverdata'.
+			'&amp;format=image'.
+			'&amp;type='.$image_type.
+			'&amp;coverid='.$albums_items->coverid.
+			'&amp;album='.$album_base64.
+			'&amp;artist='.$artist_base64.
+			'&amp;cat='.$category_base64.
+			'&amp;catid='.$albums_items->catid.
+			'&amp;Itemid='.JRequest::getVar('Itemid').
+			'&amp;coverview='.$view.
+			'&amp;tlk='.hash('sha256',$session->getId().'+'.PlayJoomHelper::getUserIP().'+'.$albums_items->catid);
+
+		return 'index.php?'.$url_parameters_cover.$modulelink;
 	}
 }

@@ -97,7 +97,7 @@
                         default=""
                 />
         </fieldset>
-        <fieldset
+	<fieldset
                name="viewer"
                label="COM_PLAYJOOM_CONFIG_VIEWER_SETTINGS_LABEL"
                description="COM_PLAYJOOM_CONFIG_VIEWER_SETTINGS_DESC"
@@ -184,108 +184,15 @@
                         <option value="0">JHIDE</option>
                         <option value="1">JSHOW</option>
                 </field>
-                
-                <field
-                       name="show_category"
-                       label="COM_PLAYJOOM_CONFIG_VIEWER_SETTINGS_GENRE_LABEL"
-                       type="spacer"
-                       default="Advanced parameters"
-
-               >
-                </field>                              
-                <field
-                       name="genre_show_cover"
-                       type="radio"
-                       class="btn-group"
-                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_GENRE_LABEL"
-                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_GENRE_LABEL_DESC"
-                       default="0"
-               >
-                        <option value="0">JHIDE</option>
-                        <option value="1">JSHOW</option>
-                </field>
-                <field
-                       name="genre_cover_size"
+		<field
+                       name="artist_cover_size"
                        type="text"
-                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_GENRE_LABEL"
-                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_GENRE_LABEL_DESC"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_ARTIST_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_ARTIST_LABEL_DESC"
                        size="10"
                        class="inputbox validate-trackrules"
-                       default=""
+                       default="350"
                />
-               <field
-                       name="numbers_of_titles_genre"
-                       type="text"
-                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_NUMBERS_OF_TITLES_GENRE_LABEL"
-                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_NUMBERS_OF_TITLES_GENRE_LABEL_DESC"
-                       size="2"
-                       class="inputbox validate-trackrules"
-                       default="8"
-               />
-               <field
-                       name="show_running_time_genre"
-                       type="radio"
-                       class="btn-group"
-                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_RUNNING_TIME_GENRE_LABEL"
-                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_RUNNING_TIME_GENRE_LABEL_DESC"
-                       default="0"
-               >
-                        <option value="0">JHIDE</option>
-                        <option value="1">JSHOW</option>
-                </field>
-                <field
-                       name="show_hits_genre"
-                       type="radio"
-                       class="btn-group"
-                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_HITS_GENRE_LABEL"
-                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_HITS_GENRE_LABEL_DESC"
-                       default="0"
-               >
-                        <option value="0">JHIDE</option>
-                        <option value="1">JSHOW</option>
-                </field>
-            
-                <field
-                       name="show_alphabetical"
-                       label="COM_PLAYJOOM_CONFIG_VIEWER_SETTINGS_ALPHABETICAL_LABEL"
-                       type="spacer"
-                       default="Advanced parameters"
-
-               >
-                </field>
-                <field
-                       name="alphabetical_show_cover"
-                       type="radio"
-                       class="btn-group"
-                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_ALPHABETICAL_LABEL"
-                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_ALPHABETICAL_LABEL_DESC"
-                       default="0"
-               >
-                        <option value="0">JHIDE</option>
-                        <option value="1">JSHOW</option>
-                </field>
-                <field
-                       name="show_additional_info_artist_alphabetical"
-                       type="radio"
-                       class="btn-group"
-                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_ARTIST_LABEL"
-                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_ARTIST_LABEL_DESC"
-                       default="0"
-               >
-                        <option value="0">JHIDE</option>
-                        <option value="1">JSHOW</option>
-                </field>
-                <field
-                       name="show_additional_info_genre_alphabetical"
-                       type="radio"
-                       class="btn-group"
-                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_GENRE_LABEL"
-                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_ADDITIONAL_INFO_GENRE_LABEL_DESC"
-                       default="0"
-               >
-                        <option value="0">JHIDE</option>
-                        <option value="1">JSHOW</option>
-                </field>
         </fieldset>
         <fieldset
                name="Filesmanagement"

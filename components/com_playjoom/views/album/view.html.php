@@ -63,7 +63,7 @@ class PlayJoomViewAlbum extends JViewLegacy {
 
 
 		//load params data
-		$this->assignRef('params',		$params);
+		$this->assignRef('params',$params);
 
 		$this->_prepareDocument($params);
 

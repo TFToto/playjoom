@@ -324,7 +324,6 @@ class PlayJoomHelperCover {
 	private function getAlbumCoverDatas($item, $SamplerCheck=false) {
 
 		$dispatcher	= JDispatcher::getInstance();
-		$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Get cover for id: '.print_r($item,true), 'priority' => JLog::WARNING, 'section' => 'site')));
 
 		if (isset($item->cover_id) && $item->cover_id >= 1 && $item->cover_id != '') {
 
