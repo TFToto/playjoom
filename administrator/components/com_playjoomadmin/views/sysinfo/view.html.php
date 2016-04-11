@@ -48,6 +48,9 @@ class PlayJoomAdminViewSysinfo extends JViewLegacy
 	 */
 	public function display($tpl = null)
 	{
+		//Get config for PlayJoomUpdate
+		$this->UpdateConf = PlayjoomadminHelper::getConfig('Admin',JPATH_COMPONENT_ADMINISTRATOR.'/playjoomadmin.conf.php');
+
 		// Access check.
 		if (!JFactory::getUser()->authorise('core.admin'))
 		{

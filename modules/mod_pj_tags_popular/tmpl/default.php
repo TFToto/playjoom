@@ -1,9 +1,9 @@
 <?php
 /**
- * @package     Joomla.Site
- * @subpackage  mod_tags_popular
+ * @package     PlayJoom.Site
+ * @subpackage  mod_pj_tags_popular
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2010 - 2016 by teglo. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 

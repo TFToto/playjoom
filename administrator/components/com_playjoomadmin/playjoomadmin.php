@@ -12,6 +12,9 @@ JHtml::_('behavior.tabstate');
 
 // No access check.
 
+//Load helper methods
+require_once JPATH_COMPONENT.'/helpers/playjoomadmin.php';
+
 $controller	= JControllerLegacy::getInstance('PlayJoomAdmin');
 $controller->execute(JFactory::getApplication()->input->get('task'));
 $controller->redirect();

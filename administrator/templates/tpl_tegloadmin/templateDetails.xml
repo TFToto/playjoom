@@ -3,11 +3,11 @@
 <extension version="3.0" type="template" client="administrator" method="upgrade">
 	<name>tpl_tegloadmin</name>
 	<version>2.0</version>
-	<creationDate>Dezember 2012</creationDate>
+	<creationDate>Jan 2016</creationDate>
 	<author>Torsten Freyda</author>
 	<authorEmail>admin@teglo.info</authorEmail>
-	<copyright>Copyright (C) 2010 - 2012 by teglo. All rights reserved.</copyright>
-	<description>TPL_ISIS_XML_DESCRIPTION</description>
+	<copyright>Copyright (C) 2010 - 2016 by teglo. All rights reserved.</copyright>
+	<description>TPL_TEGLOADMIN_XML_DESCRIPTION</description>
 	<files>
 		<filename>component.php</filename>
 		<filename>cpanel.php</filename>
@@ -40,74 +40,37 @@
 		<position>debug</position>
 	</positions>
 	<languages folder="language">
-		<language tag="en-GB">en-GB/en-GB.tpl_isis.ini</language>
-		<language tag="en-GB">en-GB/en-GB.tpl_isis.sys.ini</language>
-	</languages>
+        <language tag="en-GB">en-GB/en-GB.tpl_tpl_tegloadmin.ini</language>
+        <language tag="en-GB">en-GB/en-GB.tpl_tpl_tegloadmin.sys.ini</language>
+    </languages>
 	<config>
 		<fields name="params">
 			<fieldset name="advanced">
 
 				<field name="templateColor" class="" type="color" default="#13294A"
 				validate="color"
-				label="TPL_ISIS_COLOR_LABEL"
-				description="TPL_ISIS_COLOR_DESC" />
+				label="TPL_TELGOADMIN_MAIN_COLOR_LABEL"
+				description="TPL_TELGOADMIN_MAIN_COLOR_LABEL_DESC" />
 				
 				<field name="headerColor" class="" type="color" default="#184A7D"
 				validate="color"
-				label="TPL_ISIS_COLOR_HEADER_LABEL"
-				description="TPL_ISIS_COLOR_HEADER_DESC" />
+				label="TPL_TELGOADMIN_HEADER_COLOR_LABEL"
+				description="TPL_TELGOADMIN_HEADER_COLOR_LABEL_DESC" />
 
 				<field name="logoFile" class="" type="media" default=""
-				label="TPL_ISIS_LOGO_LABEL"
-				description="TPL_ISIS_LOGO_DESC" />
-
-				<field name="admin_menus" type="radio"
-				class="btn-group"
-				default="1"
-				label="TPL_ISIS_FIELD_ADMIN_MENUS_LABEL"
-				description="TPL_ISIS_FIELD_ADMIN_MENUS_DESC"
-				filter="integer">
-				<option
-					value="1">JYES</option>
-				<option
-					value="0">JNO</option>
-				</field>
-
-				<field name="displayHeader" type="radio"
-				class="btn-group"
-				default="1"
-				label="TPL_ISIS_HEADER_LABEL"
-				description="TPL_ISIS_HEADER_DESC"
-				filter="integer">
-				<option
-					value="1">JYES</option>
-				<option
-					value="0">JNO</option>
-				</field>
+				label="TPL_TELGOADMIN_LOGO_LABEL"
+				description="TPL_TELGOADMIN_LOGO_LABEL_DESC" />
 
 				<field name="statusFixed" type="list"
 				default="1"
-				label="TPL_ISIS_STATUS_LABEL"
-				description="TPL_ISIS_STATUS_DESC"
+				label="TPL_TELGOADMIN_STATUS_LABEL"
+				description="TPL_TELGOADMIN_STATUS_DESC"
 				filter="integer">
 				<option
-					value="1">TPL_ISIS_STATUS_BOTTOM</option>
+					value="1">TPL_TELGOADMIN_STATUS_BOTTOM</option>
 				<option
-					value="0">TPL_ISIS_STATUS_TOP</option>
+					value="0">TPL_TELGOADMIN_STATUS_TOP</option>
 				</field>
-
-				<field name="stickyToolbar" type="radio"
-				class="btn-group"
-				default="1"
-				label="TPL_ISIS_STICKY_LABEL"
-				description="TPL_ISIS_STICKY_DESC"
-				filter="integer">
-				<option
-					value="1">JYES</option>
-				<option
-					value="0">JNO</option>
-				</field>
-
 			</fieldset>
 		</fields>
 	</config>
