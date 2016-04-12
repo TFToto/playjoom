@@ -38,7 +38,6 @@ class PlayJoomViewAlbum extends JViewLegacy {
 		// Get data from the model
 		$items       = $this->get('Items');
 		$PLitems     = $this->get('Attachplaylists');
-
 		//Get setting values from xml file
 		$app		= JFactory::getApplication();
 		$params		= $app->getParams();

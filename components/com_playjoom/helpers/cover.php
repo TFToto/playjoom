@@ -425,10 +425,10 @@ class PlayJoomHelperCover {
 
 		if (!$SamplerCheck) {
 			//Request for no Sampler
-			$query->where('(cb.album = "'.$item->album. '" AND cb.artist = "'.$item->artist. '")');
+			$query->where('(cb.album = '.$db->quote($item->album).' AND cb.artist = '.$db->quote($item->artist).')');
 		} else {
 			//Request for Sampler
-			$query->where('cb.album = "'.$item->album. '"');
+			$query->where('cb.album = '.$db->quote($item->album));
 		}
 
 		$db->setQuery($query);
@@ -442,9 +442,9 @@ class PlayJoomHelperCover {
 
 			//Check for albumname as sampler
 			if ($SamplerCheck) {
-				$query->where('(t.album = "'.$item->album. '" AND t.artist = "'.$item->artist. '")');
+				$query->where('(t.album = '.$db->quote($item->album). ' AND t.artist = '.$db->quote($item->artist). ')');
 			} else {
-				$query->where('t.album = "'.$item->album. '"');
+				$query->where('t.album = '.$db->quote($item->album));
 			}
 
 			$db->setQuery($query);

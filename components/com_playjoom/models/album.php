@@ -51,11 +51,16 @@ class PlayJoomModelAlbum extends JModelList {
 		//For getting the xml parameters
 		$app    = JFactory::getApplication();
 		$params	= $app->getParams();
+		
+		$dispatcher	= JDispatcher::getInstance();
 
 		//Get url queries
-		$album = base64_decode(JRequest::getVar('album'));
-		$artist = base64_decode(JRequest::getVar('artist'));
-
+		//$album = base64_decode(JRequest::getVar('album'));
+		//$artist = base64_decode(JRequest::getVar('artist'));
+		$album = base64_decode($app->input->get('album'));
+		$artist = base64_decode($app->input->get('artist'));
+		$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Get datas for: '.$artist.', '.$album, 'priority' => JLog::INFO, 'section' => 'site')));
+				
 		// Create a new query object.
 		$db = $this->getDbo();
 		$query = $db->getQuery(true);
@@ -92,10 +97,10 @@ class PlayJoomModelAlbum extends JModelList {
 
 		//Check for albumname as sampler
 		if (!PlayJoomHelper::checkForSampler($album, $artist)) {
-			$query->where('(a.album = "'.$album. '" AND a.artist = "'.$artist. '")');
+			$query->where('(a.album = '.$db->quote($album).' AND a.artist = '.$db->quote($artist).')');
 		}
 		else {
-			$query->where('a.album = "'.$album. '"');
+			$query->where('a.album = '.$db->quote($album));
 		}
 
 		// Implement View Level Access
@@ -158,9 +163,9 @@ class PlayJoomModelAlbum extends JModelList {
         	    /*
         	     * query conditions
         	     */
-        	    $query->where('(at.year <= "'.$Year. '")');
-        	    $query->where('(at.artist = "'.$Artist. '")');
-        	    $query->where('(at.album <>  "'.$Album. '")');
+        	    $query->where('(at.year <= '.$db->quote($Year).')');
+        	    $query->where('(at.artist = '.$db->quote($Artist).')');
+        	    $query->where('(at.album <> '.$db->quote($Album).')');
 
         	// Implement View Level Access
         	if (!$user->authorise('core.admin')
@@ -228,9 +233,9 @@ class PlayJoomModelAlbum extends JModelList {
             /*
              * query conditions
              */
-        	$query->where('(at.year > "'.$Year. '")');
-        	$query->where('(at.artist = "'.$Artist. '")');
-        	$query->where('(at.album <>  "'.$Album. '")');
+        	$query->where('(at.year > '.$db->quote($Year).')');
+        	$query->where('(at.artist = '.$db->quote($Artist).')');
+        	$query->where('(at.album <> '.$db->quote($Album).')');
 
         	// Implement View Level Access
         	if (!$user->authorise('core.admin')
@@ -357,7 +362,7 @@ class PlayJoomModelAlbum extends JModelList {
         $query->select('pl.id, pl.user_id, pl.access, pl.name, pl.attach_artist');
 
         //Artist filter
-        $query->where('pl.attach_artist = "'.base64_decode(JRequest::getVar('artist')).'"');
+        $query->where('pl.attach_artist = '.$db->quote(base64_decode(JRequest::getVar('artist'))));
 
         // Implement View Level Access
         if (!$user->authorise('core.admin')

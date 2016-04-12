@@ -96,7 +96,7 @@ class PlayJoomModelCoverData extends JModelItem {
 				} else {
 					if (!$this->SamplerCheck) {
 						//Request for no Sampler
-						$query->where('(cb.album = "'.$this->albumname. '" AND cb.artist = "'.$this->artistname. '")');
+						$query->where('(cb.album = '.$db->quote($this->albumname).' AND cb.artist = '.$db->quote($this->artistname));
 					} else {
 						//Request for Sampler
 						$query->where('cb.album = '.$db->quote($this->albumname));

@@ -280,7 +280,7 @@ abstract class PlayJoomHelper {
     			 $About = base64_decode($AboutInfo['album']);
     			 $query->select('title,album_release,label,production,infotxt');
                  $query->from('#__jpalbums');
-                 $query->where('title = "'.$About. '"');
+                 $query->where('title = '.$db->quote($About));
 
                  $db->setQuery($query);
                  $checkResult = $db->loadObject();

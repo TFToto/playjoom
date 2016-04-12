@@ -54,26 +54,26 @@ class PlayJoomModelInfoabout extends JModelItem
     	    	case "album" :
     	    		$query->select('title,album_release,label,production,infotxt');
                     $query->from('#__jpalbums');
-                    $query->where('title = "'.base64_decode(JRequest::getVar('album')). '"');
+                    $query->where('title = '.$db->quote(base64_decode(JRequest::getVar('album'))));
     	        break;
     	    
     	        case "artist" :
     	        	$query->select('name,formation,members,infotxt');
                     $query->from('#__jpartists');
-                    $query->where('name = "'.base64_decode(JRequest::getVar('artist')). '"');
+                    $query->where('name = "'.$db->quote(base64_decode(JRequest::getVar('artist'))));
     	        break;
     	    
     	        case "genre" :
     	        	$query->select('title,description');
                     $query->from('#__categories');
                     $query->where('extension = "com_playjoom"');
-                    $query->where('title = "'.base64_decode(JRequest::getVar('genre')). '"');
+                    $query->where('title = '.$db->quote(base64_decode(JRequest::getVar('genre'))));
     	        break;
     		
     	        case "track" :
     			    $query->select('title,description');
                     $query->from('#__jpaudiotracks');
-                    $query->where('id = "'.base64_decode(JRequest::getVar('track')). '"');
+                    $query->where('id = '.$db->quote(base64_decode(JRequest::getVar('track'))));
     	        break;
     	    
     		    default:
