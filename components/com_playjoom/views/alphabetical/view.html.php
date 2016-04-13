@@ -1,21 +1,10 @@
 <?php
 /**
- * @package Joomla 1.6.x
- * @copyright	Copyright (C) 2005 - 2010 Open Source Matters. All rights reserved.
- * @license		GNU/GPL, see LICENSE.php
- * Joomla! is free software. This version may have been modified pursuant to the
- * GNU General Public License, and as distributed it includes or is derivative
- * of works licensed under the GNU General Public License or other free or open
- * source software licenses. See COPYRIGHT.php for copyright notices and
- * details.
+ * @package     PlayJoom.Site
+ * @subpackage  com_playjoom
  *
- * @PlayJoom Component
- * @copyright Copyright (C) 2010-2013 by www.teglo.info
- * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
- * @date $Date$
- * @revision $Revision$
- * @author $Author$
- * @headurl $HeadURL$
+ * @copyright Copyright (C) 2010-2016 by www.playjoom.org
+ * @license http://www.playjoom.org/en/about/licenses/gnu-general-public-license.html
  */
 
 defined('_JEXEC') or die('Restricted access');
@@ -28,11 +17,25 @@ jimport( 'joomla.application.component.helper' );
 /**
  * HTML View class for the PlayJoom Component
  */
-class PlayJoomViewAlphabetical extends JViewLegacy
-{
-        // Overwriting JView display method
-        function display($tpl = null) {
-                // Get data from the model
+class PlayJoomViewAlphabetical extends JViewLegacy {
+
+	/**
+	 * Constructor.
+	 *
+	 * @param	array	An optional associative array of configuration settings.
+	 * @see		JController
+	 * @since	1.6
+	 */
+	public function __construct($config = array()) {
+	
+		$this->input_items = JFactory::getApplication()->input;
+	
+		parent::__construct($config);
+	}
+
+	// Overwriting JView display method
+	function display($tpl = null) {
+		// Get data from the model
                 $items       = $this->get('Items');
 
                 $pagination  = $this->get('Pagination');
@@ -42,7 +45,7 @@ class PlayJoomViewAlphabetical extends JViewLegacy
                 $params		= $app->getParams();
 
                 // Assign data to the view
-                $this->items = $items;
+                $this->items = $items;		
                 $this->pagination = $pagination;
 
                 //For filter and ordering function
@@ -56,8 +59,10 @@ class PlayJoomViewAlphabetical extends JViewLegacy
                 	$document	= JFactory::getDocument();
                 	$document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/filter.css');
                 }
-
-                $this->_prepareDocument($params);
+		
+		// Set the document
+		$this->setDocument();
+                //$this->_prepareDocument($params);
 
                 parent::display($tpl);
         }
@@ -85,4 +90,25 @@ class PlayJoomViewAlphabetical extends JViewLegacy
         	//Set Page title
         	$this->document->setTitle($app->getCfg('sitename').' - '.JRequest::getVar('LetterForAlphabetical'));
         }
+	
+	/**
+	 * Method to set up the document properties
+	 *
+	 * @return void
+	 */
+	protected function setDocument() {
+
+    	//load javascripts
+		JHtml::_('jquery.framework');
+
+		//load PlayJoom scripts
+		JHtml::addIncludePath(JPATH_LIBRARIES . '/playjoom/cms/html');
+		JHtml::_('Cover.library',$this->input_items->get('view'));
+
+		$document = JFactory::getDocument();
+
+		$document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/album_view.css');
+		$document->addStyleSheet(JURI::base(true).'/components/com_playjoom/assets/css/artist_view.css');
+
+	}
 }

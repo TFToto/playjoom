@@ -159,7 +159,7 @@ class PlayJoomModelAlphabetical extends JModelList {
 
 		//For getting the xml parameters
 		$app = JFactory::getApplication();
-        $params		= $app->getParams();
+		$params = $app->getParams();
 
 		// Create a new query object.
 		$db = $this->getDbo();
@@ -296,15 +296,19 @@ class PlayJoomModelAlphabetical extends JModelList {
     	//Get User objects
     	$user	= JFactory::getUser();
 
-		$query->select('a.album, a.year, a.artist');
+		$query->select('a.album, a.year, a.artist, a.catid');
 		$query->where('a.artist = "'.$artist.'"');
 		$query->order('a.year');
 		$query->group('a.album');
 
 		$query->from('#__jpaudiotracks AS a');
 
+		// Join over the categories.
+		$query->select('c.title AS category_title');
+		$query->join('LEFT', '#__categories AS c ON c.id = a.catid');
+
 		// Join over the covers.
-		$query->select('cb.id AS cover_id');
+		$query->select('cb.id AS coverid, cb.mime');
 		$query->join('LEFT', '#__jpcoverblobs AS cb ON cb.id = a.coverid');
 
         // Implement View Level Access

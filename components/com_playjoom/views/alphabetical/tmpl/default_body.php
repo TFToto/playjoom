@@ -90,14 +90,15 @@ switch($this->params->get('show_alphabetical')) {
 			$counter = $counter + 1;
 			echo '<fieldset class="batch">';
 				echo '<legend><a href="'.$artistlink.'" title="Continue to the artist view" class="ArtistLink">'.$item->artist.'</a>'.$ArtistChecker.'&nbsp;|&nbsp;<a href="'.$genrelink.'" class="GenreLink" title="Continue to the genre view">'.$item->category_title.'</a>'.$GenreChecker.'</legend>';
-				echo '<ul class="ListOfAlbums">';
+				echo '<ul class="list_of_albums">';
 
 					foreach($album_list as $j => $albenitem) {
 
 						$cover_counter = $cover_counter +1;
-						$albumsting = base64_encode($albenitem->album);
-						$artiststing = base64_encode($albenitem->artist);
-						$albumlink = 'index.php?option=com_playjoom&view=album&album='.$albumsting.'&artist='.$artiststing.'&Itemid='.JRequest::getVar('Itemid');
+						$albumstring = base64_encode($albenitem->album);
+						$artiststring = base64_encode($albenitem->artist);
+						$categorysting = base64_encode($albenitem->category_title);
+						$albumlink = 'index.php?option=com_playjoom&view=album&album='.$albumstring.'&artist='.$artiststring.'&Itemid='.JRequest::getVar('Itemid');
 
 						//create album string
 						$AlbumLenght = strlen($albenitem->album);
@@ -107,13 +108,8 @@ switch($this->params->get('show_alphabetical')) {
 							$AlbumName = $albenitem->album;
 						}
 
-						//Get Album thumbnail
-						if ($this->params->get(JRequest::getVar('view').'_show_cover', 1) == 1) {
-							$cover = new PlayJoomHelperCover();
-							$coverthumb = $cover->getCoverHTMLTag($albenitem, $SamplerCheck);
-						}
-
-						echo '<li class="AlbumList"><a href="'.$albumlink.'" title="Continue to the album view">'.$coverthumb.'<br />'.$AlbumName.'</a> ('.$albenitem->year.')</li>';
+						echo '<li class="album_item"><a title="Continue to the album view" href="'.$albumlink.'"><img class="cover" data-src="'.JRoute::_(PlayJoomHelperRoute::getCoverRoute($albenitem,$albumstring,$artiststring,$categorysting, JFactory::getApplication()->input->get('view'))).'" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />'.PlayJoomHelper::createItemtitle($albenitem, PlayJoomHelper::checkForSampler($albenitem->album, $albenitem->artist)).'</a></li>';
+						//echo '<li class="AlbumList"><a href="'.$albumlink.'" title="Continue to the album view">'.$coverthumb.'<br />'.$AlbumName.'</a> ('.$albenitem->year.')</li>';
 						}
 				echo '</ul>';
 			echo '</fieldset>';
