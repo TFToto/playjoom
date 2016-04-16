@@ -77,25 +77,6 @@
                         <option value="wiki">COM_PLAYJOOM_PLAYJOOM_FIELD_INFO_SOURCE_WIKI</option>
                         <option value="lastfm">COM_PLAYJOOM_PLAYJOOM_FIELD_INFO_SOURCE_LASTFM</option>
                 </field>
-                <field
-			           name="save_cover_tmp"
-			           type="radio"
-			           class="btn-group"
-			           default="0"
-			           label="COM_PLAYJOOM_PLAYJOOM_FIELD_SAVE_COVER_TMP_LABEL"
-			           description="COM_PLAYJOOM_PLAYJOOM_FIELD_SAVE_COVER_TMP_LABEL_DESC">
-			               <option value="0">JNO</option>
-			               <option value="1">JYES</option>
-		        </field>
-		        <field
-                        name="path_cover_files_tmp"
-                        type="text"
-                        label="COM_PLAYJOOM_PLAYJOOM_FIELD_PATH_FOR_COVER_FILES_LABEL"
-                        description="COM_PLAYJOOM_PLAYJOOM_FIELD_PATH_FOR_COVER_FILES_LABEL_DESC"
-                        size="10"
-                        class="inputbox validate-trackrules"
-                        default=""
-                />
         </fieldset>
 	<fieldset
                name="viewer"

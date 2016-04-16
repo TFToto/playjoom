@@ -38,11 +38,6 @@ echo '<div class="section-container auto" data-section>';
 					//Check for albumname as sampler
 					$SamplerCheck = PlayJoomHelper::checkForSampler($item->album, $item->artist);
 
-					//Get Album thumbnail
-					if ($this->params->get(JRequest::getVar('view').'_show_cover', 1) == 1) {
-						$cover = new PlayJoomHelperCover();
-						$coverthumb = $cover->getCoverHTMLTag($item, $SamplerCheck);
-					}
 				echo '<li class="album_item"><a title="Continue to the album view" href="'.$item->albumlink.'"><img class="cover" data-src="'.$item->coverlink.'" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />'.$item->itemtitle.'</a></li>';
            		}
        		echo '</ul>';
@@ -76,11 +71,6 @@ echo '<div class="section-container auto" data-section>';
 									$categorystring = base64_encode($item->category_title);
   									$albumlink = 'index.php?option=com_playjoom&view=album&album='.$albumsting.'&artist='.$artiststing.'&Itemid='.JRequest::getVar('Itemid').'&cat='.base64_encode($item->category_title).'&catid='.$item->catid;
 
-  									//Get Album thumbnail
-									if ($this->params->get(JRequest::getVar('view').'_show_cover', 1) == 1) {
-										$cover = new PlayJoomHelperCover();
-										$coverthumb = $cover->getCoverHTMLTag($item, $SamplerCheck);
-									}
 									echo '<li class="album_item"><a title="Continue to the album view" href="'.PlayJoomHelper::createAlbumlink($item,$albumsting,$artiststing,$categorystring).'"><img class="cover" data-src="'.PlayJoomHelper::createCoverlink($item,$albumsting,$artiststing,$categorystring,JFactory::getApplication()->input->get('view')).'" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />'.PlayJoomHelper::createItemtitle($item, PlayJoomHelper::checkForSampler($item->album, $item->artist)).'</a></li>';
   								}
   							echo '</ul>';

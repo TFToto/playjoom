@@ -86,7 +86,7 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 			if (count($errors = $this->get('Errors'))) {
 				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'JError! RaiseError: '.$errors, 'priority' => JLog::ERROR, 'section' => 'site')));
 				JError::raiseError(500, implode('<br />', $errors));
-				return false;
+				exit();
 			}
 
 			JLoader::import( 'helpers.broadcast', JPATH_SITE .DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_playjoom');
@@ -107,14 +107,20 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 			// Prevent the script from timing out
 			set_time_limit(0);
 
-			$fp = fopen($this->item->pathatlocal.DIRECTORY_SEPARATOR.$this->item->file, 'rb');
+			try {
+				$fp = fopen($this->item->pathatlocal.DIRECTORY_SEPARATOR.$this->item->file, 'rb');
 
-			$stream_size = $this->item->filesize;
-
-			if (!is_resource($fp)) {
-				//debug_event('play', "Failed to open $media->file for streaming", 2);
+				if (!$fp) {
+        				throw new Exception('Not able to open streaming file '.$this->item->pathatlocal.DIRECTORY_SEPARATOR.$this->item->file);
+    				}
+			} catch (Exception $e) {
+				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => $e->getMessage(), 'priority' => JLog::ERROR, 'section' => 'site')));
 				exit();
 			}
+			
+			//$fp = fopen($this->item->pathatlocal.DIRECTORY_SEPARATOR.$this->item->file, 'rb');
+
+			$stream_size = $this->item->filesize;
 
 			header('ETag: ' . $this->item->id);
 
@@ -134,14 +140,15 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 				}
 
 				if ($stream_size == null) {
+				    $dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Content-Range header received, which we cannot fulfill due to unknown final length (transcoding?)', 'priority' => JLog::WARNING, 'section' => 'site')));
 					//debug_event('play', 'Content-Range header received, which we cannot fulfill due to unknown final length (transcoding?)', 2);
 				} else {
-					//debug_event('play', 'Content-Range header received, skipping ' . $start . ' bytes out of ' . $media->filesize, 5);
-					fseek($fp, $start);
+				    $dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Content-Range header received, skipping ' . $start . ' bytes out of ' . $stream_size, 'priority' => JLog::WARNING, 'section' => 'site')));
+				    fseek($fp, $start);
 
-					$range = $start . '-' . $end . '/' . $this->item->filesize;
-					header('HTTP/1.1 206 Partial Content');
-					header('Content-Range: bytes ' . $range);
+				    $range = $start . '-' . $end . '/' . $this->item->filesize;
+				    header('HTTP/1.1 206 Partial Content');
+				    header('Content-Range: bytes ' . $range);
 				}
 			}
 
@@ -155,10 +162,20 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 				$read_size = $transcode
 				? 2048
 				: min(2048, $stream_size - $bytes_streamed);
-				$buf = fread($fp, $read_size);
+				
+				//Try to read the streaming file for broadcasting the content
+				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Try to read the streaming file for broadcasting the content.', 'priority' => JLog::INFO, 'section' => 'site')));
+				   
+				try {
+				    $buf = fread($fp, $read_size);
+				} catch (Exception $ex) {
+				    $dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => $e->getMessage(), 'priority' => JLog::ERROR, 'section' => 'site')));
+				    exit();
+				}
 				print($buf);
 				ob_flush();
 				$bytes_streamed += strlen($buf);
+
 			} while (!feof($fp) && (connection_status() == 0) && ($transcode || $bytes_streamed < $stream_size));
 
 			$real_bytes_streamed = $bytes_streamed;
@@ -169,12 +186,13 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 				$bytes_streamed = $stream_size;
 			}
 
+			$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'File reading is done, File handler will be closed: ', 'priority' => JLog::INFO, 'section' => 'site')));
+			fclose($fp);
+
 			//set current counter
 			if (true === isset($this->item->id)) {
 				PlayJoomHelper::countHit($this->item->id);
 			}
-
-			fclose($fp);
-	    }
+		}
 	}
 }
