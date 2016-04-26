@@ -3,7 +3,7 @@
  * @package     Joomla.Administrator
  * @subpackage  com_templates
  *
- * @copyright   Copyright (C) 2005 - 2013 Open Source Matters, Inc. All rights reserved.
+ * @copyright   Copyright (C) 2005 - 2015 Open Source Matters, Inc. All rights reserved.
  * @license     GNU General Public License version 2 or later; see LICENSE.txt
  */
 
@@ -12,9 +12,7 @@ defined('_JEXEC') or die;
 /**
  * View class for a list of template styles.
  *
- * @package     Joomla.Administrator
- * @subpackage  com_templates
- * @since       1.6
+ * @since  1.6
  */
 class TemplatesViewStyles extends JViewLegacy
 {
@@ -48,15 +46,6 @@ class TemplatesViewStyles extends JViewLegacy
 			return false;
 		}
 
-			// Check if there are no matching items
-		if (!count($this->items))
-		{
-			JFactory::getApplication()->enqueueMessage(
-				JText::_('COM_TEMPLATES_MSG_MANAGE_NO_STYLES'),
-				'warning'
-			);
-		}
-
 		$this->addToolbar();
 		$this->sidebar = JHtmlSidebar::render();
 
@@ -72,7 +61,7 @@ class TemplatesViewStyles extends JViewLegacy
 	 */
 	protected function addToolbar()
 	{
-		$canDo = TemplatesHelper::getActions();
+		$canDo = JHelperContent::getActions('com_templates');
 
 		JToolbarHelper::title(JText::_('COM_TEMPLATES_MANAGER_STYLES'), 'eye thememanager');
 
@@ -99,7 +88,7 @@ class TemplatesViewStyles extends JViewLegacy
 			JToolbarHelper::divider();
 		}
 
-		if ($canDo->get('core.admin'))
+		if ($canDo->get('core.admin') || $canDo->get('core.options'))
 		{
 			JToolbarHelper::preferences('com_templates');
 			JToolbarHelper::divider();
