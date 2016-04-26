@@ -15,8 +15,6 @@ JHtml::_('formbehavior.chosen', 'select');
 header("Cache-Control: no-cache, must-revalidate");
 header("Pragma: no-cache");
 
-$Cover = new PlayJoomHelperCover();
-
 //In Albumbox plugins configurations
 JPluginHelper::importPlugin('playjoom');
 $dispatcher	= JDispatcher::getInstance();

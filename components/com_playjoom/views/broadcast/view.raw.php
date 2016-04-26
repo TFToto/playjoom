@@ -86,7 +86,7 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 			if (count($errors = $this->get('Errors'))) {
 				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'JError! RaiseError: '.$errors, 'priority' => JLog::ERROR, 'section' => 'site')));
 				JError::raiseError(500, implode('<br />', $errors));
-				exit();
+				return false;
 			}
 
 			JLoader::import( 'helpers.broadcast', JPATH_SITE .DIRECTORY_SEPARATOR.'components'.DIRECTORY_SEPARATOR.'com_playjoom');
@@ -117,15 +117,12 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => $e->getMessage(), 'priority' => JLog::ERROR, 'section' => 'site')));
 				exit();
 			}
-			
-			//$fp = fopen($this->item->pathatlocal.DIRECTORY_SEPARATOR.$this->item->file, 'rb');
 
 			$stream_size = $this->item->filesize;
 
 			header('ETag: ' . $this->item->id);
 
 			// Handle Content-Range
-
 			$start = 0;
 			$end = 0;
 			sscanf($_SERVER['HTTP_RANGE'], "bytes=%d-%d", $start, $end);
@@ -141,7 +138,6 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 
 				if ($stream_size == null) {
 				    $dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Content-Range header received, which we cannot fulfill due to unknown final length (transcoding?)', 'priority' => JLog::WARNING, 'section' => 'site')));
-					//debug_event('play', 'Content-Range header received, which we cannot fulfill due to unknown final length (transcoding?)', 2);
 				} else {
 				    $dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Content-Range header received, skipping ' . $start . ' bytes out of ' . $stream_size, 'priority' => JLog::WARNING, 'section' => 'site')));
 				    fseek($fp, $start);
@@ -164,8 +160,6 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 				: min(2048, $stream_size - $bytes_streamed);
 				
 				//Try to read the streaming file for broadcasting the content
-				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Try to read the streaming file for broadcasting the content.', 'priority' => JLog::INFO, 'section' => 'site')));
-				   
 				try {
 				    $buf = fread($fp, $read_size);
 				} catch (Exception $ex) {

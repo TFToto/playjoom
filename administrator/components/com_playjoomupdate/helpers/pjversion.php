@@ -33,10 +33,10 @@ final class PJVersion {
 	public $PRODUCT = 'PlayJoom';
 
 	/** @var  string  Release version. */
-	public $RELEASE = '0.10';
+	public $RELEASE = '0.11';
 
 	/** @var  string  Maintenance version. */
-	public $DEV_LEVEL = '1';
+	public $DEV_LEVEL = '0';
 
 	/** @var  string  Development STATUS. */
 	public $DEV_STATUS = 'Beta';
@@ -45,10 +45,10 @@ final class PJVersion {
 	public $BUILD = '';
 
 	/** @var  string  Code name. */
-	public $CODENAME = 'Mars';
+	public $CODENAME = 'Neptune';
 
 	/** @var  string  Release date. */
-	public $RELDATE = '22-March-2015';
+	public $RELDATE = '22-June-2016';
 
 	/** @var  string  Release time. */
 	public $RELTIME = '14:00';
@@ -57,7 +57,7 @@ final class PJVersion {
 	public $RELTZ = 'GMT';
 
 	/** @var  string  Copyright Notice. */
-	public $COPYRIGHT = 'Copyright (C) 2010 - 2015 by teglo, Inc. All rights reserved.';
+	public $COPYRIGHT = 'Copyright (C) 2010 - 2016 by teglo, Inc. All rights reserved.';
 
 	/** @var  string  Link text. */
 	public $URL = '<a href="http://playjoom.teglo.info">PlayJoom</a> is Free Software released under the GNU General Public License.';

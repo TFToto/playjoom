@@ -6,12 +6,12 @@
 	method="upgrade">
 	<name>mod_pj_lastplayed</name>
 	<author>Torsten Freyda</author>
-	<creationDate>October 2011</creationDate>
-	<copyright>Copyright (C) 2010 - 2011 by teglo. All rights reserved.</copyright>
+	<creationDate>April 2016</creationDate>
+	<copyright>Copyright (C) 2010 - 2016 by teglo. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>admin@teglo.info</authorEmail>
 	<authorUrl>playjoom.teglo.info</authorUrl>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 	<description>MOD_PLAYJOOM_LASTPLAYED_XML_DESCRIPTION</description>
 	<files>
 		<filename
@@ -40,30 +40,6 @@
 					size="2"
 					label="MOD_PLAYJOOM_LASTPLAYED_FIELD_COUNT"
 					description="MOD_PLAYJOOM_LASTPLAYED_FIELD_COUNT_DESC" />
-               <field
-                        name="viewtype_for_access_time"
-                        type="list"
-                        label="MOD_PLAYJOOM_PLAYJOOM_FIELD_VIEWTYPE_ACCESSTIME_LABEL"
-                        description="MOD_PLAYJOOM_PLAYJOOM_FIELD_VIEWTYPE_ACCESSTIME_LABEL"
-                        default="0"
-                >
-                        <option value="1">MOD_PLAYJOOM_PLAYJOOM_FIELD_DATE</option>
-		                <option value="2">MOD_PLAYJOOM_PLAYJOOM_FIELD_DISTANCE</option>
-		                <option value="3">MOD_PLAYJOOM_PLAYJOOM_FIELD_COMBI</option>
-			            <option value="0">NO</option>
-                </field>
-                <field
-                        name="date_format"
-                        type="list"
-                        label="MOD_PLAYJOOM_PLAYJOOM_FIELD_DATE_FORMAT_LABEL"
-                        description="MOD_PLAYJOOM_PLAYJOOM_FIELD_DATE_FORMAT_LABEL_DESC"
-                        default="0"
-                >
-                        <option value="DATE_FORMAT_LC1">MOD_PLAYJOOM_PLAYJOOM_FIELD_DATEFORMAT_ONE</option>
-		                <option value="DATE_FORMAT_LC2">MOD_PLAYJOOM_PLAYJOOM_FIELD_DATEFORMAT_TWO</option>
-		                <option value="DATE_FORMAT_LC3">MOD_PLAYJOOM_PLAYJOOM_FIELD_DATEFORMAT_THREE</option>
-			            <option value="DATE_FORMAT_LC4">MOD_PLAYJOOM_PLAYJOOM_FIELD_DATEFORMAT_FOUR</option>
-                </field>
 			</fieldset>
 
 			<fieldset

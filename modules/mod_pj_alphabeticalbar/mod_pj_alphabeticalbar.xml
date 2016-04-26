@@ -6,12 +6,12 @@
 	method="upgrade">
 	<name>mod_pj_alphabeticalbar</name>
 	<author>Torsten Freyda</author>
-	<creationDate>November 2011</creationDate>
-	<copyright>Copyright (C) 2010 - 2011 by teglo. All rights reserved.</copyright>
+	<creationDate>April 2016</creationDate>
+	<copyright>Copyright (C) 2010 - 2016 by teglo. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>admin@teglo.info</authorEmail>
-	<authorUrl>playjoom.teglo.info</authorUrl>
-	<version>1.1.0</version>
+	<authorUrl>www.playjoom.org</authorUrl>
+	<version>1.1.1</version>
 	<description>MOD_PLAYJOOM_ALPHABETICALBAR_XML_DESCRIPTION</description>
 	<files>
 		<filename

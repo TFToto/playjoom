@@ -6,12 +6,12 @@
 	method="upgrade">
 	<name>mod_pj_newcontents</name>
 	<author>Torsten Freyda</author>
-	<creationDate>December 2012</creationDate>
-	<copyright>Copyright (C) 2010 - 2012 by teglo. All rights reserved.</copyright>
+	<creationDate>April 2016</creationDate>
+	<copyright>Copyright (C) 2010 - 2016 by teglo. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>admin@teglo.info</authorEmail>
-	<authorUrl>playjoom.teglo.info</authorUrl>
-	<version>1.2.0</version>
+	<authorUrl>www.playjoom.org</authorUrl>
+	<version>1.2.1</version>
 	<description>MOD_PLAYJOOM_NEWCONTENTS_XML_DESCRIPTION</description>
 	<files>
 		<filename

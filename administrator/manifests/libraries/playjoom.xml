@@ -4,18 +4,26 @@
 	<libraryname>playjoom</libraryname>
 	<version>1.0.0</version>
 	<description>LIB_PLAYJOOM_XML_DESCRIPTION</description>
-	<creationDate>March 2016</creationDate>
+	<creationDate>April 2016</creationDate>
 	<copyright>Copyright (C) 2010 - 2016 by telgo.info. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<author>PlayJoom Project</author>
 	<authorEmail>admin@teglo.info</authorEmail>
-	<authorUrl>download.teglo.info</authorUrl>
+	<authorUrl>www.playjoom.org</authorUrl>
 	<packager>PlayJoom</packager>
 	<files folder="libraries">
+		<folder>categories</folder>
 		<folder>cms</folder>
+		<folder>datetime</folder>
 		<file>index.html</file>
 	</files>
-        <media destination="lib_playjoom" folder="media">
+	<languages>
+		<language tag="en-GB">language/en-GB.lib_playjoom.ini</language>
+		<language tag="en-GB">language/en-GB.lib_playjoom.sys.ini</language>
+		<language tag="de-DE">language/de-DE.lib_playjoom.ini</language>
+		<language tag="de-DE">language/de-DE.lib_playjoom.sys.ini</language>
+	</languages>
+	<media destination="lib_playjoom" folder="media">
 		<filename>index.html</filename>
 		<folder>ajaxdata</folder>
 		<folder>cover</folder>
