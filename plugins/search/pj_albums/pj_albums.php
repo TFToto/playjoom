@@ -74,7 +74,6 @@ class plgSearchPj_albums extends JPlugin
 
 		require_once JPATH_SITE.'/components/com_playjoom/helpers/route.php';
 		require_once JPATH_SITE.'/components/com_playjoom/helpers/playjoom.php';
-		require_once JPATH_SITE.'/components/com_playjoom/helpers/logging.php';
 
 		$searchText = $text;
 		if (is_array($areas)) {
