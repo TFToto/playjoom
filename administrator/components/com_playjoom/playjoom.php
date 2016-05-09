@@ -19,11 +19,7 @@
  */
 
 // No direct access to this file
-defined('_JEXEC') or die('Restricted access');
-
-// require helper file
-//JLoader::register('PlayJoomHelper', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'playjoom.php');
-JLoader::register('PlayJoomLogging', dirname(__FILE__) . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'logging.php'); 
+defined('_JEXEC') or die('Restricted access'); 
 
 // Access check.
 if (!JFactory::getUser()->authorise('core.manage', 'com_playjoom')) {   
