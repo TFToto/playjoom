@@ -2,12 +2,12 @@
 <extension version="1.7" type="plugin" group="playjoom" method="upgrade">
 	<name>plg_playjoom_tracktimeinfo</name>
 	<author>Torsten Freyda</author>
-	<creationDate>Jan 2013</creationDate>
-	<copyright>Copyright (C) 2010-2013 by TFToto. All rights reserved.</copyright>
+	<creationDate>May 2016</creationDate>
+	<copyright>Copyright (C) 2010-2016 by TFToto. All rights reserved.</copyright>
 	<license>GNU General Public License version 2 or later; see LICENSE.txt</license>
 	<authorEmail>admin@teglo.info</authorEmail>
-	<authorUrl>playjoom.teglo.info</authorUrl>
-	<version>1.0.2</version>
+	<authorUrl>www.playjoom.org</authorUrl>
+	<version>1.0.3</version>
 	<description>PLG_PLAYJOOM_TRACKTIMEINFO_XML_DESCRIPTION</description>
 	<files>
 		<filename plugin="tracktimeinfo">tracktimeinfo.php</filename>
