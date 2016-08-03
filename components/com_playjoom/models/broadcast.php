@@ -69,6 +69,7 @@ class PlayJoomModelBroadcast extends JModelItem {
      public function getItem($pk = null) {
 
 		$dispatcher	= JDispatcher::getInstance();
+		$user = JFactory::getUser();
 
 		$pk = (!empty($pk)) ? $pk : (int) $this->getState('article.id');
 
@@ -99,7 +100,9 @@ class PlayJoomModelBroadcast extends JModelItem {
 				}
         	}
 
-        	if (self::checkValidSession($data->add_by, $pk)) {
+        	$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'isAdmin'.$isroot, 'priority' => JLog::WARNING, 'section' => 'site')));
+        	
+        	if (self::checkValidSession($data->add_by, $pk) || $user->authorise('core.admin')) {
         		$this->_item[$pk] = $data;
         		return $this->_item[$pk];
         	} else {
