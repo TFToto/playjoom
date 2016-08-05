@@ -53,7 +53,7 @@ abstract class modPJQuickIconHelper {
 
 		if (!isset(self::$buttons[$key])) {
 			$context = $params->get('context', 'mod_pj_quickicon');
-
+			
 			if ($context == 'mod_pj_quickicon')
 			{
 				// Load mod_quickicon language file in case this method is called before rendering the module
@@ -146,6 +146,7 @@ abstract class modPJQuickIconHelper {
 			$user	= JFactory::getUser();
 
 			if ($user->authorise('core.admin', 'com_playjoom')) {
+
 
 				$PJbuttons = array(
 

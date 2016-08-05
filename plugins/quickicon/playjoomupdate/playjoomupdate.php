@@ -53,7 +53,7 @@ class PlgQuickiconPlayJoomupdate extends JPlugin
 		if(!class_exists('InstallerHelper')){
 			require_once(JPATH_ADMINISTRATOR.'/components/com_installer/helpers/installer.php');
 		}
-		$this->UpdateConf = InstallerHelper::getConfig('Update',JPATH_ADMINISTRATOR.'/components/com_playjoomupdate/playjoomupdate.conf.php');
+		$this->UpdateConf = JFactory::getConfig('Update',JPATH_ADMINISTRATOR.'/components/com_playjoomupdate/playjoomupdate.conf.php');
 		$PJ_Extension_ID = $this->UpdateConf->get('PJUpdate_extension_id');
 
 		if ($context != $this->params->get('context', 'mod_pj_quickicon') || !JFactory::getUser()->authorise('core.manage', 'com_installer')) {

@@ -14,11 +14,8 @@ defined('_JEXEC') or die;
  *
  * @since  1.6
  */
-class InstallerHelper {
-
-	public static $PJconfig = null;
-
-	
+class InstallerHelper
+{
 	/**
 	 * Configure the Linkbar.
 	 *
@@ -141,44 +138,6 @@ class InstallerHelper {
 		$result = JHelperContent::getActions('com_installer');
 
 		return $result;
-	}
-
-	public static function getConfig($namespace = null, $file = null) {
-
-		if ($file === null || $namespace == null) {
-
-			//Set standard config file
-			$file = null;
-		}
-		InstallerHelper::$PJconfig = InstallerHelper::createPJConfig($file, $namespace);
-
-		return InstallerHelper::$PJconfig;
-	}
-
-	public static function createPJConfig($file, $namespace) {
-
-		jimport('joomla.registry.registry');
-
-		if (is_file($file)) {
-			include_once $file;
-		}
-
-		// Create the registry with a default namespace of config
-		$registry = new JRegistry();
-
-		// Build the config name.
-		$name = 'PJConfig'.$namespace;
-
-		// Handle the PHP configuration type.
-		if (class_exists($name)) {
-			// Create the JConfig object
-			$config = new $name();
-
-			// Load the configuration values into the registry
-			$registry->loadObject($config);
-		}
-
-		return $registry;
 	}
 
 	/**

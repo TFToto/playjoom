@@ -68,8 +68,8 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 		$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Call broadcast viewer for track id: '.JRequest::getVar('id'), 'priority' => JLog::INFO, 'section' => 'site')));
 
 		//Get setting values from xml file
-		$app		= JFactory::getApplication();
-		$params		= $app->getParams();
+		//$app		= JFactory::getApplication();
+		//$params		= $app->getParams();
 
 		if (!JRequest::getVar('tlk')) {
 			$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Access denied! Missing tlk.', 'priority' => JLog::ERROR, 'section' => 'site')));
@@ -172,7 +172,7 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 
 			} while (!feof($fp) && (connection_status() == 0) && ($transcode || $bytes_streamed < $stream_size));
 
-			$real_bytes_streamed = $bytes_streamed;
+			//$real_bytes_streamed = $bytes_streamed;
 			// Need to make sure enough bytes were sent.
 
 			if ($bytes_streamed < $stream_size && (connection_status() == 0)) {

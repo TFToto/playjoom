@@ -2,12 +2,12 @@
 <extension version="3.1" type="plugin" group="quickicon" method="upgrade">
 	<name>plg_quickicon_playjoomupdate</name>
 	<author>Teglo Project</author>
-	<creationDate>May 2014</creationDate>
-	<copyright>Copyright (C) 2010 - 2014 by teglo. All rights reserved.</copyright>
+	<creationDate>July 2016</creationDate>
+	<copyright>Copyright (C) 2010 - 2016 by teglo. All rights reserved.</copyright>
 	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
 	<authorEmail>admin@teglo.info</authorEmail>
 	<authorUrl>playjoom.teglo.info</authorUrl>
-	<version>1.0.0</version>
+	<version>1.0.1</version>
 	<description>PLG_QUICKICON_PLAYJOOMUPDATE_XML_DESCRIPTION</description>
 	<files>
 		<folder>js</folder>
