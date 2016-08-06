@@ -48,7 +48,7 @@ abstract class ID3TagsHelper {
 			$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'No track number value in ID3tag existing!', 'priority' => JLog::WARNING, 'section' => 'admin')));
 			$file_name = pathinfo($ThisFileInfo['filename']);
 			$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'String for to get number: '.$file_name['filename'], 'priority' => JLog::INFO, 'section' => 'admin')));
-			$possible_numbers = ereg_replace("[^0-9]", "", $file_name['filename']);
+			$possible_numbers = preg_replace("[^0-9]", "", $file_name['filename']);
 			if ($possible_numbers) {
 				$track_number_value = preg_replace("/^0+/",  "", $possible_numbers);
 			} else {
@@ -97,7 +97,7 @@ abstract class ID3TagsHelper {
 			$track_year_value = $ThisFileInfo['id3v1']['year'];
 		} else {
 			$album_name = basename($ThisFileInfo['filepath']);
-			$possible_year = ereg_replace("[^0-9]", "", $album_name);
+			$possible_year = preg_replace("[^0-9]", "", $album_name);
 			$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Possible album release could be: '.$possible_year, 'priority' => JLog::INFO, 'section' => 'admin')));
 
 			if (strlen((string)$possible_year) == 4 && $possible_year >= 1900) {
