@@ -93,6 +93,7 @@ class PlayJoomModelBroadcast extends JModelItem {
 			} catch (Exception $e) {
 				if ($e->getCode() == 404) {
 					// Need to go thru the error handler to allow Redirect to work.
+					$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Database problem occurred: '.$e->getMessage(), 'priority' => JLog::ERROR, 'section' => 'site')));
 					JError::raiseError(404, $e->getMessage());
 				} else {
 					$this->setError($e);
@@ -100,9 +101,7 @@ class PlayJoomModelBroadcast extends JModelItem {
 				}
         	}
 
-        	$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'isAdmin'.$isroot, 'priority' => JLog::WARNING, 'section' => 'site')));
-        	
-        	if (self::checkValidSession($data->add_by, $pk) || $user->authorise('core.admin')) {
+        	if ($user->authorise('core.admin') || self::checkValidSession($data->add_by, $pk)) {
         		$this->_item[$pk] = $data;
         		return $this->_item[$pk];
         	} else {

@@ -34,6 +34,8 @@ class PlayJoomViewDownload extends JViewLegacy {
         // Overwriting JView display method
         function display($tpl = null) {
 
+        	set_time_limit(1800);
+        	
         	$dispatcher	= JDispatcher::getInstance();
 
         	// Get data from the model

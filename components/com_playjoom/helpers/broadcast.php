@@ -44,13 +44,15 @@ class BroadcastHelper {
 	}
 	public function sendData($item, $params, $resamplestat=null) {
 
+		$dispatcher	= JDispatcher::getInstance();
+
 		ob_end_clean();
 
 		// don't abort the script if user skips this song because we need to update now_playing
 		ignore_user_abort(true);
 
 		// Format the song name
-		$media_name = $item->artist . " - " . $item->title . "." . JFile::getExt($item->file);
+		//$media_name = $item->artist . " - " . $item->title . "." . JFile::getExt($item->file);
 
 		header('Access-Control-Allow-Origin: *');
 
@@ -92,7 +94,7 @@ class BroadcastHelper {
 				//debug_event('play', 'Content-Range header received, skipping ' . $start . ' bytes out of ' . $media->filesize, 5);
 				fseek($fp, $start);
 
-				$range = $start . '-' . $end . '/' . $media->filesize;
+				$range = $start . '-' . $end . '/' . $item->filesize;
 				header('HTTP/1.1 206 Partial Content');
 				header('Content-Range: bytes ' . $range);
 			}
@@ -104,14 +106,18 @@ class BroadcastHelper {
 			$read_size = $transcode
 			? 2048
 			: min(2048, $stream_size - $bytes_streamed);
-			$buf = fread($fp, $read_size);
-			print($buf);
-			ob_flush(); //Important for vlc player!!
-			flush();
+			try {
+				$buf = fread($fp, $read_size);
+				print($buf);
+				ob_flush(); //Important for vlc player!!
+				flush();
+			} catch (Exception $e) {
+				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Problem with reading file: '.$e->getMessage(), 'priority' => JLog::ERROR, 'section' => 'site')));
+			}
 			$bytes_streamed += strlen($buf);
 		} while (!feof($fp) && (connection_status() == 0) && ($transcode || $bytes_streamed < $stream_size));
 
-		$real_bytes_streamed = $bytes_streamed;
+		//$real_bytes_streamed = $bytes_streamed;
 		// Need to make sure enough bytes were sent.
 
 		if ($bytes_streamed < $stream_size && (connection_status() == 0)) {

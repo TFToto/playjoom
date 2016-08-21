@@ -464,23 +464,22 @@ abstract class PlayJoomHelper {
 		$dNow = new JDate;
 		$DateTime = clone $dNow;
 
-    	$db = JFactory::getDBO();
-		$query = $db->getQuery(true);
-		$query->select('hits');
-		$query->from('#__jpaudiotracks');
-		$query->where('id = ' . (int) $track_id);
-
-		$db->setQuery($query);
-		$result = $db->loadObject();
+    	try {
+    		$db = JFactory::getDBO();
+    		$query = $db->getQuery(true);
+    		$query->select('hits');
+    		$query->from('#__jpaudiotracks');
+    		$query->where('id = ' . (int) $track_id);
+    		
+    		$db->setQuery($query);
+    		$result = $db->loadObject();
+    	} catch (Exception $e) {
+    		$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Database problem: '.$e->getFile().', '.$e->getMessage(), 'priority' => JLog::ERROR, 'section' => 'site')));
+    		return false;
+    	}
 
 		$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Hits for track id: '.$result->hits, 'priority' => JLog::INFO, 'section' => 'site')));
 
-		// Check for a database error.
-		if ($db->getErrorNum())
-		{
-			JError::raiseWarning(500, $db->getErrorMsg());
-			return false;
-		}
 		$newhits = $result->hits +1;
 
 		$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Writing '.$newhits.' hits for track id: '.$track_id, 'priority' => JLog::INFO, 'section' => 'site')));
