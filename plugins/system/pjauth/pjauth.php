@@ -10,7 +10,7 @@
  * details.
  *
  * @PlayJoom Plugin
- * @copyright Copyright (C) 2010-2011 by www.teglo.info
+ * @copyright Copyright (C) 2010-2016 by www.teglo.info
  * @license http://www.gnu.org/copyleft/gpl.html GNU/GPL
  * @date $Date$
  * @revision $Revision$
@@ -30,23 +30,21 @@ class plgSystempjauth extends JPlugin {
 		
 		if (!JFactory::getApplication()->isAdmin()) {
 			
-			$app             = JFactory::getApplication();
-		    $params		     = $app->getParams('com_playjoom');
+			$app = JFactory::getApplication();
+			$template = $app->getTemplate(true);
+		    $params = $app->getParams('com_playjoom');
 		    $pj_access_level = (int)$params->get('pj_accesslevel');
-		
-		    //Check for access
-		    $user		= JFactory::getUser();
-		
-		    if ($user->get('id') == 0
-		      && $pj_access_level >= 2) 
-		    {
-		    	$public = null;
-		    }
-		    else {
-		    	$groups	= implode('|', $user->getAuthorisedViewLevels($user->get('id')));
 
+		    //Check for access
+		    $user = JFactory::getUser();
+
+		    if ($user->id == 0 && $pj_access_level >= 2) {
+		    	$public = null;
+		    } else {
+		    	$groups	= implode('|', $user->getAuthorisedViewLevels($user->id));
+ 
 			    if (preg_match("(".$groups. ")",$pj_access_level)
-			     || JAccess::check($user->get('id'), 'core.admin') == 1
+			     || JAccess::check($user->id, 'core.admin') == 1
 			     || $pj_access_level < 2) 
 			    {
 			    	$public = true;
@@ -55,9 +53,8 @@ class plgSystempjauth extends JPlugin {
 				    $public = null;
 			    }
 		    }
-					
-		    $template	= $app->getTemplate(true);
-		    $file		= JRequest::getCmd('tmpl', 'index');
+
+		    $file = $app->input->getCmd('tmpl', 'index');
 		
 		   if (!is_dir(JPATH_THEMES . '/' . $template->template)) {
 		   	   $file = 'index';
@@ -65,7 +62,7 @@ class plgSystempjauth extends JPlugin {
 
 		   if (!$public) {
 			   $file = 'nopublic';
-			   JResponse::setHeader('Status', '503 Service Temporarily Unavailable', 'true');
+			   $app->setHeader('Status', '503 Service Temporarily Unavailable', 'true');
 		   }
 		
 		   if (!is_dir(JPATH_THEMES . '/' . $template->template)) {
@@ -83,12 +80,12 @@ class plgSystempjauth extends JPlugin {
 		   $document->parse($params);
 		
 		   $caching = false;
-		   if ($app->getCfg('caching') && $app->getCfg('caching', 2) == 2 && !$user->get('id')) {
+		   if ($app->getCfg('caching') && $app->getCfg('caching', 2) == 2 && !$user->id) {
 			   $caching = true;
 		   }
 		   
 		   // Render the document.
-		   JResponse::setBody($document->render($caching, $params));
+		   $app->setBody($document->render($caching, $params));
 		
 		}	
     }

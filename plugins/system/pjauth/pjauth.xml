@@ -2,12 +2,12 @@
 <extension version="3.0" type="plugin" group="system" method="upgrade">
 	<name>System - pjauth</name>
 	<author>Torsten Freyda</author>
-	<creationDate>March 2015</creationDate>
-	<copyright>Copyright (C) 2010 - 2015 by TFToto. All rights reserved.</copyright>
+	<creationDate>August 2016</creationDate>
+	<copyright>Copyright (C) 2010 - 2016 by teglo. All rights reserved.</copyright>
 	<license>GPL</license>
 	<authorEmail>admin@teglo.info</authorEmail>
-	<authorUrl>playjoom.teglo.info</authorUrl>
-	<version>1.0.3</version>
+	<authorUrl>www.playjoom.org</authorUrl>
+	<version>1.0.4</version>
 	<description>PLG_SYSTEM_PJAUTH_XML_DESCRIPTION</description>
 	<files>
 		<filename plugin="pjauth">pjauth.php</filename>
