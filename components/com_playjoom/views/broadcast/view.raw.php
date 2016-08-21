@@ -111,8 +111,8 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 				$fp = fopen($this->item->pathatlocal.DIRECTORY_SEPARATOR.$this->item->file, 'rb');
 
 				if (!$fp) {
-        				throw new Exception('Not able to open streaming file '.$this->item->pathatlocal.DIRECTORY_SEPARATOR.$this->item->file);
-    				}
+        			throw new Exception('Not able to open streaming file '.$this->item->pathatlocal.DIRECTORY_SEPARATOR.$this->item->file);
+				}
 			} catch (Exception $e) {
 				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => $e->getMessage(), 'priority' => JLog::ERROR, 'section' => 'site')));
 				exit();
@@ -159,13 +159,7 @@ class PlayJoomViewBroadcast extends JViewLegacy {
 				? 2048
 				: min(2048, $stream_size - $bytes_streamed);
 				
-				//Try to read the streaming file for broadcasting the content
-				try {
-				    $buf = fread($fp, $read_size);
-				} catch (Exception $ex) {
-				    $dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => $e->getMessage(), 'priority' => JLog::ERROR, 'section' => 'site')));
-				    exit();
-				}
+				$buf = fread($fp, $read_size);
 				print($buf);
 				ob_flush();
 				$bytes_streamed += strlen($buf);
