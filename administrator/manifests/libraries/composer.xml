@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension type="library" version="3.4" method="upgrade">
+	<name>PlayJoom Library</name>
+	<libraryname>vendor</libraryname>
+	<version>1.0.0</version>
+	<description>LIB_COMPOSER_XML_DESCRIPTION</description>
+	<creationDate>September 2016</creationDate>
+	<copyright>Copyright (C) 2010 - 2016 by telgo.info. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<author>PlayJoom Project</author>
+	<authorEmail>admin@teglo.info</authorEmail>
+	<authorUrl>www.playjoom.org</authorUrl>
+	<packager>PlayJoom</packager>
+	<files folder="libraries">
+		<folder>composer</folder>
+		<folder>ircmaxell</folder>
+		<folder>composer</folder>
+		<folder>joomla</folder>
+		<folder>leafo</folder>
+		<folder>paragonie</folder>
+		<folder>phpmailer</folder>
+		<folder>psr</folder>
+		<folder>simplepie</folder>
+		<folder>symfony</folder>
+		<file>autoload.php</file>
+		<file>index.html</file>
+	</files>
+</extension>

@@ -22,6 +22,6 @@ class PlayJoomViewCoverdata extends JViewLegacy {
 
 		// Get data from the model
 		$this->item = $this->get('Item');
-		echo $this->item->data;
+		echo $this->item;
 	}
 }

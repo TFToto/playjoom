@@ -145,6 +145,62 @@
                         <option value="0">JHIDE</option>
                         <option value="1">JSHOW</option>
                 </field>
+                 <field
+                       name="show_albums"
+                       label="COM_PLAYJOOM_CONFIG_VIEWER_SETTINGS_ALBUMS_LABEL"
+                       type="spacer"
+                       default=""
+
+               >
+               </field>               
+                <field
+                       name="albums_show_cover"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_ALBUMS_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_ARTIST_LABEL_DESC"
+                       default="0"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+				<field
+                       name="albums_cover_size"
+                       type="text"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_ALBUMS_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_ARTIST_LABEL_DESC"
+                       size="10"
+                       class="inputbox validate-trackrules"
+                       default="350"
+               />
+               <field
+                       name="show_homepage"
+                       label="COM_PLAYJOOM_CONFIG_VIEWER_SETTINGS_HOMEPAGE_LABEL"
+                       type="spacer"
+                       default=""
+
+               >
+               </field> 
+               <field
+                       name="homepage_show_cover"
+                       type="radio"
+                       class="btn-group"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_HOMEPAGE_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_SHOW_COVER_HOMEPAGE_LABEL_DESC"
+                       default="0"
+               >
+                        <option value="0">JHIDE</option>
+                        <option value="1">JSHOW</option>
+                </field>
+				<field
+                       name="homepage_cover_size"
+                       type="text"
+                       label="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_HOMEPAGE_LABEL"
+                       description="COM_PLAYJOOM_PLAYJOOM_FIELD_MAXSIZE_COVER_HOMEPAGE_LABEL_DESC"
+                       size="10"
+                       class="inputbox validate-trackrules"
+                       default="350"
+               />
                 
                 <field
                        name="show_artist"

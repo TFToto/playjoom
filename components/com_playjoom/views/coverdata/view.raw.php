@@ -32,11 +32,11 @@ class PlayJoomViewCoverdata extends JViewLegacy {
 	function display($tpl = null) {
 
 		$dispatcher	= JDispatcher::getInstance();
-echo 'hello';
+
 		// Get data from the model
 		$this->item = $this->get('Item');
 			
-			
+		//echo print_r($this->item);
 			//header('Content-Type', $this->item->mime);
 	
 			

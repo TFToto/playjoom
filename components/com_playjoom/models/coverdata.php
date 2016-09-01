@@ -13,6 +13,8 @@ defined('_JEXEC') or die;
 // import Joomla modelitem library
 jimport('joomla.application.component.modellist');
 
+use Intervention\Image\ImageManagerStatic as Image;
+
 /**
  * Contains the module Methods for the PlayJoom album
  *
@@ -89,7 +91,7 @@ class PlayJoomModelCoverData extends JModelItem {
 				$db = $this->getDbo();
 				$query = $db->getQuery(true);
 
-				$query->select('cb.id, cb.album, cb.artist, cb.width, cb.height, cb.mime, cb.data');
+				$query->select('cb.data');
 				$query->from('#__jpcoverblobs as cb');
 				if ((int) $pk >=1) {
 					$query->where('cb.id = '.(int) $pk);
@@ -111,13 +113,7 @@ class PlayJoomModelCoverData extends JModelItem {
 				$data = $db->loadObject();
 
 			} catch (Exception $e) {
-				if ($e->getCode() == 404) {
-					// Need to go thru the error handler to allow Redirect to work.
-					JError::raiseError(404, $e->getMessage());
-				} else {
-					$this->setError($e);
-					$this->_item[$pk] = false;
-				}
+				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Database problem: '.$e->getMessage(), 'priority' => JLog::ERROR, 'section' => 'site')));
         	}
 
         	//TODO session check for to get image data
@@ -132,134 +128,70 @@ class PlayJoomModelCoverData extends JModelItem {
         	}
         	*/
 
-			if(!$data) {
+			if(!isset($data)) {
+
 				//check for default cover
 				$default_cover = JPATH_BASE.DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.$this->params->get('StandardCoverImage');
 				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'No cover available! Path for default cover is: '.$default_cover, 'priority' => JLog::WARNING, 'section' => 'site')));
 				
 				if (file_exists($default_cover) && $this->params->get('StandardCoverImage') != '') {
 				
-					$handle = fopen($default_cover, "rb");
-					$contents = stream_get_contents($handle);
-					fclose($handle);
-					echo $contents;
+					$cover = Image::make($default_cover);
+					
 				} else {
 					$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Can not open file for default cover: ', 'priority' => JLog::ERROR, 'section' => 'site')));
-					$this->_item[$pk] = null;
+					return null;
 				}
 			} else {
-				$this->_item[$pk] = $data;
+				$cover = Image::make($data->data);
 			}
-			return self::ResampleImage($this->_item[$pk]);
+			
+			$cover->resize($this->getImgSize(), null, function ($constraint) {
+				$constraint->aspectRatio();
+			});
+			
+			$output = $cover->stream('png', 90);
+			$cover->destroy();
+			
+			return $output;
 		}
 	}
 	/**
-	 * Method for to make a image resampling
+	 * Method for to get the maximum width for current view by covers
 	 *
 	 * @param array $coverdata Datas for creating the cover
 	 * @param number $standart_img_width Width configuration for covers
 	 *
 	 * @return resource resampled image data
 	 */
-	public function ResampleImage($coverdata) {
-
-		$dispatcher	= JDispatcher::getInstance();		
+	public function getImgSize() {
+	
+		$dispatcher	= JDispatcher::getInstance();
 		$app = JFactory::getApplication();
 		$view = $app->input->get('coverview');
-		
+	
 		//If link comes of a module, then get also the params of this module
-		if ($moduletype = base64_decode($app->input->get('moduletype')) 
-		    && $moduletitle = base64_decode($app->input->get('moduletitle'))) {
-
-		    $module = JModuleHelper::getModule($moduletype,$moduletitle);
-		    $module_params = new JRegistry($module->params);
+		if ($moduletype = base64_decode($app->input->get('moduletype'))
+				&& $moduletitle = base64_decode($app->input->get('moduletitle'))) {
+	
+			$module = JModuleHelper::getModule($moduletype,$moduletitle);
+			$module_params = new JRegistry($module->params);
 		} else {
-		    $module_params = null;
+			$module_params = null;
 		}
-		
+
 		if ($module_params) {
 			$cover_width = $module_params->get($view.'_cover_size',100);
 		} else {
-		    if (isset($this->params)) {
-		    $cover_width = $this->params->get($view.'_cover_size',100);
-		} else {
-			$cover_width = 100;
-		    }
-		}
-
-		if(!$coverdata->width || !$coverdata->height) {
-			$short_img_height = 100;
-		} else {
-			//Calculate the smaller cover values
-			if ($coverdata->width > $coverdata->height) {
-				$ratio = $coverdata->width / $coverdata->height;
-				$short_img_height = $cover_width / $ratio;
+			if (isset($this->params)) {
+				$cover_width = $this->params->get($view.'_cover_size',100);
 			} else {
-				$ratio = $coverdata->height / $coverdata->width;
-				$short_img_height = $cover_width / $ratio;
+				$cover_width = 100;
 			}
 		}
 
-		//Create Cover blob for thumbnail
-		$src_img = @imagecreatefromstring($coverdata->data);
-
-		//Create the thumbnail cover
-		$dest_img = imageCreateTrueColor($cover_width, round($short_img_height));
-
-		//Resample the thumbnail cover
-		if ($coverdata->height && $coverdata->width) {
-			imageCopyResampled($dest_img, $src_img, 0, 0, 0 ,0, $cover_width, round($short_img_height), $coverdata->width, $coverdata->height);
-		}
-
-		ob_start();
-
-		switch ($coverdata->mime) {
-			case "image/jpeg" :
-				ob_start();
-				imagejpeg($dest_img);
-				$imgdata = ob_get_contents();
-				break;
-			case "image/jpg" :
-				ob_start();
-				imagejpeg($dest_img);
-				$imgdata = ob_get_contents();
-				break;
-			case "image/gif" :
-				ob_start();
-				imagegif($dest_img);
-				$imgdata = ob_get_contents();
-				break;
-			case "image/png" :
-				ob_start();
-				imagepng($dest_img);
-				$imgdata = ob_get_contents();
-				break;
-			default:
-				//'MISSING COVER IMAGE TYPE';
-				$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Missing or unknow mime type for cover img. mime: '.$coverdata->mime, 'priority' => JLog::ERROR, 'section' => 'site')));
-				//return null;
-				ob_start();
-				imagegif($dest_img);
-				$imgdata = ob_get_contents();
-		}
-		ob_get_clean();
-
-		// Clean up temp images
-		imagedestroy($src_img);
-		imagedestroy($tmp_img);
-		imagedestroy($dest_img);
-		ob_end_clean();
-
-		$covers_items = array(
-				"data" => $imgdata,
-				"width" => $cover_width,
-				"height" => round($short_img_height),
-				"mime" => $coverdata->mime
-		);
 		
-		$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Done with resample image data.', 'priority' => JLog::INFO, 'section' => 'site')));
-				
-		return (object) $covers_items;
+		return (int)$cover_width;
 	}
 	/**
 	 * Method for to check if the requested track has a valid open session
