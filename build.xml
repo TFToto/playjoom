@@ -5,7 +5,7 @@
 	<echo>Building PlayJoom version: ${versionprop}</echo>
 
 	<property name="src"   value="${project.basedir}"/>
-	<property name="release"  value="/home/toto/Dokumente/PlayJoom_projekt/release/builds/beta_build#${versionprop}" override="true" />
+	<property name="release"  value="/data/user/toto/Dokumente/PlayJoom_projekt/release/builds/beta_build#${versionprop}" override="true" />
 	<property name="release_version"  value="0.10.1" override="true" />
 	<property name="release_update_pack_components" value="${release}/update_pack/extensions/components" override="true" />
 	<property name="release_update_pack_libraries" value="${release}/update_pack/extensions/libraries" override="true" />
@@ -152,9 +152,6 @@
 	<!-- Fileset for all Joomla! library files //-->
 	<fileset dir="${src}/libraries/joomla" id="lib_pack_joomla_files" defaultexcludes="true">
 	</fileset>
-	<!-- Fileset for all phpmailer library files //-->
-	<fileset dir="${src}/libraries/phpmailer" id="lib_pack_phpmailer_files" defaultexcludes="true">
-	</fileset>
 	<!-- Fileset for all phputf8 library files //-->
 	<fileset dir="${src}/libraries/phputf8" id="lib_pack_phputf8_files" defaultexcludes="true">
 	</fileset>
@@ -163,6 +160,9 @@
 	</fileset>
 	<!-- Fileset for all playjoom library files //-->
 	<fileset dir="${src}/libraries/playjoom" id="lib_pack_playjoom_files" defaultexcludes="true">
+	</fileset>
+	<!-- Fileset for all vendor library files //-->
+	<fileset dir="${src}/libraries/vendor" id="lib_pack_vendor_files" defaultexcludes="true">
 	</fileset>
 
 	<!-- Fileset for site file parts //-->
@@ -230,6 +230,7 @@
 	<fileset dir="${src}/plugins/editors-xtd" id="update_pack_plugin-files-plugins-editorsxtd-folder"></fileset>
 	<fileset dir="${src}/plugins/extension" id="update_pack_plugin-files-plugins-extension-folder"></fileset>
 	<fileset dir="${src}/plugins/quickicon" id="update_pack_plugin-files-plugins-quickicon-folder"></fileset>
+	<fileset dir="${src}/plugins/installer" id="update_pack_plugin-files-plugins-installer-folder"></fileset>
 	<fileset dir="${src}/plugins/system" id="update_pack_plugin-files-plugins-system-folder"></fileset>
 	<fileset dir="${src}/plugins/twofactorauth" id="update_pack_plugin-files-plugins-twofactorauth-folder"></fileset>
 	<fileset dir="${src}/plugins/user" id="update_pack_plugin-files-plugins-user-folder"></fileset>
@@ -1177,6 +1178,26 @@
 		<copy file="${src}/administrator/language/de-DE/de-DE.plg_quickicon_playjoomupdate.sys.ini" todir="${release_update_pack_plugins}/quickicon/playjoomupdate/language" />
 		<copy file="${src}/administrator/language/en-GB/en-GB.plg_quickicon_playjoomupdate.sys.ini" todir="${release_update_pack_plugins}/quickicon/playjoomupdate/language" />
 		
+		<!-- ############# Installer Plugins ##################################//-->	
+		<copy todir="${release_update_pack_plugins}/installer">
+			<fileset refid="update_pack_plugin-files-plugins-installer-folder" />
+		</copy>
+		<!--  Language files for folderinstaller part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_installer_folderinstaller.ini" todir="${release_update_pack_plugins}/installer/folderinstaller/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_installer_folderinstaller.ini" todir="${release_update_pack_plugins}/installer/folderinstaller/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_installer_folderinstaller.sys.ini" todir="${release_update_pack_plugins}/installer/folderinstaller/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_installer_folderinstaller.sys.ini" todir="${release_update_pack_plugins}/installer/folderinstaller/language" />
+		<!--  Language files for packageinstaller part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_installer_packageinstaller.ini" todir="${release_update_pack_plugins}/installer/packageinstaller/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_installer_packageinstaller.ini" todir="${release_update_pack_plugins}/installer/packageinstaller/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_installer_packageinstaller.sys.ini" todir="${release_update_pack_plugins}/installer/packageinstaller/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_installer_packageinstaller.sys.ini" todir="${release_update_pack_plugins}/installer/packageinstaller/language" />
+		<!--  Language files for urlinstaller part //-->
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_installer_urlinstaller.ini" todir="${release_update_pack_plugins}/installer/urlinstaller/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_installer_urlinstaller.ini" todir="${release_update_pack_plugins}/installer/urlinstaller/language" />
+		<copy file="${src}/administrator/language/de-DE/de-DE.plg_installer_urlinstaller.sys.ini" todir="${release_update_pack_plugins}/installer/urlinstaller/language" />
+		<copy file="${src}/administrator/language/en-GB/en-GB.plg_installer_urlinstaller.sys.ini" todir="${release_update_pack_plugins}/installer/urlinstaller/language" />
+		
 		<!-- ################## PJSearch Plugins #####################################//-->
 		<copy todir="${release}/comp_pack/extensions/search">
 			<fileset refid="comp_pack_plugin-files-search-folder" />
@@ -1335,10 +1356,6 @@
 			<fileset refid="lib_pack_joomla_files" />
 		</copy>
 		<copy file="${src}/administrator/manifests/libraries/joomla.xml" todir="${release_update_pack_libraries}/lib_joomla/" />
-		<!-- ################ phpmailer #############################################// -->
-		<copy todir="${release_update_pack_libraries}/lib_phpmailer">
-			<fileset refid="lib_pack_phpmailer_files" />
-		</copy>
 		<copy file="${src}/administrator/manifests/libraries/phpmailer.xml" todir="${release_update_pack_libraries}/lib_phpmailer/" />
 		<!-- ################ phpuft8 #############################################// -->
 		<copy todir="${release_update_pack_libraries}/lib_phputf8">
@@ -1358,6 +1375,11 @@
 			<fileset refid="update_pack_media-files-lib_playjoom-folder" />
 		</copy>
 		<copy file="${src}/administrator/manifests/libraries/playjoom.xml" todir="${release_update_pack_libraries}/lib_playjoom/" />
+		<!-- ################ Vendor #############################################// -->
+		<copy todir="${release_update_pack_libraries}/lib_vendor">
+			<fileset refid="lib_pack_vendor_files" />
+		</copy>
+		<copy file="${src}/administrator/manifests/libraries/vendor.xml" todir="${release_update_pack_libraries}/lib_vendor/" />
 		<!-- ################PlayJoom Library for comp_pack##########################################// -->
 		<copy todir="${release}/comp_pack/extensions/lib_playjoom">
 			<fileset refid="lib_pack_playjoom_files" />
