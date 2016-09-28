@@ -96,9 +96,12 @@ class PlayJoomModelCoverData extends JModelItem {
 				if ((int) $pk >=1) {
 					$query->where('cb.id = '.(int) $pk);
 				} else {
+					$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Missing cover id. Try with '.$this->artistname.' - '.$this->albumname, 'priority' => JLog::WARNING, 'section' => 'site')));
+					$this->_CoverIDSubsequentlyMaintain($this->albumname,$this->artistname,$this->SamplerCheck);
+					
 					if (!$this->SamplerCheck) {
 						//Request for no Sampler
-						$query->where('(cb.album = '.$db->quote($this->albumname).' AND cb.artist = '.$db->quote($this->artistname));
+						$query->where('cb.album = '.$db->quote($this->albumname).' AND cb.artist = '.$db->quote($this->artistname));
 					} else {
 						//Request for Sampler
 						$query->where('cb.album = '.$db->quote($this->albumname));
@@ -155,6 +158,66 @@ class PlayJoomModelCoverData extends JModelItem {
 			
 			return $output;
 		}
+	}
+	
+	/**
+	 * Method for to subsequently maintain the missing cover checksum integer
+	 *
+	 * @param array $item album items like artist and albumname
+	 * @param boolean $SamplerCheck
+	 *
+	 * @return boolean
+	 */
+	private function _CoverIDSubsequentlyMaintain($album, $artist, $SamplerCheck=false) {
+	
+		$db = JFactory::getDBO();
+		$dispatcher	= JDispatcher::getInstance();
+	
+		$query = $db->getQuery(true);
+	
+		$query->select('cb.id AS cover_id');
+		$query->from('#__jpcoverblobs as cb');
+	
+		if (!$SamplerCheck) {
+			//Request for no Sampler
+			$query->where('(cb.album = '.$db->quote($album).' AND cb.artist = '.$db->quote($artist).')');
+		} else {
+			//Request for Sampler
+			$query->where('cb.album = '.$db->quote($album));
+		}
+	
+		$db->setQuery($query);
+		$cover = $db->loadObject();
+	
+		if ($cover) {
+	
+			//Get list tracks of an album
+			$query->select('t.id');
+			$query->from('#__jpaudiotracks as t');
+	
+			//Check for albumname as sampler
+			if ($SamplerCheck) {
+				$query->where('(t.album = '.$db->quote($album). ' AND t.artist = '.$db->quote($artist). ')');
+			} else {
+				$query->where('t.album = '.$db->quote($album));
+			}
+	
+			$db->setQuery($query);
+			$tracklist = $db->loadObjectList();
+	
+			foreach($tracklist as $i => $albumitem) {
+				$obj = new stdClass();
+				$obj->id = $albumitem->id;
+				$obj->coverid = $cover->cover_id;
+	
+				$db->updateObject('#__jpaudiotracks', $obj, 'id', true);
+			}
+	
+			$dispatcher->trigger('onEventLogging', array(array('method' => __METHOD__.":".__LINE__, 'message' => 'Update missing cover IDs: '.$cover->cover_id, 'priority' => JLog::INFO, 'section' => 'site')));
+	
+		}
+		
+		return true;
 	}
 	/**
 	 * Method for to get the maximum width for current view by covers
