@@ -68,9 +68,14 @@ class PlayJoomControllerSaveTracks extends JControllerAdmin {
     	header('Expires: -1');
     	
     	$path = JRequest::getVar('selectedfolder');
-    	
+
     	if(strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
     		$path = substr($path, 1);
+    	}
+
+    	if($path == ''){
+    		$config = JComponentHelper::getParams('com_playjoom');
+    		$path = $config->get('file_path', getcwd());
     	}
     	
     	$message = null;
